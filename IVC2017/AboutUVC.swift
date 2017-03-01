@@ -121,7 +121,7 @@ class AboutUVC: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelega
 	func lazyButtonTapped(){
 		
 		ref = FIRDatabase.database().reference()
-		handle = ref?.child("users").childByAutoId(). 
+		handle = ref?.child("users"). 
 		
 	}
 }
