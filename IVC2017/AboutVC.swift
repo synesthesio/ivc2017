@@ -12,7 +12,10 @@ class AboutVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+			
+				let url = URL(string: "http://www.iv-conference.com/faqs/")
+				webView.loadRequest(URLRequest(url: url!))
+				self.view.addSubview(webView)
         // Do any additional setup after loading the view.
     }
 
@@ -31,5 +34,11 @@ class AboutVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+	
+	lazy var webView:UIWebView = {
+		let a = UIWebView(frame: self.view.bounds)
+		
+		return a
+	}()
 
 }

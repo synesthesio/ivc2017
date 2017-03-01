@@ -20,10 +20,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-		//FIRApp.confi
+		
+		UserDefaults.standard.set(false, forKey: "loggedin")
+		
+		var mainController:UIViewController!
+		if UserDefaults.standard.bool(forKey: "loggedin") != false {
+			window = UIWindow.init(frame: UIScreen.main.bounds)
+			mainController = EventTableVC() as! UIViewController
+			let navigationController = UINavigationController(rootViewController: mainController)
+			navigationController.navigationBar.isTranslucent = false
+			window?.rootViewController = navigationController
+			window!.makeKeyAndVisible()
+			
+		} else {
+//			 mainController = EventTableVC() as! UIViewController
+		}
+		FIRApp.configure()
+		
+		var configErr:NSError?
+//		GGLContext.sharedInstance().configureWithError(configErr)
+		
+		
 		GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
 		GIDSignIn.sharedInstance().delegate = self
-		FIRApp.configure()
 		GMSServices.provideAPIKey("AIzaSyAcaDWJlg1nUohWxoXy3XInH37IeZEc42k")
 		
 		return true
@@ -40,15 +59,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 	func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
 		return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
 	}
+	
 	func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
   // ...
-  if let error = error {
-		print("PrinterrordidSignInFor: \(error.localizedDescription)")
-		return
-  }
+		if let error = error {
+			print("PrinterrordidSignInFor: \(error.localizedDescription)")
+			return
+		}
 		
-  guard let authentication = user.authentication else { return }
-  let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
+		guard let authentication = user.authentication else { return }
+		let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                     accessToken: authentication.accessToken)
   // ...
 		FIRAuth.auth()?.signIn(with: credential, completion: { (user, err) in
@@ -57,6 +77,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 			}
 			if let u = user {
 				print("perfunctory placeholder")
+				if UserDefaults.standard.bool(forKey: "loggedin") != true {
+					
+				} else {
+					print("perfunctory placeholder")
+				}
 			}
 		})
 	}

@@ -32,7 +32,21 @@ class SessionVC: UIViewController {
 				self.sessionLabel.text = titl
 				self.timeLabel.text = day + time
 				self.title = titl
-
+			if desc != nil {
+				self.textVw.text = desc
+			} else {
+				
+				if speakers != nil {
+				var str = ""
+					for i in speakers! {
+						str.append(i.bio)
+					
+					}
+				}
+				
+				
+//				self.textVw.text =
+			}
         // Do any additional setup after loading the view.
     }
 

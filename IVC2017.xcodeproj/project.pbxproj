@@ -22,6 +22,8 @@
 		254F3CCB1E63798B00343DA8 /* SpeakerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F3CCA1E63798B00343DA8 /* SpeakerVC.swift */; };
 		254F3CCF1E63D60900343DA8 /* SessionTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F3CCE1E63D60800343DA8 /* SessionTVCell.swift */; };
 		254F3CD11E63ED9100343DA8 /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F3CD01E63ED9100343DA8 /* SessionVC.swift */; };
+		257180671E6638020037DD4C /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 257180661E6638020037DD4C /* video.mp4 */; };
+		257180691E664B590037DD4C /* AboutUVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257180681E664B590037DD4C /* AboutUVC.swift */; };
 		25DFE3561E5EBCEA00B5B333 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DFE3551E5EBCEA00B5B333 /* Utility.swift */; };
 		DA5BF759DE8517BA973897FA /* Pods_IVC2017.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21192012FA8040114242B17 /* Pods_IVC2017.framework */; };
 		DE690AED49724F3DDBF51022 /* Pods_IVC2017Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB10B6C0A3EBF63F76F804D /* Pods_IVC2017Tests.framework */; };
@@ -58,6 +60,9 @@
 		254F3CCA1E63798B00343DA8 /* SpeakerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerVC.swift; sourceTree = "<group>"; };
 		254F3CCE1E63D60800343DA8 /* SessionTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTVCell.swift; sourceTree = "<group>"; };
 		254F3CD01E63ED9100343DA8 /* SessionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionVC.swift; sourceTree = "<group>"; };
+		257180661E6638020037DD4C /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
+		257180681E664B590037DD4C /* AboutUVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUVC.swift; sourceTree = "<group>"; };
+		2571806A1E664C690037DD4C /* IVC2017.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IVC2017.entitlements; sourceTree = "<group>"; };
 		25DFE3551E5EBCEA00B5B333 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		2EB10B6C0A3EBF63F76F804D /* Pods_IVC2017Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IVC2017Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3322C85D43C3E6EE85888621 /* Pods-IVC2017.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IVC2017.release.xcconfig"; path = "Pods/Target Support Files/Pods-IVC2017/Pods-IVC2017.release.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +105,7 @@
 		2513BC321E5EB4FB009B9CDE = {
 			isa = PBXGroup;
 			children = (
+				257180661E6638020037DD4C /* video.mp4 */,
 				2513BC3D1E5EB4FB009B9CDE /* IVC2017 */,
 				2513BC551E5EB4FB009B9CDE /* IVC2017Tests */,
 				2513BC3C1E5EB4FB009B9CDE /* Products */,
@@ -120,9 +126,11 @@
 		2513BC3D1E5EB4FB009B9CDE /* IVC2017 */ = {
 			isa = PBXGroup;
 			children = (
+				2571806A1E664C690037DD4C /* IVC2017.entitlements */,
 				2513BC3E1E5EB4FB009B9CDE /* AppDelegate.swift */,
 				254F3CC21E636D9000343DA8 /* MapVC.swift */,
 				252B55FC1E62911B00F12C11 /* RegistrationVC.swift */,
+				257180681E664B590037DD4C /* AboutUVC.swift */,
 				252B55FA1E626A9A00F12C11 /* EventTableVC.swift */,
 				254F3CC61E63789100343DA8 /* AttendeeTableVC.swift */,
 				254F3CCA1E63798B00343DA8 /* SpeakerVC.swift */,
@@ -216,6 +224,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = KXY9EDFTF5;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					2513BC511E5EB4FB009B9CDE = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -250,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2513BC4C1E5EB4FB009B9CDE /* LaunchScreen.storyboard in Resources */,
+				257180671E6638020037DD4C /* video.mp4 in Resources */,
 				254F3CC51E636EF600343DA8 /* GoogleService-Info.plist in Resources */,
 				2513BC491E5EB4FB009B9CDE /* Assets.xcassets in Resources */,
 				2513BC441E5EB4FB009B9CDE /* Main.storyboard in Resources */,
@@ -369,6 +383,7 @@
 				2513BC471E5EB4FB009B9CDE /* IVC2017.xcdatamodeld in Sources */,
 				254F3CC31E636D9000343DA8 /* MapVC.swift in Sources */,
 				254F3CC91E6378EC00343DA8 /* AboutVC.swift in Sources */,
+				257180691E664B590037DD4C /* AboutUVC.swift in Sources */,
 				252B55FB1E626A9A00F12C11 /* EventTableVC.swift in Sources */,
 				254F3CC71E63789100343DA8 /* AttendeeTableVC.swift in Sources */,
 				254F3CCB1E63798B00343DA8 /* SpeakerVC.swift in Sources */,
@@ -511,6 +526,7 @@
 			baseConfigurationReference = AB40ABB6DEC3280C8DD3CB81 /* Pods-IVC2017.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = IVC2017/IVC2017.entitlements;
 				DEVELOPMENT_TEAM = KXY9EDFTF5;
 				INFOPLIST_FILE = IVC2017/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -525,6 +541,7 @@
 			baseConfigurationReference = 3322C85D43C3E6EE85888621 /* Pods-IVC2017.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = IVC2017/IVC2017.entitlements;
 				DEVELOPMENT_TEAM = KXY9EDFTF5;
 				INFOPLIST_FILE = IVC2017/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
