@@ -58,7 +58,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/AppDelegate.swift"
-                  timestampString = "510024257.747281"
+                  timestampString = "510214909.92665"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
@@ -73,7 +73,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/AppDelegate.swift"
-                  timestampString = "510024257.74875"
+                  timestampString = "510214909.928736"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "75"
@@ -154,22 +154,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IVC2017/EventTableVC.swift"
-            timestampString = "509861452.325647"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IVC2017/EventTableVC.swift"
             timestampString = "509865056.201731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -186,7 +170,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.76441"
+                  timestampString = "510214909.940959"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "52"
@@ -201,7 +185,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.765726"
+                  timestampString = "510214909.943177"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "49"
@@ -234,7 +218,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.768429"
+                  timestampString = "510214909.947407"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -249,7 +233,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.769754"
+                  timestampString = "510214909.949798"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -257,22 +241,6 @@
                   offsetFromSymbolStart = "1532">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IVC2017/EventTableVC.swift"
-            timestampString = "509868714.786465"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "fetchCalendarEvents(forDay:completion:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -298,7 +266,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.775309"
+                  timestampString = "510214909.954276"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -313,7 +281,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.776643"
+                  timestampString = "510214909.956477"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -346,7 +314,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.779301"
+                  timestampString = "510214909.960759"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -361,7 +329,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.780624"
+                  timestampString = "510214909.962967"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -442,7 +410,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.790892"
+                  timestampString = "510214909.979808"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -457,7 +425,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.792249"
+                  timestampString = "510214909.982059"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -490,7 +458,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.795001"
+                  timestampString = "510214909.986652"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -505,7 +473,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.796382"
+                  timestampString = "510214909.988913"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -538,7 +506,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.799108"
+                  timestampString = "510214909.992743"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -553,7 +521,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.800424"
+                  timestampString = "510214909.99409"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -634,7 +602,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.810983"
+                  timestampString = "510214910.004542"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "176"
@@ -649,7 +617,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/EventTableVC.swift"
-                  timestampString = "510024257.812293"
+                  timestampString = "510214910.005907"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "171"
@@ -714,11 +682,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IVC2017/RegistrationVC.swift"
-            timestampString = "510023036.914608"
+            timestampString = "510202680.259412"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -746,11 +714,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IVC2017/RegistrationVC.swift"
-            timestampString = "510023440.771784"
+            timestampString = "510206055.811595"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "loginTapped()"
             landmarkType = "7">
          </BreakpointContent>
@@ -761,13 +729,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IVC2017/RegistrationVC.swift"
-            timestampString = "510023779.528564"
+            filePath = "IVC2017/MapVC.swift"
+            timestampString = "510212090.716346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
-            landmarkName = "skipTapped()"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
+            landmarkName = "mapView(_:didTap:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -777,14 +745,206 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IVC2017/RegistrationVC.swift"
-            timestampString = "510023779.528564"
+            filePath = "IVC2017/MapVC.swift"
+            timestampString = "510212090.716346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
-            landmarkName = "skipTapped()"
+            startingLineNumber = "499"
+            endingLineNumber = "499"
+            landmarkName = "mapView(_:didTap:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IVC2017/MapVC.swift"
+            timestampString = "510212090.716346"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "436"
+            endingLineNumber = "436"
+            landmarkName = "recreateRoute(originLocation:destinationLocation:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IVC2017.MapVC.recreateRoute (originLocation : __ObjC.CLLocation, destinationLocation : __ObjC.CLLocation) -&gt; ()"
+                  moduleName = "IVC2017"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/MapVC.swift"
+                  timestampString = "510214910.025898"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "436"
+                  endingLineNumber = "436"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IVC2017.MapVC.(recreateRoute (originLocation : __ObjC.CLLocation, destinationLocation : __ObjC.CLLocation) -&gt; ()).(closure #1)"
+                  moduleName = "IVC2017"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/MapVC.swift"
+                  timestampString = "510214910.027262"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "437"
+                  endingLineNumber = "437"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IVC2017/MapVC.swift"
+            timestampString = "510212090.716346"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "363"
+            endingLineNumber = "363"
+            landmarkName = "configureMapAndMarkersForRoute()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IVC2017/MapVC.swift"
+            timestampString = "510212090.716346"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
+            landmarkName = "showAlertWithMessage(message:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IVC2017/MapVC.swift"
+            timestampString = "510211765.332485"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IVC2017/MapVC.swift"
+            timestampString = "510212090.716346"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
+            landmarkName = "setupLocationMarker(coordinate:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IVC2017/MapVC.swift"
+            timestampString = "510212090.716346"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "changeTravelMode(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IVC2017/MapVC.swift"
+            timestampString = "510212090.716346"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "findAddress(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IVC2017/MapVC.swift"
+            timestampString = "510212090.716346"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "observeValue(forKeyPath:of:change:context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IVC2017/SpeakerVC.swift"
+            timestampString = "510215645.741774"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "nameButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IVC2017/SpeakerVC.swift"
+            timestampString = "510216561.460006"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "nameButton"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -70,6 +70,30 @@ class AboutUVC: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelega
 		return v
 	}()
 	
+	lazy var tf1:UITextField! = {
+		let v = UITextField()
+		v.translatesAutoresizingMaskIntoConstraints = false
+		v.borderStyle = .roundedRect
+		v.layer.cornerRadius = 5
+		v.layer.borderWidth = 3
+		v.layer.borderColor = UIColor.white.cgColor
+		v.textAlignment = .center
+		v.attributedPlaceholder = NSAttributedString(string: "PLACEHOLDER", attributes: [ NSForegroundColorAttributeName: UIColor.black ])
+		return v
+	}()
+	
+	lazy var tf2:UITextField! = {
+		let v = UITextField()
+		v.translatesAutoresizingMaskIntoConstraints = false
+		v.borderStyle = .roundedRect
+		v.layer.cornerRadius = 5
+		v.layer.borderWidth = 3
+		v.layer.borderColor = UIColor.white.cgColor
+		v.textAlignment = .center
+		v.attributedPlaceholder = NSAttributedString(string: "PLACEHOLDER", attributes: [ NSForegroundColorAttributeName: UIColor.black ])
+		return v
+	}()
+	
 	func keyboardWillShow(_ sender: Notification) {
 		if let f = (sender.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue{
 			let newF = self.view.convert(f, from: (UIApplication.shared.delegate?.window)!)
@@ -120,8 +144,8 @@ class AboutUVC: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelega
 	
 	func lazyButtonTapped(){
 		
-		ref = FIRDatabase.database().reference()
-		handle = ref?.child("users"). 
+//		ref = FIRDatabase.database().reference()
+//		handle = ref?.child("users"). 
 		
 	}
 }

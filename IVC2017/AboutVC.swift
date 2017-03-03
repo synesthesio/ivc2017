@@ -13,9 +13,19 @@ class AboutVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 			
-				let url = URL(string: "http://www.iv-conference.com/faqs/")
+//				let url = URL(string: "http://www.iv-conference.com/faqs/")
+				let url1 = URL(string:"fb://profile/215178098578794")
+				let url = URL(string:"https://www.facebook.com/215178098578794/")
+			
+			if UIApplication.shared.canOpenURL(url1!) {
+				UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+			} else {
 				webView.loadRequest(URLRequest(url: url!))
 				self.view.addSubview(webView)
+			}
+			
+			
+			
         // Do any additional setup after loading the view.
     }
 

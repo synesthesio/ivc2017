@@ -11,6 +11,9 @@ import UIKit
 import GoogleMaps
 
 struct Utility {
+
+	var locationData:[EventLocation]!
+
 	static func displayAlertWithHandler(_ title: String, message: String, from: UIViewController, cusHandler: ((UIAlertAction) -> Void)?){
 		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 		let defaultAction = UIAlertAction(title: "OK", style: .default, handler: cusHandler)
@@ -18,11 +21,120 @@ struct Utility {
 		from.present(alert, animated: true, completion: nil)
 	}
 	
-	
-	
-	
-}
+	static func createViewForMarkerIcon(address: EventLocation)-> UIView{
+		var imgForBg:UIImage?
+		let view = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 40))
+		var label = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+		label.textAlignment = NSTextAlignment.center
+		label.text = address.title
+		switch address.isRestaurant {
+		case true:
+			imgForBg = UIImage(named: "res1")
+		default:
+			imgForBg = UIImage(named: "ev1")
+		}
+		
+	view.addSubview(label)
+	view.addSubview(UIImageView(image: imgForBg!))
+	return view
+	}
 
+
+
+	class GooglePlacesRequestBuilder {
+		/**
+		Build a query string from a dictionary
+		
+		:param: parameters Dictionary of query string parameters
+		:returns: The properly escaped query string
+		*/
+		class func query(parameters: [String: AnyObject]) -> String {
+			var components: [(String, String)] = []
+			for key in Array(parameters.keys).sorted(by: <) {
+				let value: AnyObject! = parameters[key]
+				components += [(escape(string: key), ("\(escape(string: value as! String))"))]
+			}
+			let mappedComponents = components.map {
+				
+				( component) -> String in
+				let output = "\(component.0)=\(component.1)"
+				return output
+			}
+			return mappedComponents.joined(separator: "&")
+		}
+		
+		
+		class func escape(string: String) -> String {
+			let legalURLCharactersToBeEscaped = CharacterSet(charactersIn: ":/?&=;+!@#$()',*")
+			return string.addingPercentEncoding(withAllowedCharacters: legalURLCharactersToBeEscaped)!
+			//CFURLCreateStringByAddingPercentEscapes(nil, string as CFString!, nil, legalURLCharactersToBeEscaped, ) as String
+		}
+		
+		class func sendRequest(url: String, params: [String: String], success: @escaping (NSDictionary) -> ()) {
+			let request = NSMutableURLRequest(
+				url: NSURL(string: "\(url)?\(query(parameters: params as [String : AnyObject]))")! as URL
+			)
+			print("REQUEST: \(request)")
+			
+			let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+				self.handleResponse(data: data as NSData!, response: response as? HTTPURLResponse, error: error as NSError!, success: success)
+			}
+			
+			task.resume()
+		}
+		
+		class func handleResponse(data: NSData!, response: HTTPURLResponse!, error: NSError!, success: @escaping (NSDictionary) -> ()) {
+			let mainVC = UIApplication.shared.delegate?.window??.rootViewController
+			let currentVC = (mainVC as! UINavigationController).visibleViewController!
+			if let error = error {
+				print("GooglePlaces Error: \(error.localizedDescription)")
+				Utility.displayAlertWithHandler("Sorry, we can’t find directions right now. Try again when you have better reception", message: "", from: currentVC, cusHandler: nil)
+				return
+			}
+			
+			if response == nil {
+				print("GooglePlaces Error: No response from API")
+				Utility.displayAlertWithHandler("Sorry, we can’t find directions right now. Try again when you have better reception", message: "", from: currentVC, cusHandler: nil)
+				
+				return
+			}
+			
+			if response.statusCode != 200 {
+				print("GooglePlaces Error: Invalid status code \(response.statusCode) from API")
+				Utility.displayAlertWithHandler("GooglePlaces Error: Invalid status code \(response.statusCode) from API", message: "", from: currentVC, cusHandler: nil)
+				
+				return
+			}
+			do
+			{
+				let json: NSDictionary = try JSONSerialization.jsonObject(with: data as Data, options: .mutableContainers) as! NSDictionary
+				
+				if let status = json["status"] as? String {
+					if status != "OK" {
+						print("GooglePlaces API Error: \(status)")
+						Utility.displayAlertWithHandler("We could not establish a route to that destination", message: "", from: currentVC, cusHandler: nil)
+						
+						return
+					}
+					DispatchQueue.main.async(execute: {
+						UIApplication.shared.isNetworkActivityIndicatorVisible = false
+						
+						success(json)
+					})
+				}
+				
+			} catch let caught as NSError {
+				print("An error occured: \(caught.localizedDescription)")
+				return
+			} catch {
+				print("something else didn't work")
+				
+			}
+		}
+	}
+	
+
+}
 
 
 //func placeMarker(name: String, addr: String, lat: NSString, long: NSString, map: GMSMapView)
@@ -76,3 +188,26 @@ struct Attendee {
 	var bio:String?
 	var link:URL?
 }
+
+struct EventLocation {
+	var address:String!
+	var latitude:CLLocationDegrees!
+	var longitude:CLLocationDegrees!
+	var title:String!
+	var isRestaurant:Bool!
+	init(addr:String,lat:CLLocationDegrees,long:CLLocationDegrees,titl:String, res:Bool) {
+		self.address = addr
+		self.latitude = lat
+		self.longitude = long
+		self.title = titl
+		self.isRestaurant = res
+	}
+}
+
+
+let gMapsApiKey = "AIzaSyAcaDWJlg1nUohWxoXy3XInH37IeZEc42k"
+
+
+
+
+

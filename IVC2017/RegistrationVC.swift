@@ -20,10 +20,10 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
  
 	//  var adjustingView:UIView!
 	
-	var plyr:AVPlayer! = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: "video", ofType: "mp4")!))
+	var plyr:AVPlayer?
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		plyr = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: "video", ofType: "mp4")!))
 		self.navigationController?.navigationBar.isHidden = true
 		uetf.delegate = self
 		uptf.delegate = self
@@ -38,8 +38,9 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		veV.effect = UIBlurEffect(style: .light)
 		
 		
-		plyr.play()
-		NotificationCenter.default.addObserver(self, selector: #selector(playDidEnd(notif:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: plyr.currentItem)
+//		plyr?.play()
+		plyr?.isMuted = true
+		NotificationCenter.default.addObserver(self, selector: #selector(playDidEnd(notif:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: plyr?.currentItem)
 		view.setNeedsUpdateConstraints()
 		let tGR = UITapGestureRecognizer(target: self, action: #selector(screenTapped))
 		tGR.delegate = self
@@ -80,8 +81,9 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	}
 	
 	func playDidEnd(notif:Notification) {
-		plyr.seek(to: kCMTimeZero)
-		plyr.play()
+//		plyr.seek(to: kCMTimeZero)
+		//to reset and replay video
+//		plyr.play()
 	}
 	
 	
@@ -142,7 +144,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	}
 	
 	func loginTapped(){
-		
+		plyr?.replaceCurrentItem(with: nil)
 		if let uptf = uptf.text {
 			
 			if uptf.characters.count > 0  {
@@ -182,6 +184,8 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	}
 	
 	func registerTapped(){
+	plyr?.replaceCurrentItem(with: nil)
+//		plyr = nil
 		if let uptf = uptf.text {
 			if uptf.characters.count > 0  {
 				
@@ -230,6 +234,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	}
 	
 	func skipTapped(){
+	plyr?.replaceCurrentItem(with: nil)
 		FIRAuth.auth()?.signInAnonymously(completion: { (user, err) in
 			if let er = err {
 				print("Print er signInAnonymously: \(er.localizedDescription)")

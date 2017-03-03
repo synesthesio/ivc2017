@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 		
 		GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
 		GIDSignIn.sharedInstance().delegate = self
-		GMSServices.provideAPIKey("AIzaSyAcaDWJlg1nUohWxoXy3XInH37IeZEc42k")
+		GMSServices.provideAPIKey(gMapsApiKey)
 		
 		return true
 	}
