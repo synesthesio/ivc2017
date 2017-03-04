@@ -187,6 +187,11 @@ struct Attendee {
 	var name:String
 	var bio:String?
 	var link:URL?
+	init(nm:String, bi:String?, lnk:URL?) {
+		self.name = nm
+		self.bio = bi
+		self.link = lnk
+	}
 }
 
 struct EventLocation {
