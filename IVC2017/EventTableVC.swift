@@ -21,17 +21,12 @@ class EventTableVC: UITableViewController {
         super.viewDidLoad()
 			FIRDatabase.database().persistenceEnabled = true
 			
-			
-				
-			
-			
-			
-			
-			self.fetchCalendarEvents(forDay: "friday", completion: { (fri) in
-				self.sessionsForView = fri
-				self.tableView.reloadData()
-			})
-			
+			if let d = Date().dayOfWeek() {
+				self.fetchCalendarEvents(forDay: d, completion: { (sesh) in
+					self.sessionsForView = sesh
+					self.tableView.reloadData()
+				})
+			}
 			
 			
 			var swtch = UISegmentedControl(items: ["Fri", "Sat", "Sun"])
@@ -130,7 +125,10 @@ class EventTableVC: UITableViewController {
 					let add = v["addr"] as! String
 					let titl = v["title"] as! String
 					let loc = v["location"] as! String
-					let time = v["time"] as! String
+					guard let time = v["time"] as? String else {
+						let time = v["time "] as? String
+						return
+					}
 					var description = ""
 					if let dsc = v["desc"] as? String {
 						description = dsc
@@ -201,12 +199,14 @@ class EventTableVC: UITableViewController {
         return cell
     }
 	
-	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+	 override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
 		if let sesh = self.sessionsForView {
 		if sesh.count > 0 {
 			 let content = sesh[indexPath.row]
-				if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SessionVC") as? SessionVC {
+			
+//				let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sessionvc") as! SessionVC
+			let vc = self.storyboard?.instantiateViewController(withIdentifier: "sessionvc") as! SessionVC
 					vc.address = content.addr
 					vc.time = content.time
 					vc.day = content.day
@@ -217,26 +217,32 @@ class EventTableVC: UITableViewController {
 						vc.desc = dsc
 						}
 					}
+			
 					var speakerArr:[Speaker]
+			
 					if content.speaker != "" && content.speaker != nil {
+					
 						speakerArr = []
 						if let sep = content.speaker?.components(separatedBy: ",") {
 							for i in sep {
 							 self.fetchSpeaker(name: String(describing:i), completion: { (speaker) in
 									speakerArr.append(speaker)
 									vc.speakers = speakerArr
+									self.navigationController?.pushViewController(vc, animated: false)
 							})
 							}
 						}
 					} else {
 						vc.speakers = nil
+						self.navigationController?.pushViewController(vc, animated: false)
+//						self.present(vc, animated: false, completion: { 
+//							vc.lastVC.dismiss(animated: false, completion: nil)
+//						})
 					}
-//					vc.speakers 
-					
-					
-					self.navigationController?.pushViewController(vc, animated: false)
-				}
+			print("perfunctory placeholder")
 			}
+		} else {
+			print("perfunctory placeholder")
 		}
 	}
 

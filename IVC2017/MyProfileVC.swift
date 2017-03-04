@@ -84,8 +84,69 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 		nametf.resignFirstResponder()
 		biotf.resignFirstResponder()
 		linktf.resignFirstResponder()
-//		ref? = FIRDatabase.database().reference()
 		let uID = FIRAuth.auth()?.currentUser?.uid
+		var firstTime = true
+		
+		handle = ref?.child("users").observe(.value, with: { (snapshot) in
+			if snapshot.hasChild(uID!) {
+				firstTime = false
+			}
+		})
+		
+//		if UserDefaults.standard.bool(forKey: "first") != nil {
+			guard let n = nametf.text else { Utility.displayAlertWithHandler("Please Enter Name", message: "Please Enter a Name", from: self, cusHandler: nil); return }
+		if firstTime == true{
+			ref?.child("users").child(uID!).setValue(["name":n], withCompletionBlock: { (err, dbRef) in
+				if let e = err {
+					print("Print err: \(e)")
+					Utility.displayAlertWithHandler("Error", message: "An error occurred while trying to save information. Please try again", from: self, cusHandler: nil)
+				}
+				print("perfunctory placeholder")
+			})
+		} else{
+		ref?.child("users/" + (uID!) + "name").setValue(n)
+		}
+		
+		
+		
+		guard let b = biotf.text else { return }
+		if firstTime == true{
+		ref?.child("users").child(uID!).setValue(["bio":b], withCompletionBlock: { (err, dbRef) in
+			if let e = err {
+				print("Print err: \(e)")
+				Utility.displayAlertWithHandler("Error", message: "An error occurred while trying to save information. Please try again", from: self, cusHandler: nil)
+			}
+			print("perfunctory placeholder")
+			
+		})
+		} else {
+			ref?.child("users/" + (uID!) + "bio").setValue(b)
+		}
+		guard let l = linktf.text else { return }
+		if firstTime == true {
+			ref?.child("users").child(uID!).setValue(["link":l], withCompletionBlock: { (err, dbRef) in
+				if let e = err {
+					print("Print err: \(e)")
+					Utility.displayAlertWithHandler("Error", message: "An error occurred while trying to save information. Please try again", from: self, cusHandler: nil)
+				}
+				print("perfunctory placeholder")
+				
+			})
+		} else {
+			ref?.child("users/" + (uID!) + "link").setValue(l)
+		}
+		
+		
+			
+			
+//		} else {
+		
+//		}
+		
+		
+		
+//		ref? = FIRDatabase.database().reference()
+		
 		ref?.child("users").child(uID!).setValue(["name":"slinger"], withCompletionBlock: { (err, dbRef) in
 			if let e = err {
 				print("Print err: \(e)")

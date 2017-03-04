@@ -10,8 +10,11 @@ import UIKit
 
 class AboutVC: UIViewController {
 
+	@IBOutlet weak var webView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
+				self.navigationController?.navigationBar.isHidden = false
+//			self.navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
 			
 //				let url = URL(string: "http://www.iv-conference.com/faqs/")
 				let url1 = URL(string:"fb://profile/215178098578794")
@@ -21,6 +24,7 @@ class AboutVC: UIViewController {
 				UIApplication.shared.open(url!, options: [:], completionHandler: nil)
 			} else {
 				webView.loadRequest(URLRequest(url: url!))
+				self.webView.frame = self.view.bounds
 				self.view.addSubview(webView)
 			}
 			
@@ -33,7 +37,10 @@ class AboutVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+	
+//	func close(){
+//		self.view.viewWithTag(44)?.removeFromSuperview()
+//	}
 
     /*
     // MARK: - Navigation
@@ -45,10 +52,10 @@ class AboutVC: UIViewController {
     }
     */
 	
-	lazy var webView:UIWebView = {
-		let a = UIWebView(frame: self.view.bounds)
-		
-		return a
-	}()
+//	lazy var webView:UIWebView = {
+//		let a = UIWebView(frame: self.view.bounds)
+//		a.tag = 44
+//		return a
+//	}()
 
 }
