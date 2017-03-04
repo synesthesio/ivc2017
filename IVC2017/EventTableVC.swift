@@ -13,16 +13,25 @@ import Firebase
 class EventTableVC: UITableViewController {
 	var handle:FIRDatabaseHandle?
 	var ref:FIRDatabaseReference?
-	var friSessions:[Session]?
+	var sessionsForView:[Session]?
 	var satSessions:[Session]?
 	var sunSessions:[Session]?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-			 self.fetchCalendarEvents(forDay: "friday", completion: { (friSesh) in
-				self.friSessions = friSesh
+			
+			self.fetchCalendarEvents(forDay: "friday", completion: { (fri) in
+				self.sessionsForView = fri
 				self.tableView.reloadData()
 			})
+			
+			
+			
+			var swtch = UISegmentedControl(items: ["Fri", "Sat", "Sun"])
+			swtch.backgroundColor = UIColor.white
+			swtch.tintColor = UIColor.cyan
+			swtch.addTarget(self, action: #selector(switchDay(sender:)), for: .valueChanged)
+			self.navigationItem.titleView = swtch
 			
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -40,6 +49,35 @@ class EventTableVC: UITableViewController {
 		ref?.removeAllObservers()
 		super.viewDidDisappear(animated)
 	}
+	
+	
+	func switchDay(sender:UISegmentedControl){
+	
+		switch sender.selectedSegmentIndex {
+			case 1:
+			self.fetchCalendarEvents(forDay: "saturday", completion: { (sat) in
+				self.sessionsForView = sat
+				self.tableView.reloadData()
+			})
+			break
+			case 2:
+			self.fetchCalendarEvents(forDay: "sunday", completion: { (sun) in
+				self.sessionsForView = sun
+				self.tableView.reloadData()
+			})
+			break
+			default:
+				self.fetchCalendarEvents(forDay: "friday", completion: { (fri) in
+					self.sessionsForView = fri
+					self.tableView.reloadData()
+				})
+			break
+		}
+
+	}
+	
+	
+	
 	
 	func fetchSpeaker(name:String, completion:@escaping(Speaker) ->()) {
 	
@@ -126,7 +164,7 @@ class EventTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
 			var ct = 1
-			if let count = self.friSessions?.count {
+			if let count = self.sessionsForView?.count {
 				if count > 0 {
 				ct = count
 				}
@@ -137,14 +175,14 @@ class EventTableVC: UITableViewController {
 	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SessionTVCell
-			if friSessions != nil {
-			if (friSessions?.count)! > 0 {
-				if let contents = friSessions?[indexPath.row] {
+			if sessionsForView != nil {
+			if (sessionsForView?.count)! > 0 {
+				if let contents = sessionsForView?[indexPath.row] {
 //					var speakerLabelText = ""
 //					for i in (contents.speaker)! {
 //						speakerLabelText.append(i.name + i.degrees)
 //					}
-					cell.speakerLabel.text = contents.speaker
+//					cell.speakerLabel.text = contents.speaker
 					cell.timeLabel.text = contents.time
 					cell.locationLabel.text = contents.location
 					cell.titleLabel.text = contents.title
@@ -158,7 +196,7 @@ class EventTableVC: UITableViewController {
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
-		if let sesh = self.friSessions {
+		if let sesh = self.sessionsForView {
 		if sesh.count > 0 {
 			 let content = sesh[indexPath.row]
 				if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SessionVC") as? SessionVC {
@@ -167,7 +205,11 @@ class EventTableVC: UITableViewController {
 					vc.day = content.day
 					vc.location = content.location
 					vc.titl = content.title
-					
+					if let dsc = content.desc {
+					if dsc != "" {
+						vc.desc = dsc
+						}
+					}
 					var speakerArr:[Speaker]
 					if content.speaker != "" && content.speaker != nil {
 						speakerArr = []
@@ -175,19 +217,12 @@ class EventTableVC: UITableViewController {
 							for i in sep {
 							 self.fetchSpeaker(name: String(describing:i), completion: { (speaker) in
 									speakerArr.append(speaker)
-								if content.desc != "" && content.desc != nil  {
-									vc.desc = content.desc
-								} else {
-									var stringForDesc = ""
-									for s in speakerArr {
-										stringForDesc.append(s.bio)
-									}
-								}
+									vc.speakers = speakerArr
 							})
 							}
 						}
 					} else {
-						
+						vc.speakers = nil
 					}
 //					vc.speakers 
 					

@@ -27,7 +27,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		self.navigationController?.navigationBar.isHidden = true
 		uetf.delegate = self
 		uptf.delegate = self
-		
+		self.view.layer.backgroundColor = UIColor(red: 205.0, green: 231.0, blue: 190.0, alpha: 1.0).cgColor
 		setUpPlayer()
 		//			adjustingView = UIView(frame: view.bounds)
 		//			adjustingView.translatesAutoresizingMaskIntoConstraints = false
