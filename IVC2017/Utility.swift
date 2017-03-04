@@ -21,6 +21,7 @@ struct Utility {
 		from.present(alert, animated: true, completion: nil)
 	}
 	
+	
 	static func createViewForMarkerIcon(address: EventLocation)-> UIView{
 		var imgForBg:UIImage?
 		let view = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 40))
@@ -208,7 +209,13 @@ struct EventLocation {
 		self.isRestaurant = res
 	}
 }
-
+extension Date {
+	func dayOfWeek()->String? {
+		let f = DateFormatter()
+		f.dateFormat = "EEEE"
+		return f.string(from: self).lowercased()
+	}
+}
 
 let gMapsApiKey = "AIzaSyAcaDWJlg1nUohWxoXy3XInH37IeZEc42k"
 

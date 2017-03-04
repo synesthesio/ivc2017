@@ -16,8 +16,8 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 
 	var window: UIWindow?
-
-
+	
+	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
@@ -77,11 +77,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 			}
 			if let u = user {
 				print("perfunctory placeholder")
-				if UserDefaults.standard.bool(forKey: "loggedin") != true {
-					
-				} else {
-					print("perfunctory placeholder")
+				
+				if let sb:UIStoryboard = UIStoryboard(name: "Main", bundle: nil) {
+				let mvc = sb.instantiateViewController(withIdentifier: "profilevc")
+				let nav = UINavigationController(rootViewController: mvc)
+				self.window?.rootViewController = nil
+				self.window?.rootViewController = nav
+				self.window?.makeKeyAndVisible()
 				}
+				
+
+				
+//				if UserDefaults.standard.bool(forKey: "loggedin") != true {
+//					
+//				} else {
+//					print("perfunctory placeholder")
+//				}
 			}
 		})
 	}

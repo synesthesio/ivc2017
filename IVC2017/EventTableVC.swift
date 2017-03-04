@@ -19,6 +19,13 @@ class EventTableVC: UITableViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+			FIRDatabase.database().persistenceEnabled = true
+			
+			
+				
+			
+			
+			
 			
 			self.fetchCalendarEvents(forDay: "friday", completion: { (fri) in
 				self.sessionsForView = fri

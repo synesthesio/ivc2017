@@ -23,7 +23,7 @@
 		254F3CCF1E63D60900343DA8 /* SessionTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F3CCE1E63D60800343DA8 /* SessionTVCell.swift */; };
 		254F3CD11E63ED9100343DA8 /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F3CD01E63ED9100343DA8 /* SessionVC.swift */; };
 		257180671E6638020037DD4C /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 257180661E6638020037DD4C /* video.mp4 */; };
-		257180691E664B590037DD4C /* AboutUVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257180681E664B590037DD4C /* AboutUVC.swift */; };
+		257180691E664B590037DD4C /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257180681E664B590037DD4C /* MyProfileVC.swift */; };
 		25C17E5C1E67480B00BDEB4D /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C17E5B1E67480B00BDEB4D /* MapTasks.swift */; };
 		25C17E5E1E675DAA00BDEB4D /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C17E5D1E675DAA00BDEB4D /* LocationService.swift */; };
 		25DE07CD1E6A661B003DA82B /* AttendeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DE07CC1E6A661B003DA82B /* AttendeeVC.swift */; };
@@ -64,7 +64,7 @@
 		254F3CCE1E63D60800343DA8 /* SessionTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTVCell.swift; sourceTree = "<group>"; };
 		254F3CD01E63ED9100343DA8 /* SessionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionVC.swift; sourceTree = "<group>"; };
 		257180661E6638020037DD4C /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
-		257180681E664B590037DD4C /* AboutUVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUVC.swift; sourceTree = "<group>"; };
+		257180681E664B590037DD4C /* MyProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
 		2571806A1E664C690037DD4C /* IVC2017.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IVC2017.entitlements; sourceTree = "<group>"; };
 		25C17E5B1E67480B00BDEB4D /* MapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTasks.swift; sourceTree = "<group>"; };
 		25C17E5D1E675DAA00BDEB4D /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 				25C17E5D1E675DAA00BDEB4D /* LocationService.swift */,
 				25C17E5B1E67480B00BDEB4D /* MapTasks.swift */,
 				252B55FC1E62911B00F12C11 /* RegistrationVC.swift */,
-				257180681E664B590037DD4C /* AboutUVC.swift */,
+				257180681E664B590037DD4C /* MyProfileVC.swift */,
 				25DE07CC1E6A661B003DA82B /* AttendeeVC.swift */,
 				252B55FA1E626A9A00F12C11 /* EventTableVC.swift */,
 				254F3CC61E63789100343DA8 /* AttendeeTableVC.swift */,
@@ -395,7 +395,7 @@
 				25DE07CD1E6A661B003DA82B /* AttendeeVC.swift in Sources */,
 				254F3CC31E636D9000343DA8 /* MapVC.swift in Sources */,
 				254F3CC91E6378EC00343DA8 /* AboutVC.swift in Sources */,
-				257180691E664B590037DD4C /* AboutUVC.swift in Sources */,
+				257180691E664B590037DD4C /* MyProfileVC.swift in Sources */,
 				252B55FB1E626A9A00F12C11 /* EventTableVC.swift in Sources */,
 				254F3CC71E63789100343DA8 /* AttendeeTableVC.swift in Sources */,
 				254F3CCB1E63798B00343DA8 /* SpeakerVC.swift in Sources */,

@@ -13,7 +13,7 @@ import AVFoundation
 import AVKit
 import Firebase
 import GoogleSignIn
-class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerDelegate, GIDSignInUIDelegate {
+class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerDelegate, GIDSignInUIDelegate, TransDelegate {
 	
  
  weak var constraintKeyboardHeight:NSLayoutConstraint!
@@ -23,6 +23,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	var plyr:AVPlayer?
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		plyr = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: "video", ofType: "mp4")!))
 		self.navigationController?.navigationBar.isHidden = true
 		uetf.delegate = self
@@ -62,8 +63,16 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		
 		GIDSignIn.sharedInstance().uiDelegate = self
 		if GIDSignIn.sharedInstance().hasAuthInKeychain() {
-			GIDSignIn.sharedInstance().signInSilently()
-			print("perfunctory placeholder")
+		
+			let ac = UIAlertController(title: "Gmail Sign In?", message: "Sign in with Gmail?", preferredStyle: .actionSheet)
+			let y = UIAlertAction(title: "Yes", style: .default, handler: { (yes) in
+				GIDSignIn.sharedInstance().signInSilently()
+				self.transitionToMain()
+			})
+			let n = UIAlertAction(title: "No", style: .default, handler: nil)
+			ac.addAction(y)
+			ac.addAction(n)
+			self.present(ac, animated: false, completion: nil)
 		} else {
 			print("no auth")
 			//			GIDSignIn.sharedInstance().signIn()
@@ -162,9 +171,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 							Utility.displayAlertWithHandler("Provide Valid Email", message: "Please provide a valid email ", from: self, cusHandler: nil)
 						}
 						if let u = user{
-							//push to home
-							let secondVC = EventTableVC()
-							self.navigationController?.pushViewController(secondVC, animated: false)
+							self.transitionToMain()
 						}
 						
 					})
@@ -205,9 +212,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 											Utility.displayAlertWithHandler("Provide Valid Email", message: "Please provide a valid email ", from: self, cusHandler: nil)
 										}
 										if let u = user{
-											//push to home
-											let secondVC = EventTableVC()
-											self.navigationController?.pushViewController(secondVC, animated: false)
+											self.transitionToMain()
 										}
 										
 									})
@@ -215,9 +220,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 								Utility.displayAlertWithHandler("Provide Valid Email", message: "Please provide a valid email ", from: self, cusHandler: nil)
 							}
 							if let u = user {
-								let secondVC = EventTableVC()
-								self.navigationController?.pushViewController(secondVC, animated: false)
-								
+								self.transitionToMain()
 							}
 						})
 					} else {
@@ -240,19 +243,9 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 				print("Print er signInAnonymously: \(er.localizedDescription)")
 			}
 			if let u = user {
-				if let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "maintabvc") {
-					self.navigationController?.pushViewController(secondVC, animated: true)	
-				}
-				
-				
+				self.transitionToMain()
 			}
 		})
-		
-		//		self.present(vc, animated: true) {
-		//			self.dismiss(animated: false, completion: {
-		//cleanup view
-		//			})
-		//		}
 	}
 	
 	func screenTapped(){
@@ -370,6 +363,14 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	func signInWithGoogle(){
 		GIDSignIn.sharedInstance().signIn()
 	}
+	func transitionToMain(){
+		if let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "maintabvc") {
+			self.navigationController?.pushViewController(secondVC, animated: true)
+		}
+	}
 	
-	
+}
+
+protocol TransDelegate {
+	func transitionToMain()
 }

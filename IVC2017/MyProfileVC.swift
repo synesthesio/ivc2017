@@ -11,23 +11,28 @@ import UIKit
 import FirebaseDatabase
 import Firebase
 
-class AboutUVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate{
+class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate{
 	
 	var handle:FIRDatabaseHandle?
 	var ref:FIRDatabaseReference?
 	weak var constraintKeyboardHeight:NSLayoutConstraint!
 	@IBOutlet weak var imgVw: UIImageView!
-	@IBOutlet weak var saveButton: UIButton!
 	
+	@IBOutlet weak var saveButton: UIButton!
 	@IBOutlet weak var linktf: UITextField!
 	@IBOutlet weak var nametf: UITextField!
 	@IBOutlet weak var biotf: UITextField!
+	
 	
 	var photoPicker:UIImagePickerController!
 	
 	
 	override func viewDidLoad(){
 		super.viewDidLoad()
+		FIRDatabase.database().persistenceEnabled = true
+		ref = FIRDatabase.database().reference()
+		
+		
 		photoPicker = UIImagePickerController()
 		self.photoPicker.delegate = self
 		self.navigationController?.navigationBar.isHidden = true
@@ -43,7 +48,7 @@ class AboutUVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
 		let iGR = UITapGestureRecognizer(target: self, action: #selector(imgVwTapped))
 		iGR.delegate = self
 		imgVw.addGestureRecognizer(iGR)
-//		saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchDown)
+		saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchDown)
 //		saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(lazyButtonTapped))
 	}
 	
@@ -70,6 +75,64 @@ class AboutUVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
 //		//add & set all constraints to active above super.updateViewConstraints()
 //		super.updateViewConstraints()
 //	}
+	
+	
+	
+	
+	
+	func saveButtonTapped(){
+		nametf.resignFirstResponder()
+		biotf.resignFirstResponder()
+		linktf.resignFirstResponder()
+//		ref? = FIRDatabase.database().reference()
+		let uID = FIRAuth.auth()?.currentUser?.uid
+		ref?.child("users").child(uID!).setValue(["name":"slinger"], withCompletionBlock: { (err, dbRef) in
+			if let e = err {
+				print("Print err: \(e)")
+
+			}
+			print("Print refdb: \(dbRef)")
+
+		})
+//		ref?.child("users").childByAutoId().setValue("hellofriend")
+		
+		if UserDefaults.standard.value(forKey: "uid") == nil {
+//			let str = String(describing: arc4random())
+//			UserDefaults.standard.set(str, forKey: "uid")
+
+			
+			
+//				if let name = nametf.text {
+//					ref?.child("users").child(str).setValue(["name":name])
+//				} else {
+//					Utility.displayAlertWithHandler("Please Enter Name", message: "Please Enter a Name", from: self, cusHandler: nil)
+//				}
+//				if let bio = biotf.text {
+//					ref?.child("users").child(str).setValue(["bio":bio])
+//				}
+//
+//				if let link = linktf.text {
+//					ref?.child("users").child(str).setValue(["link":link])
+//				}
+			
+		} else {
+			
+//			let st = UserDefaults.standard.value(forKey: "uid")
+//			if let name = nametf.text {
+//				ref?.child("users/(st)/name").setValue(name)
+//			}
+//			
+//			if let bio = biotf.text {
+//				ref?.child("users/(st)/bio").setValue(bio)
+//			}
+//			
+//			if let link = linktf.text {
+//				ref?.child("users/(st)/link").setValue(link)
+//			}
+		}
+	}
+	
+	
 	
 	func keyboardWillShow(_ sender: Notification) {
 		if let f = (sender.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue{
@@ -100,57 +163,11 @@ class AboutUVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
 		}
 	}
 	
-	func textFieldDidEndEditing(_ textField: UITextField) {
-		
-		ref = FIRDatabase.database().reference()
+//	func textFieldDidEndEditing(_ textField: UITextField) {
 	
-	
-		if UserDefaults.standard.value(forKey: "uid") == nil {
-		let str = String(describing: arc4random())
-		UserDefaults.standard.set(str, forKey: "uid")
+//		ref = FIRDatabase.database().reference()
 		
-			switch textField {
-			case nametf:
-				if let name = nametf.text {
-					ref?.child("users").child(str).setValue(["name":name])
-				} else {
-					Utility.displayAlertWithHandler("Please Enter Name", message: "Please Enter a Name", from: self, cusHandler: nil)
-				}
-				break
-		  case biotf:
-				if let bio = biotf.text {
-					ref?.child("users").child(str).setValue(["bio":bio])
-				}
-				break
-			default:
-				if let link = linktf.text {
-					ref?.child("users").child(str).setValue(["link":link])
-				}
-				break
-			}
-			
-		} else {
-			
-			let st = UserDefaults.standard.value(forKey: "uid")
-			switch textField {
-			
-			case nametf:
-				if let name = nametf.text {
-					ref?.child("users/(st)/name").setValue(name)
-				}
-			case biotf:
-				if let bio = biotf.text {
-					ref?.child("users/(st)/bio").setValue(bio)
-				}
-			default:
-				if let link = linktf.text {
-					ref?.child("users/(st)/link").setValue(link)
-				}
-			}
-		}
-	
-		
-	}
+//	}
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		switch textField {
