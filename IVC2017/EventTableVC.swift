@@ -28,7 +28,6 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 				})
 			}
 			
-			
 			var swtch = UISegmentedControl(items: ["Fri", "Sat", "Sun"])
 			swtch.backgroundColor = UIColor.white
 			swtch.tintColor = UIColor.cyan
@@ -75,75 +74,7 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 				})
 			break
 		}
-
 	}
-	
-	
-	func fetchSpeakerFor(sesh:Session, completion:@escaping(Speaker) ->()) {
-		
-		
-		
-		
-	}
-	
-	
-	
-//	func fetchSpeakers(forSession:Session, completion:@escaping([Speaker]) ->()) {
-//	
-//		var speakerArr:[Speaker] = []
-//		ref = FIRDatabase.database().reference()
-//		if forSession.speaker != "" && forSession.speaker != nil {
-//			let sep = forSession.speaker!.components(separatedBy: ",")
-////			let concurQueue = DispatchQueue(label: "com.queue.Concurrent", qos: .background, attributes: .concurrent, autoreleaseFrequency: .never, target: nil)
-//			for i in sep {
-////			concurQueue.async {
-//				
-//					self.handle = self.ref?.child("speakers").child(i).observe(.value, with: { (snapshot) in
-//						let s = snapshot.value as! [String:AnyObject]
-////						let s = snapshot.children
-//						print("Print s: \(s)")
-//						let dg = s["degrees"] as! String
-//						let bio = s["bio"] as! String
-//						let ln = s["link"] as! String
-//						let lnk = URL(string: ln)
-//						let f = Speaker(dgrs: dg, bi: bio, lnk: lnk, sesh: nil, nm: i)
-//						speakerArr.append(f)
-//						completion(speakerArr)
-////						if speakerArr.count == sep.count {
-////							completion(speakerArr)
-////						}
-//					})
-////				}
-////				if speakerArr.count == sep.count {
-////					completion(speakerArr)
-////				}
-//			
-////				if let sp = ref?.child("speakers").child(i) {
-////				let s = sp as! [String:AnyObject]
-////				let bio = s["bio"] as! String
-//////				let degree = let degree = s["degrees"] as! String
-//////				let spk = Speaker(dgrs: degree, bi: bio, lnk: lnk, sesh: nil, nm: i)
-//////				speakerArr.append(spkr)
-////				}
-//			}
-//		
-//		}
-//		
-//		
-//		
-////		if forSession.speaker != "" && forSession.speaker != nil {
-////			
-////			print("Print sep: \(sep)")
-////
-////			for i in sep {
-////			print("Print i: \(i)")
-////				
-////				print("Print speakerArr: \(speakerArr)")
-////				}
-////
-////		}
-//	}
-	
 	
 		func fetchCalendarEvents(forDay:String, completion: @escaping([Session]) ->()) {
 		
@@ -215,66 +146,22 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 			if sessionsForView != nil {
 			if (sessionsForView?.count)! > 0 {
 				if let contents = sessionsForView?[indexPath.row] {
-//					var speakerLabelText = ""
-//					for i in (contents.speaker)! {
-//						speakerLabelText.append(i.name + i.degrees)
-//					}
-//					cell.speakerLabel.text = contents.speaker
+
 					cell.timeLabel.text = contents.time
 //					cell.locationLabel.text = contents.location
 					cell.titleLabel.text = contents.title
 				}
 			 }
 			}
-			
-        // Configure the cell...
         return cell
     }
 	
 	 override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
-//		if let sesh =  {
+
 		if self.sessionsForView!.count > 0 {
-			 let content = self.sessionsForView![indexPath.row] 
-			
+			 let content = self.sessionsForView![indexPath.row]
 				self.transitionToSessioNVC(sesh: content)
-			
-//			let vc = self.tabBarController?.storyboard?.instantiateViewController(withIdentifier: "sessionvc") as! SessionVC
-//					vc.address = content.addr
-//					vc.time = content.time
-//					vc.day = content.day
-//					vc.location = content.location
-//					vc.titl = content.title
-//				  vc.desc = content.desc
-			
-//					var speakerArr:[Speaker] = []
-			
-//					if content.speaker != "" && content.speaker != nil {
-//					
-//						speakerArr = []
-//						if let sep = content.speaker?.components(separatedBy: ",") {
-//							for i in sep {
-//							 self.fetchSpeaker(name: String(describing:i), completion: { (speaker) in
-//									speakerArr.append(speaker)
-////								vc.speakers = speakerArr
-////								self.transitionToSessioNVC(vc:
-////									vc)
-//							})
-//								
-//							}
-//						
-//						}
-//					} else {
-////						vc.speakers = nil	
-////						self.transitionToSessioNVC(vc: vc)
-////						self.navigationController?.pushViewController(vc, animated: false)
-//
-//					}
 			}
-//		} else {
-//			print("perfunctory placeholder")
-//			Utility.displayAlertWithHandler("Error", message: "There was a problem loading your schedule, please try again", from: self, cusHandler: nil)
-//		}
 	}
 	
 	func transitionToSessioNVC(sesh:Session){
@@ -288,37 +175,11 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 		vc.desc = sesh.desc
 		vc.delegate = self
 		vc.speakers = sesh.speaker?.components(separatedBy: ",")
-//		self.fetchSpeakers(forSession: sesh) { (spkr) in
-//			vc.speakers = spkr
 			self.tabBarController?.present(vc, animated: false, completion: nil)
 		}
-		
-//		if sesh.speaker != nil && sesh.speaker != nil {
-//			if let sep = sesh.speaker?.components(separatedBy: ",") {
-//				for i in sep {
-//					self.fetchSpeaker(name: String(describing: i), completion: { (spkr) in
-//						speakerArr.append(spkr)
-//						
-////						if speakerArr.count == sep.count {
-////							vc.speakers = speakerArr
-////							self.tabBarController?.present(vc, animated: false, completion: nil)
-////						}
-//					})
-//					if speakerArr.count == sep.count {
-//						vc.speakers = speakerArr
-//						self.tabBarController?.present(vc, animated: false, completion: nil)
-//					}
-//				}
-//			}
-//		}
-//		vc.speakers = speakerArr
-//		self.tabBarController?.present(vc, animated: false, completion: nil)
-	
-	
 	
 	
 	func transitionToSpeaker(speaker:Speaker, sesh:Session) {
-//		let a = speaker[num]
 		let vc = self.storyboard?.instantiateViewController(withIdentifier: "speakervc") as! SpeakerVC
 		vc.session = sesh
 		vc.delegate = self

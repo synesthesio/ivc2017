@@ -20,13 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
-//			window = UIWindow.init(frame: UIScreen.main.bounds)
-//			mainController = EventTableVC() as! UIViewController
-//			let navigationController = UINavigationController(rootViewController: mainController)
-//			navigationController.navigationBar.isTranslucent = false
-//			window?.rootViewController = navigationController
-//			window!.makeKeyAndVisible()
-		
 		FIRApp.configure()
 		var configErr:NSError?
 		GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
@@ -35,9 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 		
 		return true
 	}
-	
-	
-	
 	
 	@available(iOS 9.0, *)
 	func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {

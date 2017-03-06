@@ -23,7 +23,7 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-			
+			self.title = nameForTitle
 			websiteButton.isHidden = true
 			if let u = self.link {
 						websiteButton.isHidden = false
@@ -32,6 +32,8 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 			
 			if let img = image {
 				self.imgView.image = img
+			} else {
+				self.imgView.image = UIImage(named: "addPhotoPlaceholder")
 			}
 
         // Do any additional setup after loading the view.
@@ -42,6 +44,10 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+	
+	@IBAction func doneTapped(_ sender: Any) {
+	self.dismiss(animated: false, completion: nil)
+	}
 
 	func websiteButtonTapped(){
 		

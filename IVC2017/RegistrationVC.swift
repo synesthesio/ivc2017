@@ -181,13 +181,6 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 			}
 		}
 		
-		
-		
-		
-		//		FIRAuth.auth()?.signIn(withEmail: uetf.text, password: uptf.text) { (user, error) in
-		
-		
-		//		UserDefaults.value(forKey: <#T##String#>)
 	}
 	
 	func registerTapped(){
@@ -274,7 +267,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	
 	
 	func setUpPlayer(){
-		//		plyr = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: "video", ofType: "mp4")!))
+				plyr = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: "video", ofType: "mp4")!))
 		let plyrLayer = AVPlayerLayer(player: plyr)
 		let screenSize:CGRect = UIScreen.main.bounds
 		plyrLayer.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height/2)

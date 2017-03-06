@@ -93,12 +93,12 @@ class AttendeeTableVC: UITableViewController {
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if let att = attendees {
-			let attendee = att[indexPath.row] as! Attendee
+			let attendee = att[indexPath.row]
 			let vc = self.storyboard?.instantiateViewController(withIdentifier: "attendeevc") as! AttendeeVC
 			vc.interests = attendee.bio
 			vc.nameForTitle = attendee.name
 			vc.link = attendee.link
-			self.navigationController?.pushViewController(vc, animated: false)
+			self.tabBarController?.present(vc, animated: false, completion: nil)
 		}
 	}
 
