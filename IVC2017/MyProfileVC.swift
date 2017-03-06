@@ -17,19 +17,19 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 	var ref:FIRDatabaseReference?
 	weak var constraintKeyboardHeight:NSLayoutConstraint!
 	@IBOutlet weak var imgVw: UIImageView!
-	
 	@IBOutlet weak var saveButton: UIButton!
 	@IBOutlet weak var linktf: UITextField!
 	@IBOutlet weak var nametf: UITextField!
 	@IBOutlet weak var biotf: UITextField!
 	
-	
+	var firstTime:Bool = true
+	var uID:String?
 	var photoPicker:UIImagePickerController!
 	
 	
 	override func viewDidLoad(){
 		super.viewDidLoad()
-		FIRDatabase.database().persistenceEnabled = true
+//		FIRDatabase.database().persistenceEnabled = true
 		ref = FIRDatabase.database().reference()
 		
 		
@@ -59,8 +59,15 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		//set first responder
-//		tf.becomeFirstResponder()
+		self.uID = FIRAuth.auth()?.currentUser?.uid
+		
+		if self.firstTime == true {
+			handle = ref?.child("users").observe(.value, with: { (snapshot) in
+				if snapshot.hasChild(self.uID!) {
+					self.firstTime = false
+				}
+			})
+		}
 	}
 	override func viewDidDisappear(_ animated: Bool) {
 		ref?.removeAllObservers()
@@ -84,113 +91,22 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 		nametf.resignFirstResponder()
 		biotf.resignFirstResponder()
 		linktf.resignFirstResponder()
-		let uID = FIRAuth.auth()?.currentUser?.uid
-		var firstTime = true
 		
-		handle = ref?.child("users").observe(.value, with: { (snapshot) in
-			if snapshot.hasChild(uID!) {
-				firstTime = false
-			}
-		})
-		
-//		if UserDefaults.standard.bool(forKey: "first") != nil {
-			guard let n = nametf.text else { Utility.displayAlertWithHandler("Please Enter Name", message: "Please Enter a Name", from: self, cusHandler: nil); return }
-		if firstTime == true{
-			ref?.child("users").child(uID!).setValue(["name":n], withCompletionBlock: { (err, dbRef) in
-				if let e = err {
-					print("Print err: \(e)")
-					Utility.displayAlertWithHandler("Error", message: "An error occurred while trying to save information. Please try again", from: self, cusHandler: nil)
-				}
-				print("perfunctory placeholder")
-			})
-		} else{
-		ref?.child("users/" + (uID!) + "name").setValue(n)
-		}
-		
-		
-		
-		guard let b = biotf.text else { return }
-		if firstTime == true{
-		ref?.child("users").child(uID!).setValue(["bio":b], withCompletionBlock: { (err, dbRef) in
-			if let e = err {
-				print("Print err: \(e)")
-				Utility.displayAlertWithHandler("Error", message: "An error occurred while trying to save information. Please try again", from: self, cusHandler: nil)
-			}
-			print("perfunctory placeholder")
-			
-		})
-		} else {
-			ref?.child("users/" + (uID!) + "bio").setValue(b)
-		}
-		guard let l = linktf.text else { return }
-		if firstTime == true {
-			ref?.child("users").child(uID!).setValue(["link":l], withCompletionBlock: { (err, dbRef) in
-				if let e = err {
-					print("Print err: \(e)")
-					Utility.displayAlertWithHandler("Error", message: "An error occurred while trying to save information. Please try again", from: self, cusHandler: nil)
-				}
-				print("perfunctory placeholder")
-				
-			})
-		} else {
-			ref?.child("users/" + (uID!) + "link").setValue(l)
-		}
-		
-		
-			
-			
-//		} else {
-		
-//		}
-		
-		
-		
-//		ref? = FIRDatabase.database().reference()
-		
-		ref?.child("users").child(uID!).setValue(["name":"slinger"], withCompletionBlock: { (err, dbRef) in
-			if let e = err {
-				print("Print err: \(e)")
 
-			}
-			print("Print refdb: \(dbRef)")
-
-		})
-//		ref?.child("users").childByAutoId().setValue("hellofriend")
 		
-		if UserDefaults.standard.value(forKey: "uid") == nil {
-//			let str = String(describing: arc4random())
-//			UserDefaults.standard.set(str, forKey: "uid")
-
-			
-			
-//				if let name = nametf.text {
-//					ref?.child("users").child(str).setValue(["name":name])
-//				} else {
-//					Utility.displayAlertWithHandler("Please Enter Name", message: "Please Enter a Name", from: self, cusHandler: nil)
-//				}
-//				if let bio = biotf.text {
-//					ref?.child("users").child(str).setValue(["bio":bio])
-//				}
-//
-//				if let link = linktf.text {
-//					ref?.child("users").child(str).setValue(["link":link])
-//				}
-			
-		} else {
-			
-//			let st = UserDefaults.standard.value(forKey: "uid")
-//			if let name = nametf.text {
-//				ref?.child("users/(st)/name").setValue(name)
-//			}
-//			
-//			if let bio = biotf.text {
-//				ref?.child("users/(st)/bio").setValue(bio)
-//			}
-//			
-//			if let link = linktf.text {
-//				ref?.child("users/(st)/link").setValue(link)
-//			}
+			if let n = self.nametf.text {
+				self.ref?.child("users/" + (self.uID!) + "/name").setValue(n)
+			} else {
+				Utility.displayAlertWithHandler("Please Enter Info", message: "Please provide a name to proceed", from: self, cusHandler: nil)
 		}
+			if let l = self.linktf.text {
+				self.ref?.child("users/" + (self.uID!) + "/link").setValue(l)
+			}
+			
+			if let b = self.biotf.text {
+				self.ref?.child("users/" + (self.uID!) + "/bio").setValue(b)
+			}
+
 	}
 	
 	
@@ -251,18 +167,21 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 	let photoAct = UIAlertAction(title: "Use Camera", style: .default) { (photo) in
 		self.photoPicker.allowsEditing = true
 		self.photoPicker.sourceType = .camera
+		self.present(self.photoPicker, animated: false, completion: nil)
 		}
 	ac.addAction(photoAct)
 	let libAct = UIAlertAction(title: "Use Photo Library", style: .default) { (lib) in
 		print("perfunctory placeholder")
 		self.photoPicker.sourceType = .photoLibrary
+		self.present(self.photoPicker, animated: false, completion: nil)
 		}
 	ac.addAction(libAct)
 	let rollAct = UIAlertAction(title: "Use Camera Roll", style: .default) { (roll) in
 		self.photoPicker.sourceType = .savedPhotosAlbum
+		self.present(self.photoPicker, animated: false, completion: nil)
 		}
   ac.addAction(rollAct)
-		self.present(self.photoPicker, animated: false, completion: {
+		self.present(ac, animated: false, completion: {
 			print("perfunctory placeholder")
 		})
 	}

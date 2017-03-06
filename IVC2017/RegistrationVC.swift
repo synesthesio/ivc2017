@@ -13,7 +13,7 @@ import AVFoundation
 import AVKit
 import Firebase
 import GoogleSignIn
-class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerDelegate, GIDSignInUIDelegate, TransDelegate {
+class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerDelegate, GIDSignInUIDelegate  {
 	
  
  weak var constraintKeyboardHeight:NSLayoutConstraint!
@@ -368,9 +368,4 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 			self.navigationController?.pushViewController(secondVC, animated: true)
 		}
 	}
-	
-}
-
-protocol TransDelegate {
-	func transitionToMain()
 }

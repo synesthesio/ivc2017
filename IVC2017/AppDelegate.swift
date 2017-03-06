@@ -17,30 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 
 	var window: UIWindow?
 	
-	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
-		UserDefaults.standard.set(false, forKey: "loggedin")
+//			window = UIWindow.init(frame: UIScreen.main.bounds)
+//			mainController = EventTableVC() as! UIViewController
+//			let navigationController = UINavigationController(rootViewController: mainController)
+//			navigationController.navigationBar.isTranslucent = false
+//			window?.rootViewController = navigationController
+//			window!.makeKeyAndVisible()
 		
-		var mainController:UIViewController!
-		if UserDefaults.standard.bool(forKey: "loggedin") != false {
-			window = UIWindow.init(frame: UIScreen.main.bounds)
-			mainController = EventTableVC() as! UIViewController
-			let navigationController = UINavigationController(rootViewController: mainController)
-			navigationController.navigationBar.isTranslucent = false
-			window?.rootViewController = navigationController
-			window!.makeKeyAndVisible()
-			
-		} else {
-//			 mainController = EventTableVC() as! UIViewController
-		}
 		FIRApp.configure()
-		
 		var configErr:NSError?
-//		GGLContext.sharedInstance().configureWithError(configErr)
-		
-		
 		GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
 		GIDSignIn.sharedInstance().delegate = self
 		GMSServices.provideAPIKey(gMapsApiKey)
@@ -75,25 +63,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 			if let er = err {
 				print("Print er signIn with credential: \(er.localizedDescription)")	
 			}
-			if let u = user {
-				print("perfunctory placeholder")
-				
-				if let sb:UIStoryboard = UIStoryboard(name: "Main", bundle: nil) {
-				let mvc = sb.instantiateViewController(withIdentifier: "profilevc")
-				let nav = UINavigationController(rootViewController: mvc)
-				self.window?.rootViewController = nil
-				self.window?.rootViewController = nav
-				self.window?.makeKeyAndVisible()
-				}
-				
-
-				
-//				if UserDefaults.standard.bool(forKey: "loggedin") != true {
-//					
-//				} else {
-//					print("perfunctory placeholder")
-//				}
-			}
+//			if let u = user {
+//				
+//			}
 		})
 	}
 	

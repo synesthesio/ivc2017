@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class SpeakerVC: UIViewController,UIWebViewDelegate {
 	
 	var bioText:String?
@@ -15,7 +16,9 @@ class SpeakerVC: UIViewController,UIWebViewDelegate {
 	var nameTitle:String?
 	var link:URL?
 	var speaker:Speaker?
-//	var sessions:[Session]?
+	var delegate:(DismissSpeakerDelegate)!
+	var session:Session!
+	
 	@IBOutlet weak var websiteButton: UIButton!
 	
 	@IBOutlet weak var imgV: UIImageView!
@@ -41,27 +44,41 @@ class SpeakerVC: UIViewController,UIWebViewDelegate {
 			
 			if let ti = nameTitle {
 				if let dg = degrees{
-				self.titleLabel.text = ti + dg
+				self.titleLabel.text = ti + ", " + dg
 				} else {
 				self.titleLabel.text = ti
 				}
 			}
 			let nmSt = nameTitle?.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "")
 			let nmStr = nmSt?.lowercased()
-			if let img = UIImage(named: "\(nmStr)") {
+			if let img = UIImage(named: "\(nmStr!)") {
 				self.imgV.image = img
 			} else {
 				self.imgV.image = UIImage(named: "addPhotoPlaceholder")
 			}
 			
-			
-
+//			let tGR = UITapGestureRecognizer(target: self, action: #selector(imgViewTapped))
+//			self.imgV.addGestureRecognizer(tGR)
     }
 
 		override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	@IBAction func doneTapped(_ sender: Any) {
+	self.dismiss(animated: false) { 
+		self.delegate.transitionToSessioNVC(sesh: self.session)
+		}
+	}
+	
+	
+	
+//	func imgViewTapped(){
+//		let vc = UIViewController()
+//		
+//		self.presen
+//	}
 	
 	@IBAction func websiteButtonTapped(_ sender: Any) {
 		if UIApplication.shared.canOpenURL(self.link!) {

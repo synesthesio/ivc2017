@@ -40,8 +40,6 @@ struct Utility {
 	return view
 	}
 
-
-
 	class GooglePlacesRequestBuilder {
 		/**
 		Build a query string from a dictionary

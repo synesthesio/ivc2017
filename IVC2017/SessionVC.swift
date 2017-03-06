@@ -7,27 +7,31 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+
 
 class SessionVC: UIViewController {
 	
 	var titl:String!
-	var speakers:[Speaker]?
+//	var speakers:[Speaker]?
+	var speakers:[String]?
 	var time:String!
 	var location:String?
 	var address:String?
 	var desc:String?
 	var day:String!
+	var sesh:Session!
 	var lastVC:EventTableVC!
-	@IBOutlet weak var sessionLabel: UILabel!	
-	
+	var delegate:(TransitionToSpeakerDelegate)!
+	var ref:FIRDatabaseReference?
+	var handle:FIRDatabaseHandle?
+	@IBOutlet weak var doneBut: UIBarButtonItem!
+	@IBOutlet weak var sessionLabel: UILabel!
 	@IBOutlet weak var descLabel: UILabel!
-	
 	@IBOutlet weak var timeLabel: UILabel!
-	
 	@IBOutlet weak var locationLabel: UILabel!
-	
 	@IBOutlet weak var addrLabel: UILabel!
-	
 	@IBOutlet weak var b1: UIButton!
 	@IBOutlet weak var b2: UIButton!
 	@IBOutlet weak var b3: UIButton!
@@ -39,10 +43,11 @@ class SessionVC: UIViewController {
 	
 	
     override func viewDidLoad() {
-        super.viewDidLoad()
-			
-			self.descLabel.isHidden = true
-			
+			super.viewDidLoad()
+			ref = FIRDatabase.database().reference()
+			doneBut.target = self
+			doneBut.action = #selector(backTap)
+//				self.tabBarController?.navigationController?.navigationBar.isHidden = false
 			b1.isHidden = true
 			b2.isHidden = true
 			b3.isHidden = true
@@ -51,70 +56,85 @@ class SessionVC: UIViewController {
 			b6.isHidden = true
 			b7.isHidden = true
 			
-			
-			
-			
 			if let spkr = speakers {
 				for i in 0..<spkr.count {
-					let a = spkr[i]
+//					let a = spkr[i]
 					switch i {
+					case 0:
+						b1.isHidden = false
+						b1.setTitle(spkr[0], for: .normal)
+						b1.addTarget(self, action: #selector(btap1), for: .touchDown)
+						break
 					case 1:
 						b1.isHidden = false
-						b1.setTitle(spkr[i].name + spkr[0].degrees, for: .normal)
+						b2.isHidden = false
+						b1.setTitle(spkr[0], for: .normal)
+						b2.setTitle(spkr[1], for: .normal)
 						b1.addTarget(self, action: #selector(btap1), for: .touchDown)
-						
+						b2.addTarget(self, action: #selector(btap2), for: .touchDown)
+						break
 					case 2:
 						b1.isHidden = false
 						b2.isHidden = false
-						b1.setTitle(spkr[0].name + spkr[0].degrees, for: .normal)
-						b2.setTitle(spkr[i].name + spkr[1].degrees, for: .normal)
+						b3.isHidden = false
+						b1.setTitle(spkr[0], for: .normal)
+						b2.setTitle(spkr[1], for: .normal)
+						b3.setTitle(spkr[2], for: .normal)
 						b1.addTarget(self, action: #selector(btap1), for: .touchDown)
 						b2.addTarget(self, action: #selector(btap2), for: .touchDown)
-						
+						b3.addTarget(self, action: #selector(btap3), for: .touchDown)
+						break
 					case 3:
 						b1.isHidden = false
 						b2.isHidden = false
 						b3.isHidden = false
-						b1.setTitle(spkr[0].name + spkr[0].degrees, for: .normal)
-						b2.setTitle(spkr[1].name + spkr[1].degrees, for: .normal)
-						b3.setTitle(spkr[2].name + spkr[2].degrees, for: .normal)
+						b4.isHidden = false
+						b1.setTitle(spkr[0], for: .normal)
+						b2.setTitle(spkr[1], for: .normal)
+						b3.setTitle(spkr[2], for: .normal)
+						b4.setTitle(spkr[3], for: .normal)
 						b1.addTarget(self, action: #selector(btap1), for: .touchDown)
 						b2.addTarget(self, action: #selector(btap2), for: .touchDown)
 						b3.addTarget(self, action: #selector(btap3), for: .touchDown)
-						
-						
+						b4.addTarget(self, action: #selector(btap4), for: .touchDown)
+						break
 					case 4:
 						b1.isHidden = false
 						b2.isHidden = false
 						b3.isHidden = false
 						b4.isHidden = false
-						b1.setTitle(spkr[0].name + spkr[0].degrees, for: .normal)
-						b2.setTitle(spkr[1].name + spkr[1].degrees, for: .normal)
-						b3.setTitle(spkr[2].name + spkr[2].degrees, for: .normal)
-						b4.setTitle(spkr[3].name + spkr[3].degrees, for: .normal)
+						b5.isHidden = false
+						b1.setTitle(spkr[0], for: .normal)
+						b2.setTitle(spkr[1], for: .normal)
+						b3.setTitle(spkr[2], for: .normal)
+						b4.setTitle(spkr[3], for: .normal)
+						b5.setTitle(spkr[4], for: .normal)
 						b1.addTarget(self, action: #selector(btap1), for: .touchDown)
 						b2.addTarget(self, action: #selector(btap2), for: .touchDown)
 						b3.addTarget(self, action: #selector(btap3), for: .touchDown)
 						b4.addTarget(self, action: #selector(btap4), for: .touchDown)
-						
-						
+						b5.addTarget(self, action: #selector(btap5), for: .touchDown)
+						break
 					case 5:
 						b1.isHidden = false
 						b2.isHidden = false
 						b3.isHidden = false
 						b4.isHidden = false
 						b5.isHidden = false
-						b1.setTitle(spkr[0].name + spkr[0].degrees, for: .normal)
-						b2.setTitle(spkr[1].name + spkr[1].degrees, for: .normal)
-						b3.setTitle(spkr[2].name + spkr[2].degrees, for: .normal)
-						b4.setTitle(spkr[3].name + spkr[3].degrees, for: .normal)
-						b5.setTitle(spkr[4].name + spkr[4].degrees, for: .normal)
+						b6.isHidden = false
+						b1.setTitle(spkr[0], for: .normal)
+						b2.setTitle(spkr[1], for: .normal)
+						b3.setTitle(spkr[2], for: .normal)
+						b4.setTitle(spkr[3], for: .normal)
+						b5.setTitle(spkr[4], for: .normal)
+						b6.setTitle(spkr[5], for: .normal)
 						b1.addTarget(self, action: #selector(btap1), for: .touchDown)
 						b2.addTarget(self, action: #selector(btap2), for: .touchDown)
 						b3.addTarget(self, action: #selector(btap3), for: .touchDown)
 						b4.addTarget(self, action: #selector(btap4), for: .touchDown)
 						b5.addTarget(self, action: #selector(btap5), for: .touchDown)
-
+						b6.addTarget(self, action: #selector(btap6), for: .touchDown)
+						break
 					case 6:
 						b1.isHidden = false
 						b2.isHidden = false
@@ -122,35 +142,14 @@ class SessionVC: UIViewController {
 						b4.isHidden = false
 						b5.isHidden = false
 						b6.isHidden = false
-						b1.setTitle(spkr[0].name + spkr[0].degrees, for: .normal)
-						b2.setTitle(spkr[1].name + spkr[1].degrees, for: .normal)
-						b3.setTitle(spkr[2].name + spkr[2].degrees, for: .normal)
-						b4.setTitle(spkr[3].name + spkr[3].degrees, for: .normal)
-						b5.setTitle(spkr[4].name + spkr[4].degrees, for: .normal)
-						b6.setTitle(spkr[5].name + spkr[5].degrees, for: .normal)
-						b1.addTarget(self, action: #selector(btap1), for: .touchDown)
-						b2.addTarget(self, action: #selector(btap2), for: .touchDown)
-						b3.addTarget(self, action: #selector(btap3), for: .touchDown)
-						b4.addTarget(self, action: #selector(btap4), for: .touchDown)
-						b5.addTarget(self, action: #selector(btap5), for: .touchDown)
-						b6.addTarget(self, action: #selector(btap6), for: .touchDown)
-
-
-					case 7:
-						b1.isHidden = false
-						b2.isHidden = false
-						b3.isHidden = false
-						b4.isHidden = false
-						b5.isHidden = false
-						b6.isHidden = false
 						b7.isHidden = false
-						b1.setTitle(spkr[0].name + spkr[0].degrees, for: .normal)
-						b2.setTitle(spkr[1].name + spkr[1].degrees, for: .normal)
-						b3.setTitle(spkr[2].name + spkr[2].degrees, for: .normal)
-						b4.setTitle(spkr[3].name + spkr[3].degrees, for: .normal)
-						b5.setTitle(spkr[4].name + spkr[4].degrees, for: .normal)
-						b6.setTitle(spkr[5].name + spkr[5].degrees, for: .normal)
-						b7.setTitle(spkr[6].name + spkr[6].degrees, for: .normal)
+						b1.setTitle(spkr[0], for: .normal)
+						b2.setTitle(spkr[1], for: .normal)
+						b3.setTitle(spkr[2], for: .normal)
+						b4.setTitle(spkr[3], for: .normal)
+						b5.setTitle(spkr[4], for: .normal)
+						b6.setTitle(spkr[5], for: .normal)
+						b7.setTitle(spkr[6], for: .normal)
 						b1.addTarget(self, action: #selector(btap1), for: .touchDown)
 						b2.addTarget(self, action: #selector(btap2), for: .touchDown)
 						b3.addTarget(self, action: #selector(btap3), for: .touchDown)
@@ -158,29 +157,20 @@ class SessionVC: UIViewController {
 						b5.addTarget(self, action: #selector(btap5), for: .touchDown)
 						b6.addTarget(self, action: #selector(btap6), for: .touchDown)
 						b7.addTarget(self, action: #selector(btap7), for: .touchDown)
-////						b1.
+//						b1.
 //						b2.
 //						b3.
 //						b4.
 //						b5.
 //						b6.
 //						b7.
+						break
 					default:
 						print("perfunctory placeholder")
+						break
 					}
-					break
 				}
-			
 			}
-			
-			
-			
-			
-		
-			
-		
-			
-			
 				self.sessionLabel.text = titl
 				self.timeLabel.text = day +  (", ") + time
 				self.sessionLabel.textAlignment = .center
@@ -195,28 +185,12 @@ class SessionVC: UIViewController {
 				self.descLabel.sizeToFit()
 
 				self.descLabel.text = desc
-			} else {
-				
-				if let spkrs = speakers {
-				
-					for i in 0..<spkrs.count {
-					let spkr = spkrs[i]
-					let button = UIButton(type: .custom)
-					button.titleLabel?.text = spkr.name + spkr.degrees
-//				  buttons.append(button)
-					}
-				}
-				
-//				for i in 0..<buttons.count {
-				
-//				}
-				
-				
-//				self.textVw.text =
 			}
-        // Do any additional setup after loading the view.
     }
 	
+	func backTap(){
+		self.dismiss(animated: false, completion: nil)
+	}
 	
 
     override func didReceiveMemoryWarning() {
@@ -227,7 +201,6 @@ class SessionVC: UIViewController {
 	
 	func btap1(){
 		launchVCForSpeaker(num: 0)
-		
 	}
 	func btap2(){
 		launchVCForSpeaker(num: 1)
@@ -249,21 +222,29 @@ class SessionVC: UIViewController {
 	}
 	
 	func launchVCForSpeaker(num:Int) {
-		if let s = speakers {
-			let a = s[num]
-			
-			let vc = self.storyboard?.instantiateViewController(withIdentifier: "speakervc") as! SpeakerVC
-			vc.bioText = a.bio
-			vc.nameTitle = a.name
-			vc.link = a.link
-			vc.degrees = a.degrees
-			vc.speaker = a
-			self.navigationController?.pushViewController(vc, animated: false)
-			
-			
-		}
 		
+		self.fetchSpeakerFor(name: (self.speakers?[num])!) { (spkr) in
+			self.dismiss(animated: false, completion: { 
+				self.delegate.transitionToSpeaker(speaker: spkr, sesh: self.sesh)
+			})
+		}
 	}
+	
+	func fetchSpeakerFor(name:String, completion:@escaping(Speaker) ->()) {
+		
+		handle = ref?.child("speakers").child(name).observe(.value, with: { (snapshot) in
+			let s = snapshot.value as! [String:AnyObject]
+			let dg = s["degrees"] as! String
+			let bio = s["bio"] as! String
+			let ln = s["link"] as! String
+			let lnk = URL(string: ln)
+			let f = Speaker(dgrs: dg, bi: bio, lnk: lnk, sesh: nil, nm: name)
+			completion(f)
+		})
+	}
+	
+	
+	
 	
 	
 //	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -302,19 +283,6 @@ class SessionVC: UIViewController {
 //		}
 //		print("perfunctory placeholder")
 //	}
-	
-	
-	
-	
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+
