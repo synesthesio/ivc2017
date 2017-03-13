@@ -15,12 +15,8 @@ import Firebase
 import GoogleSignIn
 class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerDelegate, GIDSignInUIDelegate  {
 	
- 
- weak var constraintKeyboardHeight:NSLayoutConstraint!
- 
-	//  var adjustingView:UIView!
-	
 	var plyr:AVPlayer?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -28,38 +24,30 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		self.navigationController?.navigationBar.isHidden = true
 		uetf.delegate = self
 		uptf.delegate = self
-		self.view.layer.backgroundColor = UIColor(red: 205.0, green: 231.0, blue: 190.0, alpha: 1.0).cgColor
-		setUpPlayer()
-		//			adjustingView = UIView(frame: view.bounds)
-		//			adjustingView.translatesAutoresizingMaskIntoConstraints = false
 
+		setUpPlayer()
+		
 		let veV = UIVisualEffectView(frame: view.bounds)
-//		let veV = UIVisualEffectView(frame: veVFrame)
 		veV.translatesAutoresizingMaskIntoConstraints = false
 		veV.effect = UIBlurEffect(style: .light)
 		
-		
-//		plyr?.play()
+		plyr?.play()
 		plyr?.isMuted = true
 		NotificationCenter.default.addObserver(self, selector: #selector(playDidEnd(notif:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: plyr?.currentItem)
 		view.setNeedsUpdateConstraints()
 		let tGR = UITapGestureRecognizer(target: self, action: #selector(screenTapped))
 		tGR.delegate = self
 		view.addGestureRecognizer(tGR)
-		view.backgroundColor = UIColor.lightGray
-		//add subviews
-		
+		view.backgroundColor = Utility.purpleClr
 		view.addSubview(uetf)
 		view.addSubview(uptf)
 		stack.addArrangedSubview(loginButton)
 		stack.addArrangedSubview(skipButton)
 		stack.addArrangedSubview(registerButton)
-		stack.addArrangedSubview(gidSI)
-		view.addSubview(stack)
-		//		view.addSubview(gidSI)
-		constraintKeyboardHeight = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.bottomLayoutGuide, attribute: .top, multiplier: 1, constant: 0)
-		constraintKeyboardHeight.isActive = true
-		view.addConstraint(constraintKeyboardHeight)
+		stack1.addArrangedSubview(stack)
+		stack1.addArrangedSubview(gidSI)
+		view.addSubview(stack1)
+		
 		
 		GIDSignIn.sharedInstance().uiDelegate = self
 		if GIDSignIn.sharedInstance().hasAuthInKeychain() {
@@ -90,15 +78,14 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	}
 	
 	func playDidEnd(notif:Notification) {
-//		plyr.seek(to: kCMTimeZero)
+		plyr?.seek(to: kCMTimeZero)
 		//to reset and replay video
-//		plyr.play()
+		plyr?.play()
 	}
 	
 	
 	override func updateViewConstraints() {
 		tfConstraints()
-		
 		//add all above
 		super.updateViewConstraints()
 	}
@@ -112,16 +99,9 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		NSLayoutConstraint(item: uptf, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 0.56, constant: 0).isActive = true
 		//		NSLayoutConstraint(item: gidSI, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
 		//		NSLayoutConstraint(item: gidSI, attribute: .top, relatedBy: .equal, toItem: stack, attribute: .bottom, multiplier: 1.0, constant: -10).isActive = true
-		stack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-		stack.topAnchor.constraint(equalTo: uptf.bottomAnchor).isActive = true
-		//		gidSI.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-		//		gidSI.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 8).isActive = true
-		
-		//		NSLayoutConstraint(item: stack, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 0, constant: 0).isActive = true
+		stack1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		stack1.topAnchor.constraint(equalTo: uptf.bottomAnchor).isActive = true
 	}
-	
-
-	
 	
 	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -248,23 +228,21 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	}
 	
 	func keyboardWillShow(_ sender: Notification) {
-		if let f = (sender.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue{
-			let newF = self.view.convert(f, from: (UIApplication.shared.delegate?.window)!)
-			constraintKeyboardHeight.constant = newF.origin.y - self.view.frame.height
+		
+		if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+			if self.view.frame.origin.y == 0{
+				self.view.frame.origin.y -= keyboardSize.height
+			}
 		}
-		UIView.animate(withDuration: 0.25, animations: { () -> Void in
-			self.view.layoutIfNeeded()
-		})
 	}
 	
 	func keyboardWillHide(_ sender: Notification) {
-		constraintKeyboardHeight.constant = 0
-		UIView.animate(withDuration: 0.25, animations: { () -> Void in
-			self.view.layoutIfNeeded()
-		})
+		if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+			if self.view.frame.origin.y != 0{
+				self.view.frame.origin.y += keyboardSize.height
+			}
+		}
 	}
-	
-	
 	
 	func setUpPlayer(){
 				plyr = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: "video", ofType: "mp4")!))
@@ -276,18 +254,18 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		view.layer.insertSublayer(plyrLayer, at: 0)
 	}
 	
-	
 	lazy var uetf:UITextField! = {
 		let v = UITextField()
 		v.translatesAutoresizingMaskIntoConstraints = false
 		v.borderStyle = .roundedRect
-		v.textColor = UIColor.darkGray
+		v.textColor = Utility.yellowClr
 		v.layer.cornerRadius = 5
-		v.layer.borderWidth = 3
-		v.layer.borderColor = UIColor.white.cgColor
+		v.layer.borderWidth = 0.5
+		v.layer.borderColor = Utility.yellowClr.cgColor
+		v.backgroundColor = Utility.redClr
 		v.textAlignment = .center
 		v.attributedPlaceholder = NSAttributedString(string: "email-address", attributes: [NSForegroundColorAttributeName: UIColor.black])
-		v.layer.opacity = 0.25
+//		v.layer.opacity = 0.25
 		return v
 	}()
 	
@@ -297,21 +275,26 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		v.isSecureTextEntry = true
 		v.translatesAutoresizingMaskIntoConstraints = false
 		v.borderStyle = .roundedRect
-		v.textColor = UIColor.darkGray
+		v.textColor = Utility.yellowClr
 		v.layer.cornerRadius = 5
-		v.layer.borderWidth = 3
-		v.layer.borderColor = UIColor.white.cgColor
+		v.layer.borderWidth = 0.5
+		v.layer.borderColor = Utility.yellowClr.cgColor
+		v.backgroundColor = Utility.redClr
 		v.textAlignment = .center
 		v.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSForegroundColorAttributeName: UIColor.black])
-		v.layer.opacity = 0.25
+//		v.layer.opacity = 0.25
 		return v
 	}()
 	
 	lazy var loginButton:UIButton! = {
 		let b = UIButton()
 		b.translatesAutoresizingMaskIntoConstraints = false
+		b.layer.borderColor = Utility.yellowClr.cgColor
+		b.backgroundColor = Utility.redClr
+//		b.layer.borderWidth = 0.5
 		b.addTarget(self, action: #selector(loginTapped), for:UIControlEvents.touchDown)
-		b.layer.opacity = 0.25
+//		b.layer.opacity = 0.75
+		b.setTitleColor(Utility.yellowClr, for: .normal)
 		b.setTitle("Login", for: .normal)
 		return b
 	}()
@@ -319,18 +302,33 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	lazy var registerButton:UIButton! = {
 		let b = UIButton()
 		b.translatesAutoresizingMaskIntoConstraints = false
+		b.layer.borderColor = Utility.yellowClr.cgColor
+		b.backgroundColor = Utility.redClr
+//		b.layer.borderWidth = 0.5
 		b.addTarget(self, action: #selector(registerTapped), for:UIControlEvents.touchDown)
-		b.layer.opacity = 0.25
-		b.setTitle("Register", for: .normal)
+//		b.layer.opacity = 0.75
+		b.setTitleColor(Utility.yellowClr, for: .normal)
+//		let style = NSMutableParagraphStyle()
+//		style.alignment = .center
+		
+//		let str = NSAttributedString(string: "Register", attributes: [NSParagraphStyleAttributeName:style])
+//		b.setAttributedTitle(str, for: .normal)
+
+		b.setTitle("Register  ", for: .normal)
 		return b
 	}()
 	
 	lazy var skipButton:UIButton! = {
 		let b = UIButton()
 		b.translatesAutoresizingMaskIntoConstraints = false
+		b.layer.borderColor = Utility.yellowClr.cgColor
+		b.backgroundColor = Utility.redClr
+//		b.layer.borderWidth = 0.5
 		b.addTarget(self, action: #selector(skipTapped), for:UIControlEvents.touchDown)
-		b.layer.opacity = 0.25
 		b.setTitle("Skip", for: .normal)
+		b.setTitleColor(Utility.yellowClr, for: .normal)
+//		b.tintColor = Utility.yellowClr
+//		b.layer.opacity = 0.75
 		b.setTitle("Skipping", for: UIControlState.selected)
 		return b
 	}()
@@ -341,6 +339,8 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		s.alignment = UIStackViewAlignment.center
 		s.distribution = UIStackViewDistribution.fillEqually
 		s.axis = UILayoutConstraintAxis.horizontal
+		s.layer.borderWidth = 0.5
+		s.layer.borderColor = Utility.yellowClr.cgColor
 		//		s.alignment =
 		return s
 	}()
@@ -348,9 +348,19 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	lazy var gidSI:GIDSignInButton! = {
 		let s = GIDSignInButton()
 		s.colorScheme = GIDSignInButtonColorScheme.dark
-		s.style = GIDSignInButtonStyle.iconOnly
+		s.style = GIDSignInButtonStyle.wide
+//		s.frame = CGRect(x: 0, y: 0, width: 5, height: 5)
 		s.addTarget(self, action: #selector(signInWithGoogle), for: .touchDown)
 		//		s.style = GIDSignInButtonStyle.standard
+		return s
+	}()
+	
+	lazy var stack1:UIStackView! = {
+		let s = UIStackView()
+		s.translatesAutoresizingMaskIntoConstraints = false
+		s.alignment = UIStackViewAlignment.center
+		s.distribution = UIStackViewDistribution.fillEqually
+		s.axis = UILayoutConstraintAxis.vertical
 		return s
 	}()
 	func signInWithGoogle(){

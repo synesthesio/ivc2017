@@ -39,6 +39,11 @@ struct Utility {
 	view.addSubview(UIImageView(image: imgForBg!))
 	return view
 	}
+	
+//	static let yellowClr = UIColor(red:1.00, green:0.83, blue:0.38, alpha:1.0)
+	static let yellowClr = UIColor.white
+	static let purpleClr = UIColor(red:0.15, green:0.05, blue:0.34, alpha:1.0)
+	static let redClr = UIColor(red:0.54, green:0.05, blue:0.05, alpha:1.0)
 
 	class GooglePlacesRequestBuilder {
 		/**
@@ -101,7 +106,6 @@ struct Utility {
 			if response.statusCode != 200 {
 				print("GooglePlaces Error: Invalid status code \(response.statusCode) from API")
 				Utility.displayAlertWithHandler("GooglePlaces Error: Invalid status code \(response.statusCode) from API", message: "", from: currentVC, cusHandler: nil)
-				
 				return
 			}
 			do
@@ -112,16 +116,13 @@ struct Utility {
 					if status != "OK" {
 						print("GooglePlaces API Error: \(status)")
 						Utility.displayAlertWithHandler("We could not establish a route to that destination", message: "", from: currentVC, cusHandler: nil)
-						
 						return
 					}
 					DispatchQueue.main.async(execute: {
 						UIApplication.shared.isNetworkActivityIndicatorVisible = false
-						
 						success(json)
 					})
 				}
-				
 			} catch let caught as NSError {
 				print("An error occured: \(caught.localizedDescription)")
 				return
@@ -131,8 +132,6 @@ struct Utility {
 			}
 		}
 	}
-	
-
 }
 
 
@@ -186,10 +185,12 @@ struct Attendee {
 	var name:String
 	var bio:String?
 	var link:URL?
-	init(nm:String, bi:String?, lnk:URL?) {
+	var image:UIImage?
+	init(nm:String, bi:String?, lnk:URL?, img:UIImage?) {
 		self.name = nm
 		self.bio = bi
 		self.link = lnk
+		self.image = img
 	}
 }
 
@@ -212,6 +213,20 @@ extension Date {
 		let f = DateFormatter()
 		f.dateFormat = "EEEE"
 		return f.string(from: self).lowercased()
+	}
+}
+
+extension UIImage {
+	
+	func colored(with color: UIColor, size: CGSize) -> UIImage {
+		UIGraphicsBeginImageContext(size)
+		let context = UIGraphicsGetCurrentContext()
+		context!.setFillColor(color.cgColor);
+		let rect = CGRect(origin: CGPoint(x: 0, y: 0), size: size)
+		context!.fill(rect);
+		let image = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+		return image!
 	}
 }
 

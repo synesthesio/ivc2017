@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import Firebase
+import FirebaseStorage
 
 class AttendeeTableVC: UITableViewController {
 
@@ -17,7 +18,7 @@ class AttendeeTableVC: UITableViewController {
 	var handle:FIRDatabaseHandle?
 	var ref:FIRDatabaseReference?
 	var attendees:[Attendee]?
-
+	var storageRef:FIRStorageReference?
     override func viewDidLoad() {
         super.viewDidLoad()
 				self.fetchAttendees(completion: { (att) in
@@ -46,17 +47,40 @@ class AttendeeTableVC: UITableViewController {
 				let nm = v["name"] as! String
 				let bio = v["bio"] as? String
 				let link = v["link"] as? URL
+				let imgRef = v["image"] as? FIRStorageReference
+				var img:UIImage?
+				if let image = imgRef {
+					self.getImageFromFIR(profileRef: image, completion: { (imag) in
+						img = imag
+					})
+				}
 				
-				let a = Attendee(nm: nm, bi: bio, lnk: link)
+				let a = Attendee(nm: nm, bi: bio, lnk: link, img:img)
 				att.append(a)
 			}
 			completion(att)
 		})
 		
+	}
+	
+	func getImageFromFIR(profileRef:FIRStorageReference, completion:@escaping(UIImage)->()) {
+		var image:UIImage?
+		profileRef.data(withMaxSize: 5 * 1024 * 1024, completion: { (data, err) in
+			if let e = err {
+				print("Print err: \(e)")
+				
+				Utility.displayAlertWithHandler("Error", message: "Error Downloading Images, Please Try Again Later", from: self, cusHandler: nil)
+			}
+			
+			if let d = data {
+				image = UIImage(data: d)
+				completion(image!)
+			}
+		})
+		
 		
 		
 	}
-	
 
     // MARK: - Table view data source
 
@@ -77,11 +101,13 @@ class AttendeeTableVC: UITableViewController {
 	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath)
-			
+				cell.backgroundColor = Utility.purpleClr
 				if let att = attendees {
 					let at = att[indexPath.row] as! Attendee
+					cell.textLabel?.textColor = Utility.yellowClr
 					cell.textLabel?.text = at.name
 					cell.detailTextLabel?.text = at.bio
+					cell.imageView?.image = at.image
 				}
 			
 			
@@ -98,6 +124,7 @@ class AttendeeTableVC: UITableViewController {
 			vc.interests = attendee.bio
 			vc.nameForTitle = attendee.name
 			vc.link = attendee.link
+			vc.image = attendee.image
 			self.tabBarController?.present(vc, animated: false, completion: nil)
 		}
 	}

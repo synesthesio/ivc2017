@@ -18,19 +18,45 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 	var sunSessions:[Session]?
 	
     override func viewDidLoad() {
-        super.viewDidLoad()
+			super.viewDidLoad()
 			FIRDatabase.database().persistenceEnabled = true
-			
+			self.tabBarController?.navigationController?.navigationBar.layer.backgroundColor = Utility.purpleClr.cgColor
+			var swtch = UISegmentedControl(items: ["Fri", "Sat", "Sun"])
 			if let d = Date().dayOfWeek() {
 				self.fetchCalendarEvents(forDay: d, completion: { (sesh) in
 					self.sessionsForView = sesh
 					self.tableView.reloadData()
 				})
+				switch d {
+				case "friday":
+					swtch.selectedSegmentIndex = 0
+				case "saturday":
+					swtch.selectedSegmentIndex = 1
+				case "sunday":
+					swtch.selectedSegmentIndex = 2
+				default:
+					break
+				}
 			}
 			
-			var swtch = UISegmentedControl(items: ["Fri", "Sat", "Sun"])
-			swtch.backgroundColor = UIColor.white
-			swtch.tintColor = UIColor.cyan
+			swtch.layer.borderWidth = 0.5
+			swtch.layer.borderColor = Utility.purpleClr.cgColor
+			swtch.layer.cornerRadius = 15.0
+			swtch.layer.masksToBounds = true
+			swtch.setDividerImage(self.imageWithColor(color: .clear, segmentedControl: swtch), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+			swtch.setBackgroundImage(self.imageWithColor(color: .clear, segmentedControl: swtch), for: .normal, barMetrics: .default)
+			swtch.setBackgroundImage(self.imageWithColor(color: Utility.redClr, segmentedControl: swtch), for: .selected, barMetrics: .default)
+			swtch.backgroundColor = Utility.redClr
+			swtch.layer.borderColor = Utility.yellowClr.cgColor
+			swtch.setTitleTextAttributes([NSForegroundColorAttributeName:Utility.purpleClr], for: .normal)
+			swtch.setTitleTextAttributes([NSForegroundColorAttributeName:Utility.yellowClr], for: .selected)
+			for i in swtch.subviews {
+				let upperBorder:CALayer = CALayer()
+				upperBorder.backgroundColor = Utility.yellowClr.cgColor
+				upperBorder.frame = CGRect(x: 0, y: i.frame.size.height-1, width: i.frame.size.width, height: 1.0)
+				i.layer.addSublayer(upperBorder)
+			}
+//			swtch.tintColor = UIColor.cyan
 			swtch.addTarget(self, action: #selector(switchDay(sender:)), for: .valueChanged)
 			self.navigationItem.titleView = swtch
 			
@@ -143,12 +169,18 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SessionTVCell
+//				cell.backgroundColor = 
+			
 			if sessionsForView != nil {
 			if (sessionsForView?.count)! > 0 {
 				if let contents = sessionsForView?[indexPath.row] {
-
+					cell.timeLabel.textColor = Utility.yellowClr
 					cell.timeLabel.text = contents.time
+					cell.backgroundColor = Utility.redClr
+					cell.layer.borderWidth = 0.5
+					cell.layer.borderColor = Utility.yellowClr.cgColor
 //					cell.locationLabel.text = contents.location
+					cell.titleLabel.textColor = Utility.yellowClr
 					cell.titleLabel.text = contents.title
 				}
 			 }
@@ -190,7 +222,20 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 		vc.speaker = speaker
 		self.tabBarController?.present(vc, animated: false, completion: nil)
 	}
-
+	
+	func imageWithColor(color: UIColor, segmentedControl:UISegmentedControl) -> UIImage {
+		
+//		let rect = CGRect(0.0, 0.0, 1.0, segmentedControl.frame.size.height)
+		let rect = CGRect(x: 0, y: 0, width: 1, height: segmentedControl.frame.size.height)
+		UIGraphicsBeginImageContext(rect.size)
+		let context = UIGraphicsGetCurrentContext()
+		context!.setFillColor(color.cgColor);
+		context!.fill(rect);
+		let image = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+		return image!
+		
+	}
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -225,17 +270,6 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
         return true
     }
     */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 protocol TransitionToSpeakerDelegate{

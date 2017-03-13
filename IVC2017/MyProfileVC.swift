@@ -8,14 +8,13 @@
 
 import Foundation
 import UIKit
-import FirebaseDatabase
 import Firebase
+
 
 class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate{
 	
 	var handle:FIRDatabaseHandle?
 	var ref:FIRDatabaseReference?
-	weak var constraintKeyboardHeight:NSLayoutConstraint!
 	@IBOutlet weak var imgVw: UIImageView!
 	@IBOutlet weak var saveButton: UIButton!
 	@IBOutlet weak var linktf: UITextField!
@@ -25,22 +24,21 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 	var firstTime:Bool = true
 	var uID:String?
 	var photoPicker:UIImagePickerController!
-	
-	
+	var storageRef:FIRStorageReference!
+	var profRef:FIRStorageReference!
+	var imageFromPicker:UIImage?
+	var downloadURL:URL?
 	override func viewDidLoad(){
 		super.viewDidLoad()
 //		FIRDatabase.database().persistenceEnabled = true
 		ref = FIRDatabase.database().reference()
 		
 		
+		
 		photoPicker = UIImagePickerController()
 		self.photoPicker.delegate = self
 		self.navigationController?.navigationBar.isHidden = true
-		imgVw.contentMode = .scaleAspectFit
-
-		constraintKeyboardHeight = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.bottomLayoutGuide, attribute: .top, multiplier: 1, constant: 0)
-		constraintKeyboardHeight.isActive = true
-		view.addConstraint(constraintKeyboardHeight)
+//		imgVw.contentMode = .scaleAspectFit
 //		tf.delegate = self
 		let tGR = UITapGestureRecognizer(target: self, action: #selector(screenTapped))
 		tGR.delegate = self
@@ -91,9 +89,7 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 		nametf.resignFirstResponder()
 		biotf.resignFirstResponder()
 		linktf.resignFirstResponder()
-		
 
-		
 			if let n = self.nametf.text {
 				self.ref?.child("users/" + (self.uID!) + "/name").setValue(n)
 			} else {
@@ -106,26 +102,84 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 			if let b = self.biotf.text {
 				self.ref?.child("users/" + (self.uID!) + "/bio").setValue(b)
 			}
+		
+		  if let img = self.imageFromPicker {
+			
+				self.storageRef =  FIRStorage.storage().reference()
+				let imgRef = storageRef.child("images")
+				if let u = self.uID {
+					profRef = imgRef.child(u)
+					let meta = FIRStorageMetadata()
+					meta.contentType = "image/jpeg"
+					
+					let upload = profRef.put(UIImageJPEGRepresentation(img, 0.75)!, metadata: meta, completion: { (fSM, err) in
+						if let e = err {
+							print("Print error = : \(e)")
+							Utility.displayAlertWithHandler("Image Upload Error", message: "An Error Occurred During Image Upload, Please Try Again", from: self, cusHandler: nil)
+						}
+						guard let metadata = fSM else {
+							Utility.displayAlertWithHandler("Image Upload Error", message: "An Error Occurred During Image Upload, Please Try Again", from: self, cusHandler: nil)
+							return
+						}
+//						self.downloadURL = metadata.downloadURL()
+						self.ref?.child("users/" + (self.uID!) + "/image").setValue(self.profRef)
+//						self.ref?.child("users/" + (self.uID!) + "/image").setValue(self.downloadURL)
+					})
+					upload.observe(.failure, handler: { (snapshot) in
+						if let error = snapshot.error as? NSError {
+							switch (FIRStorageErrorCode(rawValue: error.code)!) {
+							case .objectNotFound:
+								// File doesn't exist
+								break
+							case .unauthorized:
+								// User doesn't have permission to access file
+								break
+							case .cancelled:
+								// User canceled the upload
+								break
+								
+								/* ... */
+								
+							case .unknown:
+								// Unknown error occurred, inspect the server response
+								break
+							default:
+								// A separate error occurred. This is a good place to retry the upload.
+								break
+							}
+						}
+
+					})
+				upload.observe(.success, handler: { (snapshot) in
+					print("perfunctory placeholder")
+				})
+				}
+			
+			
+			
+			
+			
+			
+//				self.ref?.child("users/" + (self.uID!) + "/image").setValue(img)
+		  }
 
 	}
 	
-	
-	
 	func keyboardWillShow(_ sender: Notification) {
-		if let f = (sender.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue{
-			let newF = self.view.convert(f, from: (UIApplication.shared.delegate?.window)!)
-			constraintKeyboardHeight.constant = newF.origin.y - self.view.frame.height
+		
+		if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+			if self.view.frame.origin.y == 0{
+				self.view.frame.origin.y -= keyboardSize.height
+			}
 		}
-		UIView.animate(withDuration: 0.25, animations: { () -> Void in
-			self.view.layoutIfNeeded()
-		})
 	}
 	
 	func keyboardWillHide(_ sender: Notification) {
-		constraintKeyboardHeight.constant = 0
-		UIView.animate(withDuration: 0.25, animations: { () -> Void in
-			self.view.layoutIfNeeded()
-		})
+		if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+			if self.view.frame.origin.y != 0{
+				self.view.frame.origin.y += keyboardSize.height
+			}
+		}
 	}
 	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -140,16 +194,10 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 		}
 	}
 	
-//	func textFieldDidEndEditing(_ textField: UITextField) {
-	
-//		ref = FIRDatabase.database().reference()
-		
-//	}
-	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		switch textField {
 		case nametf:
-			linktf.becomeFirstResponder()
+			biotf.becomeFirstResponder()
 		case biotf:
 			linktf.becomeFirstResponder()
 			//make next textField becomeFirstResponder
@@ -163,27 +211,32 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 	
 	
 	func imgVwTapped(){
-	let ac = UIAlertController(title: "Take a Photo?", message: "Take a photo or select from Camera Roll", preferredStyle: .actionSheet)
-	let photoAct = UIAlertAction(title: "Use Camera", style: .default) { (photo) in
+		self.view.endEditing(true)
+		let ac = UIAlertController(title: "Take a Photo?", message: "Take a photo or select from Camera Roll", preferredStyle: .actionSheet)
+		let photoAct = UIAlertAction(title: "Use Camera", style: .default) { (photo) in
 		self.photoPicker.allowsEditing = true
 		self.photoPicker.sourceType = .camera
 		self.present(self.photoPicker, animated: false, completion: nil)
 		}
-	ac.addAction(photoAct)
-	let libAct = UIAlertAction(title: "Use Photo Library", style: .default) { (lib) in
+		ac.addAction(photoAct)
+		let libAct = UIAlertAction(title: "Use Photo Library", style: .default) { (lib) in
 		print("perfunctory placeholder")
 		self.photoPicker.sourceType = .photoLibrary
 		self.present(self.photoPicker, animated: false, completion: nil)
 		}
-	ac.addAction(libAct)
-	let rollAct = UIAlertAction(title: "Use Camera Roll", style: .default) { (roll) in
-		self.photoPicker.sourceType = .savedPhotosAlbum
-		self.present(self.photoPicker, animated: false, completion: nil)
-		}
-  ac.addAction(rollAct)
+		ac.addAction(libAct)
+//		let rollAct = UIAlertAction(title: "Use Camera Roll", style: .default) { (roll) in
+//		self.photoPicker.sourceType = .savedPhotosAlbum
+//		self.present(self.photoPicker, animated: false, completion: nil)
+//		}
+//		ac.addAction(rollAct)
 		self.present(ac, animated: false, completion: {
 			print("perfunctory placeholder")
 		})
+		let cancel = UIAlertAction(title: "Cancel", style: .destructive) { (cancel) in
+			self.dismiss(animated: false, completion: nil)
+		}
+		ac.addAction(cancel)
 	}
 	
 	func screenTapped(){
@@ -194,7 +247,9 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 		if let picked = info[UIImagePickerControllerOriginalImage] as? UIImage {
-			self.imgVw.image = picked
+		self.imageFromPicker = picked
+		
+			self.imgVw.image = self.imageFromPicker
 		}
 		self.dismiss(animated: false) {
 		print("perfunctory placeholder")

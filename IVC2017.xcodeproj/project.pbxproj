@@ -231,9 +231,12 @@
 				TargetAttributes = {
 					2513BC3A1E5EB4FB009B9CDE = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = KXY9EDFTF5;
+						DevelopmentTeam = DU34AAR2FY;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
 							com.apple.Keychain = {
 								enabled = 1;
 							};
@@ -539,7 +542,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = IVC2017/IVC2017.entitlements;
-				DEVELOPMENT_TEAM = KXY9EDFTF5;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DU34AAR2FY;
 				INFOPLIST_FILE = IVC2017/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivc.HarvardVeganConference;
@@ -554,7 +558,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = IVC2017/IVC2017.entitlements;
-				DEVELOPMENT_TEAM = KXY9EDFTF5;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DU34AAR2FY;
 				INFOPLIST_FILE = IVC2017/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivc.HarvardVeganConference;
