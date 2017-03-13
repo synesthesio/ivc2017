@@ -185,12 +185,12 @@ struct Attendee {
 	var name:String
 	var bio:String?
 	var link:URL?
-	var image:UIImage?
-	init(nm:String, bi:String?, lnk:URL?, img:UIImage?) {
+	var uID:String?
+	init(nm:String, bi:String?, lnk:URL?, id:String?) {
 		self.name = nm
 		self.bio = bi
 		self.link = lnk
-		self.image = img
+		self.uID = id
 	}
 }
 

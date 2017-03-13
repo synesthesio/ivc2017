@@ -38,7 +38,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		let tGR = UITapGestureRecognizer(target: self, action: #selector(screenTapped))
 		tGR.delegate = self
 		view.addGestureRecognizer(tGR)
-		view.backgroundColor = Utility.purpleClr
+		view.backgroundColor = UIColor.clear
 		view.addSubview(uetf)
 		view.addSubview(uptf)
 		stack.addArrangedSubview(loginButton)
@@ -264,7 +264,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		v.layer.borderColor = Utility.yellowClr.cgColor
 		v.backgroundColor = Utility.redClr
 		v.textAlignment = .center
-		v.attributedPlaceholder = NSAttributedString(string: "email-address", attributes: [NSForegroundColorAttributeName: UIColor.black])
+		v.attributedPlaceholder = NSAttributedString(string: "email-address", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
 //		v.layer.opacity = 0.25
 		return v
 	}()
@@ -281,7 +281,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		v.layer.borderColor = Utility.yellowClr.cgColor
 		v.backgroundColor = Utility.redClr
 		v.textAlignment = .center
-		v.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSForegroundColorAttributeName: UIColor.black])
+		v.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
 //		v.layer.opacity = 0.25
 		return v
 	}()
@@ -291,6 +291,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		b.translatesAutoresizingMaskIntoConstraints = false
 		b.layer.borderColor = Utility.yellowClr.cgColor
 		b.backgroundColor = Utility.redClr
+		b.layer.cornerRadius = 15.0
 //		b.layer.borderWidth = 0.5
 		b.addTarget(self, action: #selector(loginTapped), for:UIControlEvents.touchDown)
 //		b.layer.opacity = 0.75
@@ -304,15 +305,17 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		b.translatesAutoresizingMaskIntoConstraints = false
 		b.layer.borderColor = Utility.yellowClr.cgColor
 		b.backgroundColor = Utility.redClr
+		b.layer.cornerRadius = 15.0
+		
 //		b.layer.borderWidth = 0.5
 		b.addTarget(self, action: #selector(registerTapped), for:UIControlEvents.touchDown)
 //		b.layer.opacity = 0.75
-		b.setTitleColor(Utility.yellowClr, for: .normal)
-//		let style = NSMutableParagraphStyle()
-//		style.alignment = .center
+//		b.setTitleColor(Utility.yellowClr, for: .normal)
+		let style = NSMutableParagraphStyle()
+		style.alignment = .center
 		
-//		let str = NSAttributedString(string: "Register", attributes: [NSParagraphStyleAttributeName:style])
-//		b.setAttributedTitle(str, for: .normal)
+		let str = NSAttributedString(string: "Register", attributes: [NSParagraphStyleAttributeName:style])
+		b.setAttributedTitle(str, for: .normal)
 
 		b.setTitle("Register  ", for: .normal)
 		return b
@@ -323,6 +326,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		b.translatesAutoresizingMaskIntoConstraints = false
 		b.layer.borderColor = Utility.yellowClr.cgColor
 		b.backgroundColor = Utility.redClr
+		b.layer.cornerRadius = 15.0
 //		b.layer.borderWidth = 0.5
 		b.addTarget(self, action: #selector(skipTapped), for:UIControlEvents.touchDown)
 		b.setTitle("Skip", for: .normal)
@@ -341,6 +345,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		s.axis = UILayoutConstraintAxis.horizontal
 		s.layer.borderWidth = 0.5
 		s.layer.borderColor = Utility.yellowClr.cgColor
+		s.spacing = 3
 		//		s.alignment =
 		return s
 	}()
@@ -348,7 +353,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	lazy var gidSI:GIDSignInButton! = {
 		let s = GIDSignInButton()
 		s.colorScheme = GIDSignInButtonColorScheme.dark
-		s.style = GIDSignInButtonStyle.wide
+		s.style = GIDSignInButtonStyle.iconOnly
 //		s.frame = CGRect(x: 0, y: 0, width: 5, height: 5)
 		s.addTarget(self, action: #selector(signInWithGoogle), for: .touchDown)
 		//		s.style = GIDSignInButtonStyle.standard

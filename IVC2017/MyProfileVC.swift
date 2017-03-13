@@ -33,8 +33,6 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 //		FIRDatabase.database().persistenceEnabled = true
 		ref = FIRDatabase.database().reference()
 		
-		
-		
 		photoPicker = UIImagePickerController()
 		self.photoPicker.delegate = self
 		self.navigationController?.navigationBar.isHidden = true
@@ -82,9 +80,6 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 //	}
 	
 	
-	
-	
-	
 	func saveButtonTapped(){
 		nametf.resignFirstResponder()
 		biotf.resignFirstResponder()
@@ -117,13 +112,15 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 							print("Print error = : \(e)")
 							Utility.displayAlertWithHandler("Image Upload Error", message: "An Error Occurred During Image Upload, Please Try Again", from: self, cusHandler: nil)
 						}
-						guard let metadata = fSM else {
-							Utility.displayAlertWithHandler("Image Upload Error", message: "An Error Occurred During Image Upload, Please Try Again", from: self, cusHandler: nil)
-							return
+						
+						if let f = fSM {
+							self.ref?.child("users/" + (self.uID!) + "/image").setValue(self.uID)
 						}
+//						guard let metadata = fSM else {
+//							Utility.displayAlertWithHandler("Image Upload Error", message: "An Error Occurred During Image Upload, Please Try Again", from: self, cusHandler: nil)
+//							return
+//						}
 //						self.downloadURL = metadata.downloadURL()
-						self.ref?.child("users/" + (self.uID!) + "/image").setValue(self.profRef)
-//						self.ref?.child("users/" + (self.uID!) + "/image").setValue(self.downloadURL)
 					})
 					upload.observe(.failure, handler: { (snapshot) in
 						if let error = snapshot.error as? NSError {

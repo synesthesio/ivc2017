@@ -7,7 +7,7 @@
 //
 import Foundation
 import UIKit
-
+import Firebase
 
 
 class AttendeeVC: UIViewController,UIWebViewDelegate {
@@ -18,60 +18,67 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 	@IBOutlet weak var websiteButton: UIButton!
 	var nameForTitle:String?
 	var interests:String?
-	var image:UIImage?
+	var uID:String?
+	var storageRef:FIRStorageReference?
 	var link:URL?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+		override func viewDidLoad() {
+			super.viewDidLoad()
 			self.title = nameForTitle
 			websiteButton.isHidden = true
 			if let u = self.link {
 						websiteButton.isHidden = false
 				websiteButton.addTarget(self, action: #selector(websiteButtonTapped), for: .touchDown)
 			}
-			
-			if let img = image {
-				self.imgView.image = img
-			} else {
-				self.imgView.image = UIImage(named: "addPhotoPlaceholder")
-			}
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-	
-	@IBAction func doneTapped(_ sender: Any) {
-	self.dismiss(animated: false, completion: nil)
-	}
-
-	func websiteButtonTapped(){
-		
-		if UIApplication.shared.canOpenURL(self.link!) {
-			UIApplication.shared.open(self.link!, options: [:], completionHandler: nil)
-		} else {
-			webView.loadRequest(URLRequest(url: self.link!))
-			webView.delegate = self
-			self.view.addSubview(webView)
 		}
-	}
 
+		override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+		}
 	
+		override func viewWillAppear(_ animated: Bool) {
+			super.viewWillAppear(animated)
 
+			if let id = self.uID {
+			self.getImageFromFIR(uID: id, completion: { (img) in
+				self.imgView.image = img
+				})
+			}
+		}
+	
+		@IBAction func doneTapped(_ sender: Any) {
+			self.dismiss(animated: false, completion: nil)
+		}
 
-    /*
-    // MARK: - Navigation
+		func websiteButtonTapped(){
+			if UIApplication.shared.canOpenURL(self.link!) {
+				UIApplication.shared.open(self.link!, options: [:], completionHandler: nil)
+			} else {
+				webView.loadRequest(URLRequest(url: self.link!))
+				webView.delegate = self
+				self.view.addSubview(webView)
+			}
+		}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+		func getImageFromFIR(uID:String?, completion:@escaping(UIImage)->()) {
+			var image:UIImage?
+			self.storageRef = FIRStorage.storage().reference()
+		
+			let ref = storageRef?.child("images/" + "\(uID!)")
+			ref?.data(withMaxSize: 5 * 1024 * 1024, completion: { (data, err) in
+			
+			if let e = err {
+				print("Print err: \(e)")
+				Utility.displayAlertWithHandler("Error", message: "Error Downloading Images, Please Try Again Later", from: self, cusHandler: nil)
+			}
+			
+			if let d = data {
+				image = UIImage(data: d)
+				completion(image!)
+			}
+			
+		})
+	}
 	
 	lazy var webView:UIWebView = {
 		let a = UIWebView(frame: self.view.bounds)

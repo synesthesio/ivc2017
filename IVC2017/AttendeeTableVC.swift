@@ -47,15 +47,8 @@ class AttendeeTableVC: UITableViewController {
 				let nm = v["name"] as! String
 				let bio = v["bio"] as? String
 				let link = v["link"] as? URL
-				let imgRef = v["image"] as? FIRStorageReference
-				var img:UIImage?
-				if let image = imgRef {
-					self.getImageFromFIR(profileRef: image, completion: { (imag) in
-						img = imag
-					})
-				}
-				
-				let a = Attendee(nm: nm, bi: bio, lnk: link, img:img)
+				let imgRef = v["image"] as? String
+				let a = Attendee(nm: nm, bi: bio, lnk: link, id:imgRef)
 				att.append(a)
 			}
 			completion(att)
@@ -63,26 +56,6 @@ class AttendeeTableVC: UITableViewController {
 		
 	}
 	
-	func getImageFromFIR(profileRef:FIRStorageReference, completion:@escaping(UIImage)->()) {
-		var image:UIImage?
-		profileRef.data(withMaxSize: 5 * 1024 * 1024, completion: { (data, err) in
-			if let e = err {
-				print("Print err: \(e)")
-				
-				Utility.displayAlertWithHandler("Error", message: "Error Downloading Images, Please Try Again Later", from: self, cusHandler: nil)
-			}
-			
-			if let d = data {
-				image = UIImage(data: d)
-				completion(image!)
-			}
-		})
-		
-		
-		
-	}
-
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -107,14 +80,9 @@ class AttendeeTableVC: UITableViewController {
 					cell.textLabel?.textColor = Utility.yellowClr
 					cell.textLabel?.text = at.name
 					cell.detailTextLabel?.text = at.bio
-					cell.imageView?.image = at.image
+//					cell.imageView?.image = at.image
 				}
-			
-			
-
-        // Configure the cell...
-
-        return cell
+			return cell
     }
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -124,7 +92,7 @@ class AttendeeTableVC: UITableViewController {
 			vc.interests = attendee.bio
 			vc.nameForTitle = attendee.name
 			vc.link = attendee.link
-			vc.image = attendee.image
+			vc.uID = attendee.uID
 			self.tabBarController?.present(vc, animated: false, completion: nil)
 		}
 	}
@@ -164,15 +132,4 @@ class AttendeeTableVC: UITableViewController {
         return true
     }
     */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
