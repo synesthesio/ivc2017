@@ -38,7 +38,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		let tGR = UITapGestureRecognizer(target: self, action: #selector(screenTapped))
 		tGR.delegate = self
 		view.addGestureRecognizer(tGR)
-		view.backgroundColor = UIColor.clear
+		view.backgroundColor = Utility.purpleClr
 		view.addSubview(uetf)
 		view.addSubview(uptf)
 		stack.addArrangedSubview(loginButton)
@@ -258,7 +258,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		let v = UITextField()
 		v.translatesAutoresizingMaskIntoConstraints = false
 		v.borderStyle = .roundedRect
-		v.textColor = Utility.yellowClr
+		v.textColor = UIColor.white
 		v.layer.cornerRadius = 5
 		v.layer.borderWidth = 0.5
 		v.layer.borderColor = Utility.yellowClr.cgColor
@@ -275,7 +275,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		v.isSecureTextEntry = true
 		v.translatesAutoresizingMaskIntoConstraints = false
 		v.borderStyle = .roundedRect
-		v.textColor = Utility.yellowClr
+		v.textColor = UIColor.white
 		v.layer.cornerRadius = 5
 		v.layer.borderWidth = 0.5
 		v.layer.borderColor = Utility.yellowClr.cgColor
@@ -292,10 +292,10 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		b.layer.borderColor = Utility.yellowClr.cgColor
 		b.backgroundColor = Utility.redClr
 		b.layer.cornerRadius = 15.0
-//		b.layer.borderWidth = 0.5
+		b.layer.borderWidth = 0.5
 		b.addTarget(self, action: #selector(loginTapped), for:UIControlEvents.touchDown)
 //		b.layer.opacity = 0.75
-		b.setTitleColor(Utility.yellowClr, for: .normal)
+		b.setTitleColor(UIColor.white, for: .normal)
 		b.setTitle("Login", for: .normal)
 		return b
 	}()
@@ -307,17 +307,15 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		b.backgroundColor = Utility.redClr
 		b.layer.cornerRadius = 15.0
 		
-//		b.layer.borderWidth = 0.5
+		b.layer.borderWidth = 0.5
 		b.addTarget(self, action: #selector(registerTapped), for:UIControlEvents.touchDown)
 //		b.layer.opacity = 0.75
-//		b.setTitleColor(Utility.yellowClr, for: .normal)
 		let style = NSMutableParagraphStyle()
 		style.alignment = .center
-		
-		let str = NSAttributedString(string: "Register", attributes: [NSParagraphStyleAttributeName:style])
+		let str = NSAttributedString(string: " Register ", attributes: [NSParagraphStyleAttributeName:style, NSForegroundColorAttributeName:UIColor.white])
 		b.setAttributedTitle(str, for: .normal)
-
-		b.setTitle("Register  ", for: .normal)
+//		b.setTitleColor(Utility.yellowClr, for: .normal)
+//		b.setTitle("Register  ", for: .normal)
 		return b
 	}()
 	
@@ -327,10 +325,10 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		b.layer.borderColor = Utility.yellowClr.cgColor
 		b.backgroundColor = Utility.redClr
 		b.layer.cornerRadius = 15.0
-//		b.layer.borderWidth = 0.5
+		b.layer.borderWidth = 0.5
 		b.addTarget(self, action: #selector(skipTapped), for:UIControlEvents.touchDown)
 		b.setTitle("Skip", for: .normal)
-		b.setTitleColor(Utility.yellowClr, for: .normal)
+		b.setTitleColor(UIColor.white, for: .normal)
 //		b.tintColor = Utility.yellowClr
 //		b.layer.opacity = 0.75
 		b.setTitle("Skipping", for: UIControlState.selected)
@@ -353,7 +351,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	lazy var gidSI:GIDSignInButton! = {
 		let s = GIDSignInButton()
 		s.colorScheme = GIDSignInButtonColorScheme.dark
-		s.style = GIDSignInButtonStyle.iconOnly
+		s.style = GIDSignInButtonStyle.standard
 //		s.frame = CGRect(x: 0, y: 0, width: 5, height: 5)
 		s.addTarget(self, action: #selector(signInWithGoogle), for: .touchDown)
 		//		s.style = GIDSignInButtonStyle.standard

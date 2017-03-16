@@ -44,6 +44,14 @@ class SessionVC: UIViewController {
 	
     override func viewDidLoad() {
 			super.viewDidLoad()
+			self.addrLabel.textColor = UIColor.white
+			self.descLabel.textColor = UIColor.white
+			self.timeLabel.textColor = UIColor.white
+			self.sessionLabel.textColor = UIColor.white
+			self.locationLabel.textColor = UIColor.white
+			
+			
+			
 			ref = FIRDatabase.database().reference()
 			doneBut.target = self
 			doneBut.action = #selector(backTap)

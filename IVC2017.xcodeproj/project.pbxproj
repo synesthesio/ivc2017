@@ -22,6 +22,7 @@
 		254F3CCB1E63798B00343DA8 /* SpeakerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F3CCA1E63798B00343DA8 /* SpeakerVC.swift */; };
 		254F3CCF1E63D60900343DA8 /* SessionTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F3CCE1E63D60800343DA8 /* SessionTVCell.swift */; };
 		254F3CD11E63ED9100343DA8 /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F3CD01E63ED9100343DA8 /* SessionVC.swift */; };
+		256A63D01E775B4C0096CAF9 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256A63CF1E775B4C0096CAF9 /* TabBarVC.swift */; };
 		257180671E6638020037DD4C /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 257180661E6638020037DD4C /* video.mp4 */; };
 		257180691E664B590037DD4C /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257180681E664B590037DD4C /* MyProfileVC.swift */; };
 		25C17E5C1E67480B00BDEB4D /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C17E5B1E67480B00BDEB4D /* MapTasks.swift */; };
@@ -63,6 +64,7 @@
 		254F3CCA1E63798B00343DA8 /* SpeakerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerVC.swift; sourceTree = "<group>"; };
 		254F3CCE1E63D60800343DA8 /* SessionTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTVCell.swift; sourceTree = "<group>"; };
 		254F3CD01E63ED9100343DA8 /* SessionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionVC.swift; sourceTree = "<group>"; };
+		256A63CF1E775B4C0096CAF9 /* TabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		257180661E6638020037DD4C /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		257180681E664B590037DD4C /* MyProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
 		2571806A1E664C690037DD4C /* IVC2017.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IVC2017.entitlements; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				257180681E664B590037DD4C /* MyProfileVC.swift */,
 				25DE07CC1E6A661B003DA82B /* AttendeeVC.swift */,
 				252B55FA1E626A9A00F12C11 /* EventTableVC.swift */,
+				256A63CF1E775B4C0096CAF9 /* TabBarVC.swift */,
 				254F3CC61E63789100343DA8 /* AttendeeTableVC.swift */,
 				254F3CCA1E63798B00343DA8 /* SpeakerVC.swift */,
 				254F3CC81E6378EC00343DA8 /* AboutVC.swift */,
@@ -403,6 +406,7 @@
 				254F3CC71E63789100343DA8 /* AttendeeTableVC.swift in Sources */,
 				254F3CCB1E63798B00343DA8 /* SpeakerVC.swift in Sources */,
 				2513BC3F1E5EB4FB009B9CDE /* AppDelegate.swift in Sources */,
+				256A63D01E775B4C0096CAF9 /* TabBarVC.swift in Sources */,
 				254F3CD11E63ED9100343DA8 /* SessionVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

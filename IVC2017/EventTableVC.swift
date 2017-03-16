@@ -22,7 +22,10 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 			FIRDatabase.database().persistenceEnabled = true
 			self.tabBarController?.navigationController?.navigationBar.layer.backgroundColor = Utility.purpleClr.cgColor
 			var swtch = UISegmentedControl(items: ["Fri", "Sat", "Sun"])
-			if let d = Date().dayOfWeek() {
+			if var d = Date().dayOfWeek() {
+				if d != "friday" || d != "saturday" || d != "sunday" {
+				d = "friday"
+				}
 				self.fetchCalendarEvents(forDay: d, completion: { (sesh) in
 					self.sessionsForView = sesh
 					self.tableView.reloadData()
@@ -35,8 +38,9 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 				case "sunday":
 					swtch.selectedSegmentIndex = 2
 				default:
-					break
+					swtch.selectedSegmentIndex = 0
 				}
+				
 			}
 			
 			swtch.layer.borderWidth = 0.5
@@ -49,7 +53,7 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 			swtch.backgroundColor = Utility.redClr
 			swtch.layer.borderColor = Utility.yellowClr.cgColor
 			swtch.setTitleTextAttributes([NSForegroundColorAttributeName:Utility.purpleClr], for: .normal)
-			swtch.setTitleTextAttributes([NSForegroundColorAttributeName:Utility.yellowClr], for: .selected)
+			swtch.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.white], for: .selected)
 			for i in swtch.subviews {
 				let upperBorder:CALayer = CALayer()
 				upperBorder.backgroundColor = Utility.yellowClr.cgColor
@@ -174,13 +178,13 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 			if sessionsForView != nil {
 			if (sessionsForView?.count)! > 0 {
 				if let contents = sessionsForView?[indexPath.row] {
-					cell.timeLabel.textColor = Utility.yellowClr
+					cell.timeLabel.textColor = UIColor.white
 					cell.timeLabel.text = contents.time
 					cell.backgroundColor = Utility.redClr
 					cell.layer.borderWidth = 0.5
 					cell.layer.borderColor = Utility.yellowClr.cgColor
 //					cell.locationLabel.text = contents.location
-					cell.titleLabel.textColor = Utility.yellowClr
+					cell.titleLabel.textColor = UIColor.white
 					cell.titleLabel.text = contents.title
 				}
 			 }

@@ -29,7 +29,10 @@ class SpeakerVC: UIViewController,UIWebViewDelegate {
 	
     override func viewDidLoad() {
 			super.viewDidLoad()
-			
+			self.view.backgroundColor = Utility.redClr
+			self.titleLabel.textColor = UIColor.white
+			self.bioLabel.textColor = UIColor.white
+			self.websiteButton.setTitleColor(Utility.yellowClr, for: .normal)
 			websiteButton.isHidden = true
 			if let u = link {
 			websiteButton.isHidden = false

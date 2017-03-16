@@ -28,11 +28,14 @@ struct Utility {
 		var label = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
 		label.textAlignment = NSTextAlignment.center
 		label.text = address.title
-		switch address.isRestaurant {
+		
+		 switch address.isRestaurant {
 		case true:
-			imgForBg = UIImage(named: "res1")
+//			imgForBg = UIImage(named: "res1")
+			break
 		default:
-			imgForBg = UIImage(named: "ev1")
+//			imgForBg = UIImage(named: "ev1")
+			break
 		}
 		
 	view.addSubview(label)
@@ -40,8 +43,8 @@ struct Utility {
 	return view
 	}
 	
-//	static let yellowClr = UIColor(red:1.00, green:0.83, blue:0.38, alpha:1.0)
-	static let yellowClr = UIColor.white
+	static let yellowClr = UIColor(red:1.00, green:0.83, blue:0.38, alpha:1.0)
+//	static let yellowClr = UIColor.white
 	static let purpleClr = UIColor(red:0.15, green:0.05, blue:0.34, alpha:1.0)
 	static let redClr = UIColor(red:0.54, green:0.05, blue:0.05, alpha:1.0)
 
@@ -228,6 +231,15 @@ extension UIImage {
 		UIGraphicsEndImageContext();
 		return image!
 	}
+	
+	convenience init(view: UIView) {
+		UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 1.0)
+		view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+		let image = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		self.init(cgImage: image!.cgImage!)
+	}
+	
 }
 
 let gMapsApiKey = "AIzaSyAcaDWJlg1nUohWxoXy3XInH37IeZEc42k"
@@ -236,3 +248,4 @@ let gMapsApiKey = "AIzaSyAcaDWJlg1nUohWxoXy3XInH37IeZEc42k"
 
 
 
+ 

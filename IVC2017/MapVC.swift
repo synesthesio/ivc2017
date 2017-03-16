@@ -98,12 +98,12 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 				let marker = GMSMarker(position: CLLocationCoordinate2DMake(address.latitude, address.longitude))
 			marker.snippet = address.title
 //			let markerIcon: UIImage = self.imageFromView(view: Utility.createViewForMarkerIcon(address: address))
-				let res = UIImage(named: "res1")
-				let ev = UIImage(named: "ev1")
+				let res = #imageLiteral(resourceName: "res")
+				let ev = #imageLiteral(resourceName: "a")
 				if address.isRestaurant == true {
-					marker.icon = self.scaleUIImageToSize(image: res!, size: CGSize(width: 37.5, height: 50))
+					marker.icon = self.scaleUIImageToSize(image: res, size: CGSize(width: 37.5, height: 50))
 				} else {
-					marker.icon = self.scaleUIImageToSize(image: ev!, size: CGSize(width: 37.5, height: 50))
+					marker.icon = self.scaleUIImageToSize(image: ev, size: CGSize(width: 37.5, height: 50))
 			}
 			marker.title = address.title
 			marker.snippet = address.address
@@ -258,64 +258,6 @@ print("perfunctory placeholder")
 	}*/
 	
 	
-	@IBAction func changeTravelMode(sender: AnyObject) {
-		let actionSheet = UIAlertController(title: "Travel Mode", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
-		
-		let drivingModeAction = UIAlertAction(title: "Driving", style: UIAlertActionStyle.default) { (alertAction) -> Void in
-			self.travelMode = TravelModes.driving
-			
-			if let _ = self.routePolyline{
-				self.clearRoute()
-				self.recreateRoute(originLocation: LocationService.sharedInstance.currentLocation!, destinationLocation: CLLocation(latitude: self.previousMarker!.position.latitude, longitude: self.previousMarker!.position.longitude))
-			}
-			
-//			self.travelTypeButton.setImage(UIImage(named: "mapview_bt_driving"), for: .normal)
-		}
-		
-		let walkingModeAction = UIAlertAction(title: "Walking", style: UIAlertActionStyle.default) { (alertAction) -> Void in
-			self.travelMode = TravelModes.walking
-			
-			if let _ = self.routePolyline{
-				self.clearRoute()
-				self.recreateRoute(originLocation: LocationService.sharedInstance.currentLocation!, destinationLocation: CLLocation(latitude: self.previousMarker!.position.latitude, longitude: self.previousMarker!.position.longitude))
-			}
-			
-//			self.travelTypeButton.setImage(UIImage(named: "mapview_bt_walking"), for: .normal)
-		}
-		
-		let bicyclingModeAction = UIAlertAction(title: "Bicycling", style: UIAlertActionStyle.default) { (alertAction) -> Void in
-			self.travelMode = TravelModes.bicycling
-			
-			if let _ = self.routePolyline{
-				self.clearRoute()
-				self.recreateRoute(originLocation: LocationService.sharedInstance.currentLocation!, destinationLocation: CLLocation(latitude: self.previousMarker!.position.latitude, longitude: self.previousMarker!.position.longitude))
-			}
-//			self.travelTypeButton.setImage(UIImage(named: "mapview_bt_biking"), for: .normal)
-		}
-		
-		let transitModeAction = UIAlertAction(title: "Transit", style: UIAlertActionStyle.default) { (alertAction) -> Void in
-			self.travelMode = TravelModes.transit
-			
-			if let _ = self.routePolyline{
-				
-				self.recreateRoute(originLocation: LocationService.sharedInstance.currentLocation!, destinationLocation: CLLocation(latitude: self.previousMarker!.position.latitude, longitude: self.previousMarker!.position.longitude))
-			}
-			
-//			self.travelTypeButton.setImage(UIImage(named: "mapview_bt_transit"), for: .normal)
-		}
-		
-		
-		let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel) { (alertAction) -> Void in
-			
-		}
-		
-		actionSheet.addAction(drivingModeAction)
-		actionSheet.addAction(walkingModeAction)
-		actionSheet.addAction(bicyclingModeAction)
-		actionSheet.addAction(transitModeAction)
-		actionSheet.addAction(closeAction)
-		present(actionSheet, animated: true, completion: nil)
-	}
 	
 	
 	// MARK: CLLocationManagerDelegate method implementation
@@ -381,66 +323,6 @@ print("perfunctory placeholder")
 	}
 	
 	
-	func drawRoute() {
-		let route = mapTasks.overviewPolyline["points"] as! String
-		
-		let path: GMSPath = GMSMutablePath(fromEncodedPath: route)!
-		//path.
-		routePolyline = GMSPolyline(path: path)
-		routePolyline.strokeWidth = 4.0
-		
-		let styles = [GMSStrokeStyle.solidColor(UIColor(red: 0x00/255.0, green: 0x96/255.0, blue: 0xFF/255.0, alpha: 1.0)),
-		              GMSStrokeStyle.solidColor(UIColor.clear)];
-		
-		let lengths = [50, 50];
-//		routePolyline.spans = GMSStyleSpans(path, styles, lengths as [NSNumber], kGMSLengthRhumb)
-		routePolyline.spans = GMSStyleSpans(path, styles, lengths as [NSNumber], .rhumb)
-		
-		routePolyline.geodesic = true
-		routePolyline.map = viewMap
-	}
-	
-	func displayRouteInfo() {
-		
-		timeLabelInfo.text = mapTasks.totalDuration
-	}
-	
-	
-	func clearRoute() {
-		
-		
-		if let _ = originMarker{
-			originMarker.map = nil
-			destinationMarker.map = nil
-			routePolyline.map = nil
-			
-			originMarker = nil
-			destinationMarker = nil
-			routePolyline = nil
-		}
-		
-		if markersArray.count > 0 {
-			for marker in markersArray {
-				marker.map = nil
-			}
-			markersArray.removeAll(keepingCapacity: false)
-		}
-	}
-	
-	
-	func recreateRoute(originLocation: CLLocation, destinationLocation: CLLocation) {
-		if let _ = routePolyline {
-			clearRoute()
-			
-		}
-		getDirectionsBetweenAddresses(location1: originLocation, location2: destinationLocation, getLocCompletionHandler: {( success, error) -> Void in
-			if(error != nil){
-			}else{
-				print("worked")
-			}
-		})
-	}
-	
 	
 	
 	// MARK: GMSMapViewDelegate method implementation
@@ -457,12 +339,12 @@ print("perfunctory placeholder")
 	}
 	func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
 		markerTaps = 1
-		hideDirectionInfo()
-		if(previousMarker != nil)
-		{
-			previousMarker!.icon = scaleUIImageToSize(image: previousMarker!.icon!, size: CGSize(width: 30, height: 40))
-			clearRoute()
-		}
+//		hideDirectionInfo()
+//		if(previousMarker != nil)
+//		{
+//			previousMarker!.icon = scaleUIImageToSize(image: previousMarker!.icon!, size: CGSize(width: 30, height: 40))
+//			clearRoute()
+//		}
 		
 	}
 	
@@ -492,7 +374,7 @@ print("perfunctory placeholder")
 				hideDirectionInfo()
 				marker.icon = scaleUIImageToSize(image: marker.icon!, size: CGSize(width: 30, height: 40))
 				previousMarker = nil
-				clearRoute()
+//				clearRoute()
 			}
 			else
 			{
@@ -507,17 +389,17 @@ print("perfunctory placeholder")
 				
 				previousMarker = marker
 				if let _ = routePolyline {
-					clearRoute()
+//					clearRoute()
 					
-					recreateRoute(originLocation: locationManager.location!, destinationLocation: CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude))
+//					recreateRoute(originLocation: locationManager.location!, destinationLocation: CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude))
 				}else{
 					if(LocationService.sharedInstance.currentLocation != nil){
-						getDirectionsBetweenAddresses(location1: LocationService.sharedInstance.currentLocation!, location2: CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude), getLocCompletionHandler: {(success, error) -> Void in
-							if(error != nil){
-							}else{
-								print("worked")
-							}
-						})
+//						getDirectionsBetweenAddresses(location1: LocationService.sharedInstance.currentLocation!, location2: CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude), getLocCompletionHandler: {(success, error) -> Void in
+//							if(error != nil){
+//							}else{
+//								print("worked")
+//							}
+//						})
 					}
 				}
 			}
@@ -549,102 +431,5 @@ print("perfunctory placeholder")
 			
 		}
 	}
-	
-	
-	
-	//Get directions using Google API
-	func getDirectionsBetweenAddresses(location1: CLLocation, location2: CLLocation, getLocCompletionHandler : (_ success : Bool, _ error : NSError?) -> Void) {
-		
-		var address1 = ""
-		var address2 = ""
-		
-		Utility.GooglePlacesRequestBuilder.sendRequest(
-			url: "https://maps.googleapis.com/maps/api/geocode/json",
-			
-			params: [
-				
-				"latlng": "\(location1.coordinate.latitude),\(location1.coordinate.longitude)",
-				"location_type": "ROOFTOP",  //maximum precision
-				"key": gMapsApiKey
-			]
-		) { json in
-			let address = json as! [String: AnyObject]
-			
-			print(((address["results"] as! [AnyObject])[0] as! [String: AnyObject])["formatted_address"] ?? "")
-			
-			address1 = ((address["results"] as! [AnyObject])[0] as! [String: AnyObject])["formatted_address"] as! String
-			
-			Utility.GooglePlacesRequestBuilder.sendRequest(
-				url: "https://maps.googleapis.com/maps/api/geocode/json",
-				params: [
-					"latlng": "\(location2.coordinate.latitude),\(location2.coordinate.longitude)",
-					"location_type": "ROOFTOP",  //maximum precision
-					"key": gMapsApiKey
-				]
-			) { json in
-				let address = json as! [String: AnyObject]
-				//print(address)
-				//print(address["results"][0]["formatted_address"])
-				address2 = ((address["results"] as! [AnyObject])[0] as! [String: AnyObject])["formatted_address"] as! String
-				self.mapTasks.getDirections(origin: address1, destination: address2, waypoints: nil, travelMode: self.travelMode, completionHandler: { (status, success) -> Void in
-					if success {
-						self.configureMapAndMarkersForRoute()
-						self.drawRoute()
-						self.displayRouteInfo()
-					}else{
-					Utility.displayAlertWithHandler("Sorry, we can’t find directions right now. Try again when you have better reception", message: "", from: self, cusHandler: nil)
 
-					}
-				})
-			}
-		}
 }
-}
-
-
-
-
-
-
-
-
-
-
-//class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
-//
-//	var locations:[GMSMarker] = []
-//	var locationManager:CLLocationManager!
-//	override func viewDidLoad() {
-//		super.viewDidLoad()
-//
-//
-//		if CLLocationManager.locationServicesEnabled() {
-//			locationManager = CLLocationManager()
-//			locationManager.delegate = self
-//			locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//			locationManager.requestAlwaysAuthorization()
-//			//		locationManager.requestWhenInUseAuthorization()
-//			locationManager.startUpdatingLocation()
-//		} else {
-//			Utility.displayAlertWithHandler("Location Unavailable", message: "Please enable location services.", from: self, cusHandler: nil)
-//		}
-//
-//
-//
-//		let camera = GMSCameraPosition.camera(withLatitude: 42.380098, longitude: -71.116629, zoom: 6.0)
-//		let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-//		view = mapView
-//		mapView.delegate = self
-//		mapView.isMyLocationEnabled = true
-//		let a = GMSMarker(position: CLLocationCoordinate2D(latitude: 42.3770, longitude: -71.1167))
-//		a.title = "Campus"
-//		a.snippet = "Lehrer Hall"
-//		a.map = mapView
-//		// Do any additional setup after loading the view, typically from a nib.
-//	}
-//
-//	override func didReceiveMemoryWarning() {
-//		super.didReceiveMemoryWarning()
-//		// Dispose of any resources that can be recreated.
-//	}
-//}

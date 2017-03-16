@@ -21,6 +21,8 @@ class AttendeeTableVC: UITableViewController {
 	var storageRef:FIRStorageReference?
     override func viewDidLoad() {
         super.viewDidLoad()
+				self.view.backgroundColor = Utility.purpleClr
+				self.tblView.separatorStyle = .none
 				self.fetchAttendees(completion: { (att) in
 					self.attendees = att
 					self.tblView.reloadData()
@@ -74,10 +76,11 @@ class AttendeeTableVC: UITableViewController {
 	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath)
-				cell.backgroundColor = Utility.purpleClr
+				cell.backgroundColor = Utility.redClr
+			
 				if let att = attendees {
 					let at = att[indexPath.row] as! Attendee
-					cell.textLabel?.textColor = Utility.yellowClr
+					cell.textLabel?.textColor = UIColor.white
 					cell.textLabel?.text = at.name
 					cell.detailTextLabel?.text = at.bio
 //					cell.imageView?.image = at.image
