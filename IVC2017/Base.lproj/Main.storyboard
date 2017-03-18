@@ -175,7 +175,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="73"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gqh-z9-CF0" id="OmW-Pz-JV4">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="72.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="17:00PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcN-UY-u40">
@@ -385,7 +385,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WAg-D1-NxX" id="kNb-rL-AAR">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -429,9 +429,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Website"/>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="udj-ca-fo9">
-                                <rect key="frame" x="151" y="334" width="73" height="212"/>
-                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Academic Research, Software, Nonprofit, Cuisine, Biking " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PW2-RI-ds3">
                                 <rect key="frame" x="16" y="411" width="343" height="236"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
@@ -439,7 +436,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Om-wX-3WJ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="86"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <items>
                                     <navigationItem id="QKP-Bb-BWM">
                                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="RNB-gm-US3">
@@ -462,12 +459,8 @@
                             <constraint firstItem="3Om-wX-3WJ" firstAttribute="centerX" secondItem="2aa-gQ-Yvv" secondAttribute="centerX" id="FlA-J3-aUJ"/>
                             <constraint firstItem="PW2-RI-ds3" firstAttribute="centerX" secondItem="2aa-gQ-Yvv" secondAttribute="centerX" id="I77-RJ-eRx"/>
                             <constraint firstItem="3Om-wX-3WJ" firstAttribute="leading" secondItem="2aa-gQ-Yvv" secondAttribute="leadingMargin" constant="-16" id="K5c-eT-9rl"/>
-                            <constraint firstItem="jZs-yT-KY5" firstAttribute="bottom" secondItem="udj-ca-fo9" secondAttribute="top" id="Rmo-Uv-Q0m"/>
                             <constraint firstItem="jZs-yT-KY5" firstAttribute="top" secondItem="3Om-wX-3WJ" secondAttribute="baseline" id="VGN-wO-IMS"/>
-                            <constraint firstItem="udj-ca-fo9" firstAttribute="centerX" secondItem="2aa-gQ-Yvv" secondAttribute="centerX" id="YlS-Ik-LTP"/>
-                            <constraint firstItem="udj-ca-fo9" firstAttribute="top" secondItem="2aa-gQ-Yvv" secondAttribute="centerY" id="bdm-RS-aZW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3Om-wX-3WJ" secondAttribute="trailing" constant="-16" id="f4b-bC-csf"/>
-                            <constraint firstItem="PW2-RI-ds3" firstAttribute="top" secondItem="udj-ca-fo9" secondAttribute="bottom" id="gN1-jc-jmd"/>
                             <constraint firstAttribute="leadingMargin" secondItem="PW2-RI-ds3" secondAttribute="leading" id="odj-Dl-B57"/>
                         </constraints>
                     </view>
@@ -527,46 +520,46 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="QrE-Tz-XZV">
-                                        <rect key="frame" x="49" y="275" width="276" height="219"/>
+                                        <rect key="frame" x="49" y="275" width="276" height="218"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W20-L6-EcN">
-                                                <rect key="frame" x="0.0" y="0.0" width="276" height="21"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="276" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. Joan Doe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g0w-x0-Mi8">
-                                                <rect key="frame" x="0.0" y="26" width="276" height="30"/>
+                                                <rect key="frame" x="0.0" y="25.5" width="276" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professional/Academic Interests" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="us9-P6-TG0">
-                                                <rect key="frame" x="0.0" y="61" width="276" height="21"/>
+                                                <rect key="frame" x="0.0" y="60.5" width="276" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. activism, vegan cuisine" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ceQ-0i-vpO">
-                                                <rect key="frame" x="0.0" y="87" width="276" height="30"/>
+                                                <rect key="frame" x="0.0" y="86" width="276" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website, Blog, Profile (LinkedIn, etc)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3A-53-xAq">
-                                                <rect key="frame" x="0.0" y="122" width="276" height="21"/>
+                                                <rect key="frame" x="0.0" y="121" width="276" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. www.mysite.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FzL-di-La8">
-                                                <rect key="frame" x="0.0" y="148" width="276" height="30"/>
+                                                <rect key="frame" x="0.0" y="146.5" width="276" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5F-NK-WxI">
-                                                <rect key="frame" x="0.0" y="183" width="276" height="36"/>
+                                                <rect key="frame" x="0.0" y="181.5" width="276" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="Save">
                                                     <color key="titleColor" red="0.44695169449275074" green="0.59558400421838176" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -653,7 +646,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VMb-8y-Fs2" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" id="hYl-St-uI4"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="5uV-b3-mGf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5uV-b3-mGf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -738,7 +731,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0gj-YU-Jcv" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fkO-YJ-VFD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fkO-YJ-VFD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -792,7 +785,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ocl-oN-2Pu" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Cdg-L5-eU1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cdg-L5-eU1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
