@@ -33,7 +33,7 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 	var takingPhoto:Bool = false
 	override func viewDidLoad(){
 		super.viewDidLoad()
-//		FIRDatabase.database().persistenceEnabled = true
+
 		ref = FIRDatabase.database().reference()
 		self.nametf.delegate = self
 		self.linktf.delegate = self

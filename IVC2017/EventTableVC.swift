@@ -19,7 +19,7 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 	var swtch:UISegmentedControl!
     override func viewDidLoad() {
 			super.viewDidLoad()
-			FIRDatabase.database().persistenceEnabled = true
+//			FIRDatabase.database().persistenceEnabled = true
 			self.tabBarController?.navigationController?.navigationBar.layer.backgroundColor = Utility.purpleClr.cgColor
 			self.navigationController?.navigationBar.barTintColor = Utility.purpleClr
 			self.navigationController?.navigationBar.isTranslucent = false
@@ -104,8 +104,12 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 	}
 	
 	override func viewDidDisappear(_ animated: Bool) {
-		ref?.removeAllObservers()
-		super.viewDidDisappear(animated)
+	super.viewDidDisappear(animated)
+		if let h = self.handle {
+			self.ref?.removeObserver(withHandle: h)
+		} else {
+			self.ref?.removeAllObservers()
+		}
 	}
 	
 	
@@ -139,7 +143,7 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 			ref = FIRDatabase.database().reference()
 			
 			do {
-				handle = ref?.child("schedule").child(forDay).observe(.value, with: { (snapshot) in
+				self.handle = ref?.child("schedule").child(forDay).observe(.value, with: { (snapshot) in
 					for child in snapshot.children {
 						print("Printchild: \(child)")
 						let v = (child as! FIRDataSnapshot).value as! [String:AnyObject]

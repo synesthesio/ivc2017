@@ -25,9 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 		GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
 		GIDSignIn.sharedInstance().delegate = self
 		GMSServices.provideAPIKey(gMapsApiKey)
-		
+		FIRDatabase.database().persistenceEnabled = true
 		return true
 	}
+	
+	
 	
 	@available(iOS 9.0, *)
 	func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
