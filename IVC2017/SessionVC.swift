@@ -44,6 +44,7 @@ class SessionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 			self.spkrsLab.isHidden = true
 			self.colVw.clipsToBounds = true
 			self.colVw.isHidden = true
+			self.colVw.backgroundColor = Utility.redClr
 			self.descV.isHidden = true
 			if let s = speakers {
 					if s.count > 0 {
@@ -72,11 +73,17 @@ class SessionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 			if let d = desc {
 				self.descV.isHidden = false
 				self.descV.text = d
+				
 			}
     }
 	
 	func backTap(){
 		self.dismiss(animated: false, completion: nil)
+	}
+	
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		self.descV.setContentOffset(.zero, animated: false)
 	}
 
 	override func didReceiveMemoryWarning() {

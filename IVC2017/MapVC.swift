@@ -364,72 +364,72 @@ print("perfunctory placeholder")
 	var previousMarker: GMSMarker?
 	var markerTaps = 0
 	
-	func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-		
-		print(markerTaps)
-		if locationManager.location != nil
-		{
-			if(previousMarker == marker && markerTaps % 2 == 0)
-			{
-				hideDirectionInfo()
-				marker.icon = scaleUIImageToSize(image: marker.icon!, size: CGSize(width: 30, height: 40))
-				previousMarker = nil
-//				clearRoute()
-			}
-			else
-			{
-				markerTaps = 1
-				addressLabelInfo.text = marker.title
-				displayDirectionInfo()
-				marker.icon = scaleUIImageToSize(image: marker.icon!, size: CGSize(width: 37.5, height: 50))
-				if(previousMarker != nil && previousMarker != marker)
-				{
-					previousMarker!.icon = scaleUIImageToSize(image: previousMarker!.icon!, size: CGSize(width: 30, height: 40))
-				}
-				
-				previousMarker = marker
-				if let _ = routePolyline {
-//					clearRoute()
-					
-//					recreateRoute(originLocation: locationManager.location!, destinationLocation: CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude))
-				}else{
-					if(LocationService.sharedInstance.currentLocation != nil){
-//						getDirectionsBetweenAddresses(location1: LocationService.sharedInstance.currentLocation!, location2: CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude), getLocCompletionHandler: {(success, error) -> Void in
-//							if(error != nil){
-//							}else{
-//								print("worked")
-//							}
-//						})
-					}
-				}
-			}
-		}
-		else
-		{
-			Utility.displayAlertWithHandler("This application needs permission to determine your location and give you directions. Please allow us to use location services from Settings.", message: "", from: self, cusHandler: nil)
-		}
-		markerTaps += 1
-		return true
-	}
+//	func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+//		
+//		print(markerTaps)
+//		if locationManager.location != nil
+//		{
+//			if(previousMarker == marker && markerTaps % 2 == 0)
+//			{
+//				hideDirectionInfo()
+//				marker.icon = scaleUIImageToSize(image: marker.icon!, size: CGSize(width: 30, height: 40))
+//				previousMarker = nil
+////				clearRoute()
+//			}
+//			else
+//			{
+//				markerTaps = 1
+//				addressLabelInfo.text = marker.title
+//				displayDirectionInfo()
+//				marker.icon = scaleUIImageToSize(image: marker.icon!, size: CGSize(width: 37.5, height: 50))
+//				if(previousMarker != nil && previousMarker != marker)
+//				{
+//					previousMarker!.icon = scaleUIImageToSize(image: previousMarker!.icon!, size: CGSize(width: 30, height: 40))
+//				}
+//				
+//				previousMarker = marker
+//				if let _ = routePolyline {
+////					clearRoute()
+//					
+////					recreateRoute(originLocation: locationManager.location!, destinationLocation: CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude))
+//				}else{
+//					if(LocationService.sharedInstance.currentLocation != nil){
+////						getDirectionsBetweenAddresses(location1: LocationService.sharedInstance.currentLocation!, location2: CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude), getLocCompletionHandler: {(success, error) -> Void in
+////							if(error != nil){
+////							}else{
+////								print("worked")
+////							}
+////						})
+//					}
+//				}
+//			}
+//		}
+//		else
+//		{
+//			Utility.displayAlertWithHandler("This application needs permission to determine your location and give you directions. Please allow us to use location services from Settings.", message: "", from: self, cusHandler: nil)
+//		}
+//		markerTaps += 1
+//		return true
+//	}
 	
 	//Retreive address of location using Google Places API
-	func getLocalAddressString(){
-		
-		Utility.GooglePlacesRequestBuilder.sendRequest(
-			url: "https://maps.googleapis.com/maps/api/geocode/json",
-			
-			params: [
-				
-				"latlng": "\(locationManager.location?.coordinate.latitude),\(locationManager.location?.coordinate.longitude)",
-				"location_type": "ROOFTOP",  //maximum precision
-				"key": gMapsApiKey
-			]
-		) { json in
-			let address = json as! [String: AnyObject]
-			//print(address)
-			print(((address["results"] as! [AnyObject])[0] as! [String: AnyObject])["formatted_address"] as! String)
-			
-		}
-	}
+//	func getLocalAddressString(){
+//		
+//		Utility.GooglePlacesRequestBuilder.sendRequest(
+//			url: "https://maps.googleapis.com/maps/api/geocode/json",
+//			
+//			params: [
+//				
+//				"latlng": "\(locationManager.location?.coordinate.latitude),\(locationManager.location?.coordinate.longitude)",
+//				"location_type": "ROOFTOP",  //maximum precision
+//				"key": gMapsApiKey
+//			]
+//		) { json in
+//			let address = json as! [String: AnyObject]
+//			//print(address)
+//			print(((address["results"] as! [AnyObject])[0] as! [String: AnyObject])["formatted_address"] as! String)
+//			
+//		}
+//	}
 
 }

@@ -32,13 +32,14 @@ class SpeakerVC: UIViewController,UIWebViewDelegate {
 			self.doneButton.action = #selector(doneTapped(_:))
 			self.view.backgroundColor = Utility.redClr
 			self.titleLabel.textColor = UIColor.white
-			self.navB.backgroundColor = Utility.redClr
+			self.navB.barTintColor = Utility.redClr
+			self.navB.tintColor = Utility.redClr
 //			self.navB.setBackgroundImage(UIImage(), for: .default)
 //			self.navB.shadowImage = UIImage()
 			self.navB.isTranslucent = false
-			self.titleLabel.layer.addBorder(edge: .bottom, color: .white, thickness: 0.5)
 			self.titleLabel.defaultFont = UIFont(name: "Helvetica Neue", size: 28)
 			self.titleLabel.textColor = UIColor.white
+			self.doneButton.tintColor = Utility.yellowClr
 //			self.titleLabel.defaultFont = UIFont(name: "Helvetica Neue", size:26)
 			self.bioLabel.textColor = UIColor.white
 			self.websiteButton.setTitleColor(Utility.yellowClr, for: .normal)
@@ -49,12 +50,21 @@ class SpeakerVC: UIViewController,UIWebViewDelegate {
 			
 			if let bio = bioText {
 				bioLabel.textAlignment = .natural
-				bioLabel.text = "\(nameTitle!)" + bio
+				
+				if bioText?.components(separatedBy: " ").first == "is" {
+					bioLabel.text = "\(nameTitle!) " + bio
+				} else {
+					bioLabel.text = bio
+				}
 			}
 			
 			if let ti = nameTitle {
 				if let dg = degrees{
-				self.titleLabel.text = ti + ", " + dg
+					if dg != "" {
+					self.titleLabel.text = ti + ", " + dg
+					} else {
+						self.titleLabel.text = ti		
+					}
 				} else {
 				self.titleLabel.text = ti
 				}
@@ -76,12 +86,16 @@ class SpeakerVC: UIViewController,UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 	
-	func doneTapped(_ sender: Any) {
-	self.dismiss(animated: false) { 
-		self.delegate.transitionToSessioNVC(sesh: self.session)
+		func doneTapped(_ sender: Any) {
+			self.dismiss(animated: false) {
+				self.delegate.transitionToSessioNVC(sesh: self.session)
+			}
 		}
-	}
 	
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		self.bioLabel.setContentOffset(.zero, animated: false)
+	}
 	
 	
 //	func imgViewTapped(){
