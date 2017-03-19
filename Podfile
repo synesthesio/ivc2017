@@ -12,7 +12,6 @@ target 'IVC2017' do
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
   pod 'Firebase/Storage'
-  pod 'IOSEventbriteAPI'
   target 'IVC2017Tests' do
     inherit! :search_paths
     # Pods for testing

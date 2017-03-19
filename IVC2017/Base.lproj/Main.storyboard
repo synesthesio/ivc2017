@@ -23,144 +23,124 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Session" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjh-ld-27W">
-                                <rect key="frame" x="16" y="64" width="343" height="34"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geological Museum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ve4-72-3TN">
+                                <rect key="frame" x="16" y="177" width="343" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ajJ-bP-kxD">
-                                <rect key="frame" x="112" y="96.5" width="151" height="128"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tP-hm-HmE">
-                                        <rect key="frame" x="56.5" y="0.0" width="38" height="26"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 Oxford St" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kut-4D-Q6V">
-                                        <rect key="frame" x="26.5" y="34" width="98" height="26"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geological Museum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ve4-72-3TN">
-                                        <rect key="frame" x="0.0" y="68" width="151" height="26"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speakers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfn-rn-x7O">
-                                        <rect key="frame" x="40" y="102" width="71" height="26"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="22" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="edI-bh-YCA">
-                                <rect key="frame" x="16" y="256" width="343" height="403"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6MW-jo-lgM">
+                                <rect key="frame" x="16" y="306" width="343" height="353"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <string key="text">"New findings in climate science have revealed that methane is 25-100 times more destructive than carbon dioxide (CO2) on a 20-year time frame. US methane (NH4) emissions from livestock and natural gas are nearly equal. But, cows alone produce roughly 150 billion gallons of methane per day. The future is only more demanding than the present: emissions for agriculture are projected to increase 80% by 20503 . Livestock is responsible for 65% of all human-related emissions of nitrous oxide – a greenhouse gas with 296 times the global warming potential of carbon dioxide, and which stays in the atmosphere for 150 years. Agriculture is responsible for 80-90% of US water consumption. Just the growing of feed crops for livestock consumes 56% of water in the US (excluding meat processing and sanitation) , with 2,500 gallons of water to produce 1 single pound of beef, 477 gallons of water to produce 1lb. of eggs, and almost 900 gallons of water for 1lb. of cheese. Livestock also occupies much of our wildlife, covering 45% of the earth’s total land. And, animal agriculture is currently the leading cause of species extinction, ocean dead zones, water pollution, and habitat destruction. In this panel, we bring scientists and experts to discuss some of the pressing issues in our global society and what changes are imperative for the preservation of our resources and our future."</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="x5o-a8-EQC">
+                                <rect key="frame" x="16" y="231" width="343" height="67"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="qew-B9-49U"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xlw-4M-Gjr">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="spkrcell" id="eZk-Be-e9R" customClass="SpeakerCVCell" customModule="IVC2017" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="9" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L1Z-7q-qE4">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="L1Z-7q-qE4" firstAttribute="centerX" secondItem="eZk-Be-e9R" secondAttribute="centerX" id="EbI-Q9-yEY"/>
+                                            <constraint firstItem="L1Z-7q-qE4" firstAttribute="leading" secondItem="eZk-Be-e9R" secondAttribute="leadingMargin" constant="-8" id="FHo-C0-6Wd"/>
+                                            <constraint firstItem="L1Z-7q-qE4" firstAttribute="top" secondItem="eZk-Be-e9R" secondAttribute="topMargin" constant="-8" id="Kw0-f5-prY"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="L1Z-7q-qE4" secondAttribute="trailing" constant="-8" id="pjw-4H-c4m"/>
+                                            <constraint firstItem="L1Z-7q-qE4" firstAttribute="centerY" secondItem="eZk-Be-e9R" secondAttribute="centerY" id="tjo-uh-x2t"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="L1Z-7q-qE4" secondAttribute="bottom" constant="-8" id="ztM-rd-xaI"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imgSpkr" destination="L1Z-7q-qE4" id="l0t-C1-GDJ"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Panel: Entrepreneurship &amp; Innovation for a Plant-Based World" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjh-ld-27W">
+                                <rect key="frame" x="16" y="76" width="343" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="1m4-yh-Lo7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="lKC-tn-i0p">
-                                <rect key="frame" x="96" y="224.5" width="184" height="86"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iim-UG-NMV">
-                                        <rect key="frame" x="23" y="0.0" width="138" height="42"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZy-sf-Chj">
-                                                <rect key="frame" x="0.0" y="0.0" width="46" height="42"/>
-                                                <state key="normal" title="Button"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ne2-JU-fLa">
-                                                <rect key="frame" x="46" y="0.0" width="46" height="42"/>
-                                                <state key="normal" title="Button"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6b-bp-gjU">
-                                                <rect key="frame" x="92" y="0.0" width="46" height="42"/>
-                                                <state key="normal" title="Button"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="TdR-kf-loe">
-                                        <rect key="frame" x="0.0" y="44" width="184" height="42"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPZ-G6-95y">
-                                                <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
-                                                <state key="normal" title="Button"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2d2-92-Qve">
-                                                <rect key="frame" x="46" y="0.0" width="46" height="30"/>
-                                                <state key="normal" title="Button"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBO-d0-ETf">
-                                                <rect key="frame" x="92" y="0.0" width="46" height="30"/>
-                                                <state key="normal" title="Button"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nl-H6-lOQ">
-                                                <rect key="frame" x="138" y="0.0" width="46" height="30"/>
-                                                <state key="normal" title="Button"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qdt-qX-cfc">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81k-yq-Hix">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem id="hV4-gF-vN9">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="vaD-id-gQb"/>
+                                    <navigationItem id="jgA-Je-5Cr">
+                                        <barButtonItem key="leftBarButtonItem" title="Done" style="done" id="GoS-Fq-oj6"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speakers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfn-rn-x7O">
+                                <rect key="frame" x="16" y="204" width="343" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="f6W-uE-fWN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.54117647058823526" green="0.047058823529411764" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="mob-sf-Unf" firstAttribute="top" secondItem="edI-bh-YCA" secondAttribute="bottom" constant="8" id="6E4-Ws-YjQ"/>
-                            <constraint firstItem="Qdt-qX-cfc" firstAttribute="leading" secondItem="BMP-oY-yP3" secondAttribute="leadingMargin" constant="-16" id="6K9-Pc-19C"/>
-                            <constraint firstItem="lKC-tn-i0p" firstAttribute="centerY" secondItem="BMP-oY-yP3" secondAttribute="centerY" constant="-66.5" id="Czo-0X-MgD"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="edI-bh-YCA" secondAttribute="trailing" id="D9H-Px-axM"/>
-                            <constraint firstItem="Kjh-ld-27W" firstAttribute="top" secondItem="Qdt-qX-cfc" secondAttribute="bottom" constant="20" id="LAS-RB-zKI"/>
-                            <constraint firstItem="Qdt-qX-cfc" firstAttribute="top" secondItem="AFZ-BC-kNo" secondAttribute="bottom" constant="-20" id="Nk1-6s-JFS"/>
-                            <constraint firstItem="ajJ-bP-kxD" firstAttribute="centerX" secondItem="BMP-oY-yP3" secondAttribute="centerX" id="cCm-SM-HBZ"/>
-                            <constraint firstItem="ajJ-bP-kxD" firstAttribute="top" secondItem="Kjh-ld-27W" secondAttribute="bottom" constant="-0.5" id="cYX-Gg-ifc"/>
-                            <constraint firstItem="edI-bh-YCA" firstAttribute="top" secondItem="lKC-tn-i0p" secondAttribute="bottom" id="dyL-GX-LUL"/>
-                            <constraint firstItem="lKC-tn-i0p" firstAttribute="centerX" secondItem="BMP-oY-yP3" secondAttribute="centerX" id="g3L-CU-bjn"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Qdt-qX-cfc" secondAttribute="trailing" constant="-16" id="g7B-tt-X6M"/>
-                            <constraint firstItem="lKC-tn-i0p" firstAttribute="top" secondItem="ajJ-bP-kxD" secondAttribute="bottom" id="oTz-hQ-AbQ"/>
-                            <constraint firstItem="edI-bh-YCA" firstAttribute="centerX" secondItem="BMP-oY-yP3" secondAttribute="centerX" id="pzl-be-pHH"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="edI-bh-YCA" secondAttribute="leading" id="q0J-IJ-zSq"/>
-                            <constraint firstItem="Kjh-ld-27W" firstAttribute="centerX" secondItem="BMP-oY-yP3" secondAttribute="centerX" id="uzE-dt-hOF"/>
-                            <constraint firstItem="Qdt-qX-cfc" firstAttribute="centerX" secondItem="BMP-oY-yP3" secondAttribute="centerX" id="vbn-CY-MJA"/>
-                            <constraint firstItem="ajJ-bP-kxD" firstAttribute="centerY" secondItem="BMP-oY-yP3" secondAttribute="centerY" constant="-173.5" id="xku-59-1iZ"/>
+                            <constraint firstItem="kfn-rn-x7O" firstAttribute="leading" secondItem="x5o-a8-EQC" secondAttribute="leading" id="4oo-au-KWq"/>
+                            <constraint firstItem="81k-yq-Hix" firstAttribute="leading" secondItem="BMP-oY-yP3" secondAttribute="leading" id="9Tc-08-EU1"/>
+                            <constraint firstItem="81k-yq-Hix" firstAttribute="centerX" secondItem="Kjh-ld-27W" secondAttribute="centerX" id="A2G-6Y-20P"/>
+                            <constraint firstItem="kfn-rn-x7O" firstAttribute="top" secondItem="Kjh-ld-27W" secondAttribute="bottom" constant="29" id="JfF-SV-qbC"/>
+                            <constraint firstItem="ve4-72-3TN" firstAttribute="top" secondItem="Kjh-ld-27W" secondAttribute="bottom" constant="2" id="M6q-7Q-MFZ"/>
+                            <constraint firstItem="81k-yq-Hix" firstAttribute="top" secondItem="AFZ-BC-kNo" secondAttribute="bottom" id="NOz-ho-4db"/>
+                            <constraint firstItem="x5o-a8-EQC" firstAttribute="top" secondItem="kfn-rn-x7O" secondAttribute="bottom" constant="1" id="Qan-FM-wGX"/>
+                            <constraint firstItem="kfn-rn-x7O" firstAttribute="trailing" secondItem="x5o-a8-EQC" secondAttribute="trailing" id="Vk3-eO-sqU"/>
+                            <constraint firstItem="x5o-a8-EQC" firstAttribute="leading" secondItem="6MW-jo-lgM" secondAttribute="leading" id="W39-BX-X2e"/>
+                            <constraint firstItem="Kjh-ld-27W" firstAttribute="leading" secondItem="ve4-72-3TN" secondAttribute="leading" id="Zdp-48-yfU"/>
+                            <constraint firstItem="Kjh-ld-27W" firstAttribute="leading" secondItem="BMP-oY-yP3" secondAttribute="leadingMargin" id="dbA-ly-oEm"/>
+                            <constraint firstItem="ve4-72-3TN" firstAttribute="trailing" secondItem="kfn-rn-x7O" secondAttribute="trailing" id="eYB-5N-M8D"/>
+                            <constraint firstItem="ve4-72-3TN" firstAttribute="leading" secondItem="kfn-rn-x7O" secondAttribute="leading" id="hEX-Va-SA6"/>
+                            <constraint firstItem="mob-sf-Unf" firstAttribute="top" secondItem="6MW-jo-lgM" secondAttribute="bottom" constant="8" symbolic="YES" id="mnR-g5-BLo"/>
+                            <constraint firstItem="6MW-jo-lgM" firstAttribute="top" secondItem="x5o-a8-EQC" secondAttribute="bottom" constant="8" symbolic="YES" id="qf6-nq-ISb"/>
+                            <constraint firstItem="x5o-a8-EQC" firstAttribute="top" secondItem="ve4-72-3TN" secondAttribute="bottom" constant="22" id="v8f-2l-cRn"/>
+                            <constraint firstItem="x5o-a8-EQC" firstAttribute="trailing" secondItem="6MW-jo-lgM" secondAttribute="trailing" id="vkJ-e6-Fpe"/>
+                            <constraint firstItem="Kjh-ld-27W" firstAttribute="top" secondItem="81k-yq-Hix" secondAttribute="bottom" constant="12" id="vlr-pu-fc4"/>
+                            <constraint firstAttribute="trailing" secondItem="81k-yq-Hix" secondAttribute="trailing" id="xOH-bZ-9TB"/>
+                            <constraint firstItem="Kjh-ld-27W" firstAttribute="trailing" secondItem="ve4-72-3TN" secondAttribute="trailing" id="xwn-4A-Gf2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="yKq-Rx-rGV">
-                        <barButtonItem key="leftBarButtonItem" title="left" id="4Re-WY-NOp"/>
-                        <barButtonItem key="rightBarButtonItem" title="right" id="OrW-aK-RbB"/>
-                    </navigationItem>
                     <connections>
-                        <outlet property="addrLabel" destination="Kut-4D-Q6V" id="kCq-xU-N3c"/>
-                        <outlet property="b1" destination="vZy-sf-Chj" id="GOV-pj-8yB"/>
-                        <outlet property="b2" destination="Ne2-JU-fLa" id="F8b-FC-gbe"/>
-                        <outlet property="b3" destination="K6b-bp-gjU" id="kIf-Z5-gGF"/>
-                        <outlet property="b4" destination="NBO-d0-ETf" id="Mhs-AE-RxJ"/>
-                        <outlet property="b5" destination="0nl-H6-lOQ" id="AEI-SE-xUM"/>
-                        <outlet property="b6" destination="jPZ-G6-95y" id="bXg-SR-T5b"/>
-                        <outlet property="b7" destination="2d2-92-Qve" id="yGT-Ax-9xT"/>
-                        <outlet property="descLabel" destination="edI-bh-YCA" id="2fU-BY-SeM"/>
-                        <outlet property="doneBut" destination="vaD-id-gQb" id="yY0-8x-ach"/>
+                        <outlet property="colVw" destination="x5o-a8-EQC" id="dUc-f4-pla"/>
+                        <outlet property="descV" destination="6MW-jo-lgM" id="Jc4-rx-pCn"/>
+                        <outlet property="doneBut" destination="GoS-Fq-oj6" id="gVA-0r-xJw"/>
                         <outlet property="locationLabel" destination="ve4-72-3TN" id="ezb-2p-Ocg"/>
+                        <outlet property="navB" destination="81k-yq-Hix" id="X9G-E4-Glo"/>
+                        <outlet property="navI" destination="jgA-Je-5Cr" id="7k3-I3-neQ"/>
                         <outlet property="sessionLabel" destination="Kjh-ld-27W" id="ydT-t1-X7T"/>
-                        <outlet property="timeLabel" destination="4tP-hm-HmE" id="2Bu-7c-2v0"/>
+                        <outlet property="spkrsLab" destination="kfn-rn-x7O" id="Ecw-p2-c6J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFz-EP-8Wa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="-1218.440779610195"/>
+            <point key="canvasLocation" x="1076" y="-1218.440779610195"/>
         </scene>
         <!--Event TableVC-->
         <scene sceneID="dNj-nL-zgW">
@@ -175,7 +155,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="73"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gqh-z9-CF0" id="OmW-Pz-JV4">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="72.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="17:00PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcN-UY-u40">
@@ -235,13 +215,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="25" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn3-42-R1Y">
-                                <rect key="frame" x="16" y="327" width="343" height="332"/>
-                                <string key="text">is the Harvey Brooks Professor of International Science, Public Policy and Human Development at Harvard University’s John F. Kennedy School of Government. Trained as an ecologist, his research focuses on sustainability science: iV 2017 understanding the interactions of human and environmental systems with a view toward advancing the goals of sustainable development. He is particularly interested in how institutional arrangements affect the linkage between knowledge and action in the sustainability arena. At Harvard, he currently co-directs the Sustainability Science Program. He is co-author of Pursuing sustainability: A guide to the science and practice (Princeton, 2016), Adaptive environmental assessment and management (Wiley, 1978), and Redesigning rural development (Hopkins, 1982); editor of the Carbon dioxide review (Oxford, 1982); coeditor of Sustainable development of the biosphere (Cambridge, 1986), The earth transformed by human action (Cambridge, 1990), Learning to manage global environmental risks (MIT, 2001), Global Environmental Assessments (MIT, 2006) and The global health system: Institutions in a time of transition (Harvard, 2010); and co-chair of the US National Research Council’s study Our Common Journey: A Transition Toward Sustainability (NAP, 1999). He serves on the editorial board of the Proceedings of the National Academy of Science. Clark is a member of the National Academy of Sciences and a Fellow of the American Association for the Advancement of Science. He is a recipient of the MacArthur Prize, the Humboldt Prize, the Kennedy School’s Carballo Award for excellence in teaching, and the Harvard College Phi Beta Kappa Prize for Excellence in Teaching.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oR9-ui-8dA">
                                 <rect key="frame" x="124" y="318" width="129" height="30"/>
                                 <state key="normal" title="Website"/>
@@ -249,46 +222,46 @@
                                     <action selector="websiteButtonTapped:" destination="2eV-4a-DUg" eventType="touchUpInside" id="Dtp-Cj-VHS"/>
                                 </connections>
                             </button>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HzL-fA-gp2">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <items>
-                                    <navigationItem id="Ksc-Nx-xLs">
-                                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="z5h-Nc-yZ0">
-                                            <connections>
-                                                <action selector="doneTapped:" destination="2eV-4a-DUg" id="gxR-It-bRf"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ccz-Ec-rq8">
-                                <rect key="frame" x="98" y="108" width="180" height="180"/>
+                                <rect key="frame" x="98" y="64" width="180" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="iOF-Ve-Afg"/>
                                     <constraint firstAttribute="width" constant="180" id="r2n-wm-Bz1"/>
                                 </constraints>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPq-M4-82c">
+                                <rect key="frame" x="16" y="356" width="343" height="291"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">is the Harvey Brooks Professor of International Science, Public Policy and Human Development at Harvard University’s John F. Kennedy School of Government. Trained as an ecologist, his research focuses on sustainability science: iV 2017 understanding the interactions of human and environmental systems with a view toward advancing the goals of sustainable development. He is particularly interested in how institutional arrangements affect the linkage between knowledge and action in the sustainability arena. At Harvard, he currently co-directs the Sustainability Science Program. He is co-author of Pursuing sustainability: A guide to the science and practice (Princeton, 2016), Adaptive environmental assessment and management (Wiley, 1978), and Redesigning rural development (Hopkins, 1982); editor of the Carbon dioxide review (Oxford, 1982); coeditor of Sustainable development of the biosphere (Cambridge, 1986), The earth transformed by human action (Cambridge, 1990), Learning to manage global environmental risks (MIT, 2001), Global Environmental Assessments (MIT, 2006) and The global health system: Institutions in a time of transition (Harvard, 2010); and co-chair of the US National Research Council’s study Our Common Journey: A Transition Toward Sustainability (NAP, 1999). He serves on the editorial board of the Proceedings of the National Academy of Science. Clark is a member of the National Academy of Sciences and a Fellow of the American Association for the Advancement of Science. He is a recipient of the MacArthur Prize, the Humboldt Prize, the Kennedy School’s Carballo Award for excellence in teaching, and the Harvard College Phi Beta Kappa Prize for Excellence in Teaching.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ll6-Ol-dU0">
+                                <rect key="frame" x="1" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem id="c55-A7-4lm">
+                                        <barButtonItem key="leftBarButtonItem" title="Done" id="gGg-g5-uH6"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.54117647059999996" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Ccz-Ec-rq8" firstAttribute="centerX" secondItem="Jm3-aL-u8Q" secondAttribute="centerX" id="07j-bm-NeX"/>
-                            <constraint firstItem="HzL-fA-gp2" firstAttribute="centerX" secondItem="Jm3-aL-u8Q" secondAttribute="centerX" id="7uf-79-CWb"/>
                             <constraint firstItem="Ccz-Ec-rq8" firstAttribute="top" secondItem="xX6-Uu-oFu" secondAttribute="bottom" constant="44" id="ATI-4i-uyk"/>
-                            <constraint firstItem="HzL-fA-gp2" firstAttribute="leading" secondItem="Jm3-aL-u8Q" secondAttribute="leadingMargin" constant="-16" id="GyN-SZ-fsY"/>
                             <constraint firstItem="4bM-Wt-HfY" firstAttribute="top" secondItem="Ccz-Ec-rq8" secondAttribute="bottom" constant="1" id="Qwi-GU-xau"/>
-                            <constraint firstItem="HzL-fA-gp2" firstAttribute="top" secondItem="xX6-Uu-oFu" secondAttribute="bottom" id="Tlw-7o-PMn"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="HzL-fA-gp2" secondAttribute="trailing" constant="-16" id="UZ0-kq-jX3"/>
                             <constraint firstItem="oR9-ui-8dA" firstAttribute="centerX" secondItem="Jm3-aL-u8Q" secondAttribute="centerX" id="VIT-V7-16n"/>
-                            <constraint firstItem="DFU-C2-ael" firstAttribute="top" secondItem="hn3-42-R1Y" secondAttribute="bottom" constant="8" id="bci-M8-w47"/>
-                            <constraint firstItem="hn3-42-R1Y" firstAttribute="leading" secondItem="Jm3-aL-u8Q" secondAttribute="leadingMargin" id="cuL-3u-jUt"/>
                             <constraint firstItem="oR9-ui-8dA" firstAttribute="top" secondItem="4bM-Wt-HfY" secondAttribute="bottom" constant="8" id="imP-IB-4dg"/>
                             <constraint firstItem="4bM-Wt-HfY" firstAttribute="centerX" secondItem="Jm3-aL-u8Q" secondAttribute="centerX" id="r54-FE-871"/>
-                            <constraint firstItem="hn3-42-R1Y" firstAttribute="trailing" secondItem="Jm3-aL-u8Q" secondAttribute="trailingMargin" id="rni-AS-XUl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="53S-ct-YKU"/>
                     <connections>
-                        <outlet property="bioLabel" destination="hn3-42-R1Y" id="61m-hg-Xq0"/>
+                        <outlet property="bioLabel" destination="pPq-M4-82c" id="oGf-5z-vIj"/>
+                        <outlet property="doneButton" destination="gGg-g5-uH6" id="naV-54-VSc"/>
                         <outlet property="imgV" destination="Ccz-Ec-rq8" id="E7y-LE-D0c"/>
                         <outlet property="titleLabel" destination="4bM-Wt-HfY" id="RsP-BH-XAs"/>
                         <outlet property="websiteButton" destination="oR9-ui-8dA" id="Hz9-zk-o0F"/>
@@ -385,7 +358,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WAg-D1-NxX" id="kNb-rL-AAR">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -646,7 +619,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VMb-8y-Fs2" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" id="hYl-St-uI4"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5uV-b3-mGf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="5uV-b3-mGf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -665,7 +638,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xdJ-CA-tKg" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Attendees" id="1Ag-1R-uhW"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="56S-fh-bcS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="56S-fh-bcS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -727,29 +700,11 @@
             <point key="canvasLocation" x="-1543.2" y="1552.1739130434785"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="LbD-uT-Pzh">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0gj-YU-Jcv" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fkO-YJ-VFD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="2eV-4a-DUg" kind="relationship" relationship="rootViewController" id="5nR-PZ-0Wk"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LnH-bb-0Dr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-25" y="-546"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="e6p-9y-RD2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yHe-o8-drL" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kzS-VE-mjB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kzS-VE-mjB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -767,7 +722,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kTL-g6-jNZ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u7b-lo-1ck">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="u7b-lo-1ck">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -785,7 +740,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ocl-oN-2Pu" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cdg-L5-eU1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Cdg-L5-eU1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

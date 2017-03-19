@@ -28,7 +28,7 @@ class TabBarVC: UITabBarController {
 					item.selectedImage = images[i]
 				}
 			}
-
+		
 			self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 			
 			

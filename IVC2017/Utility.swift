@@ -245,7 +245,12 @@ extension UIImage {
 let gMapsApiKey = "AIzaSyAcaDWJlg1nUohWxoXy3XInH37IeZEc42k"
 
 
-
+extension UILabel {
+	var defaultFont:UIFont? {
+		get {return self.font}
+		set {self.font = newValue}
+	}
+}
 
 
  

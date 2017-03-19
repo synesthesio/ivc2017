@@ -1,25 +1,4 @@
 PODS:
-  - AFNetworking (2.6.3):
-    - AFNetworking/NSURLConnection (= 2.6.3)
-    - AFNetworking/NSURLSession (= 2.6.3)
-    - AFNetworking/Reachability (= 2.6.3)
-    - AFNetworking/Security (= 2.6.3)
-    - AFNetworking/Serialization (= 2.6.3)
-    - AFNetworking/UIKit (= 2.6.3)
-  - AFNetworking/NSURLConnection (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.3)
-  - AFNetworking/Security (2.6.3)
-  - AFNetworking/Serialization (2.6.3)
-  - AFNetworking/UIKit (2.6.3):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
   - Firebase/Auth (3.14.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.1)
@@ -75,8 +54,6 @@ PODS:
   - GTMSessionFetcher/Core (1.1.8)
   - GTMSessionFetcher/Full (1.1.8):
     - GTMSessionFetcher/Core (= 1.1.8)
-  - IOSEventbriteAPI (0.1.1):
-    - AFNetworking (~> 2.3)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -85,10 +62,8 @@ DEPENDENCIES:
   - Firebase/Storage
   - GoogleMaps
   - GoogleSignIn
-  - IOSEventbriteAPI
 
 SPEC CHECKSUMS:
-  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
   FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
   FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
@@ -101,8 +76,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
-  IOSEventbriteAPI: acc7ae268fcba9b920b5fa08441834835e3c0a42
 
-PODFILE CHECKSUM: 24064c8a3629368240da7e4ce655ac972b299e9c
+PODFILE CHECKSUM: fe225ceb65cd58ca77aff501285a2aa1f0edfa71
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0

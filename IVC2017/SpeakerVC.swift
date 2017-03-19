@@ -20,17 +20,18 @@ class SpeakerVC: UIViewController,UIWebViewDelegate {
 	var session:Session!
 	
 	@IBOutlet weak var websiteButton: UIButton!
-	
 	@IBOutlet weak var imgV: UIImageView!
 	@IBOutlet weak var titleLabel: UILabel!
-	@IBOutlet weak var bioLabel: UILabel!
-	
+	@IBOutlet weak var bioLabel: UITextView!
+	@IBOutlet weak var doneButton: UIBarButtonItem!
 	
 	
     override func viewDidLoad() {
 			super.viewDidLoad()
+			self.doneButton.target = self
+			self.doneButton.action = #selector(doneTapped(_:))
 			self.view.backgroundColor = Utility.redClr
-			self.titleLabel.textColor = UIColor.white
+			self.titleLabel.defaultFont = UIFont(name: "Helvetica Neue", size:26)
 			self.bioLabel.textColor = UIColor.white
 			self.websiteButton.setTitleColor(Utility.yellowClr, for: .normal)
 			websiteButton.isHidden = true
@@ -40,9 +41,7 @@ class SpeakerVC: UIViewController,UIWebViewDelegate {
 			
 			if let bio = bioText {
 				bioLabel.textAlignment = .natural
-				bioLabel.text = bio
-				bioLabel.numberOfLines = 0
-				bioLabel.sizeToFit()
+				bioLabel.text = "\(nameTitle!)" + bio
 			}
 			
 			if let ti = nameTitle {

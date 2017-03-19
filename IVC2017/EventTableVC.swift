@@ -21,6 +21,10 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 			super.viewDidLoad()
 			FIRDatabase.database().persistenceEnabled = true
 			self.tabBarController?.navigationController?.navigationBar.layer.backgroundColor = Utility.purpleClr.cgColor
+			self.navigationController?.navigationBar.barTintColor = Utility.purpleClr
+			self.navigationController?.navigationBar.isTranslucent = false
+			
+			
 			var swtch = UISegmentedControl(items: ["Fri", "Sat", "Sun"])
 			if var d = Date().dayOfWeek() {
 				if d != "friday" || d != "saturday" || d != "sunday" {
@@ -53,7 +57,7 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 			swtch.backgroundColor = Utility.redClr
 			swtch.layer.borderColor = Utility.yellowClr.cgColor
 			swtch.setTitleTextAttributes([NSForegroundColorAttributeName:Utility.purpleClr], for: .normal)
-			swtch.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.white], for: .selected)
+			swtch.setTitleTextAttributes([NSForegroundColorAttributeName:Utility.yellowClr], for: .selected)
 			for i in swtch.subviews {
 				let upperBorder:CALayer = CALayer()
 				upperBorder.backgroundColor = Utility.yellowClr.cgColor
@@ -62,6 +66,8 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 			}
 //			swtch.tintColor = UIColor.cyan
 			swtch.addTarget(self, action: #selector(switchDay(sender:)), for: .valueChanged)
+
+			
 			self.navigationItem.titleView = swtch
 			
         // Uncomment the following line to preserve selection between presentations
@@ -203,8 +209,8 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 	func transitionToSessioNVC(sesh:Session){
 		let vc = self.tabBarController?.storyboard?.instantiateViewController(withIdentifier: "sessionvc") as! SessionVC
 		vc.sesh = sesh
-		vc.address = sesh.addr
-		vc.time = sesh.time
+//		vc.address = sesh.addr
+//		vc.time = sesh.time
 		vc.day = sesh.day
 		vc.location = sesh.location
 		vc.titl = sesh.title

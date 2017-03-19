@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AFNetworking.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>GTMOAuth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -20,11 +15,6 @@
 			<false/>
 		</dict>
 		<key>GoogleToolboxForMac.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>IOSEventbriteAPI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,17 +32,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0B62CD5686F925D897D26B492D975C3D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1ED8BE8BD6A53853974A60E1AC8B1019</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,7 +47,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>900A0954382548F442C379D4664B2EBD</key>
+		<key>9F1CE3B73867488E4E32F4B5C28A9E5B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
