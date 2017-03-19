@@ -53,9 +53,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 			if let er = err {
 				print("Print er signIn with credential: \(er.localizedDescription)")	
 			}
-//			if let u = user {
-//				
-//			}
+			if let u = user {
+//				if let sb:UIStoryboard = UIStoryboard(name: "Main", bundle: nil) {
+//					let initial = sb.instantiateViewController(withIdentifier: "maintabvc") as! TabBarVC
+//					self.window = UIWindow(frame: UIScreen.main.bounds)
+//					self.window?.rootViewController = initial
+//					self.window?.makeKeyAndVisible()
+//				}
+			}
 		})
 	}
 	

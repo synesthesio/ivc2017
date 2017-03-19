@@ -102,16 +102,19 @@ class SessionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 	}
 	
 	func fetchSpeakerFor(name:String, completion:@escaping(Speaker) ->()) {
-		
-		handle = ref?.child("speakers").child(name).observe(.value, with: { (snapshot) in
-			let s = snapshot.value as! [String:AnyObject]
-			let dg = s["degrees"] as! String
-			let bio = s["bio"] as! String
-			let ln = s["link"] as! String
-			let lnk = URL(string: ln)
-			let f = Speaker(dgrs: dg, bi: bio, lnk: lnk, sesh: nil, nm: name)
-			completion(f)
-		})
+		do {
+			handle = ref?.child("speakers").child(name).observe(.value, with: { (snapshot) in
+				let s = snapshot.value as! [String:AnyObject]
+				let dg = s["degrees"] as! String
+				let bio = s["bio"] as! String
+				let ln = s["link"] as! String
+				let lnk = URL(string: ln)
+				let f = Speaker(dgrs: dg, bi: bio, lnk: lnk, sesh: nil, nm: name)
+				completion(f)
+			})
+		} catch {
+			Utility.displayAlertWithHandler("Error", message: "An error occurred, please try again", from: self, cusHandler: nil)
+		}
 	}
 	
 	

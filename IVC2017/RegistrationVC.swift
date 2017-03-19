@@ -16,7 +16,7 @@ import GoogleSignIn
 class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerDelegate, GIDSignInUIDelegate  {
 	
 	var plyr:AVPlayer?
-	
+	var gidSignIn:Bool = false
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -70,11 +70,18 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	override func viewWillAppear(_ animated: Bool) {
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+		if self.gidSignIn {
+			self.transitionToMain()
+		}
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-//				uetf.becomeFirstResponder()
+		
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		self.gidSignIn = true
 	}
 	
 	func playDidEnd(notif:Notification) {
@@ -367,11 +374,16 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		return s
 	}()
 	func signInWithGoogle(){
+	self.dismiss(animated: false) { 
 		GIDSignIn.sharedInstance().signIn()
+		self.gidSignIn = true
+		}
 	}
 	func transitionToMain(){
 		if let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "maintabvc") {
-			self.navigationController?.pushViewController(secondVC, animated: true)
+				self.navigationController?.pushViewController(secondVC, animated: true)
+			
+//			self.navigationController?.pushViewController(secondVC, animated: true)
 		}
 	}
 }

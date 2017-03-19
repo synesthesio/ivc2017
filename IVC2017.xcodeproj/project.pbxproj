@@ -30,6 +30,7 @@
 		259348351E7DFFA200C53B88 /* SpeakerCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259348341E7DFFA200C53B88 /* SpeakerCVCell.swift */; };
 		25C17E5C1E67480B00BDEB4D /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C17E5B1E67480B00BDEB4D /* MapTasks.swift */; };
 		25C17E5E1E675DAA00BDEB4D /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C17E5D1E675DAA00BDEB4D /* LocationService.swift */; };
+		25D661011E7F1967003D57BA /* AttendeeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D661001E7F1967003D57BA /* AttendeeCVCell.swift */; };
 		25DE07CD1E6A661B003DA82B /* AttendeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DE07CC1E6A661B003DA82B /* AttendeeVC.swift */; };
 		25DFE3561E5EBCEA00B5B333 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DFE3551E5EBCEA00B5B333 /* Utility.swift */; };
 		4B8B7BFCA9452B29333966DB /* Pods_IVC2017.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC06FD2A83B73D53567E303 /* Pods_IVC2017.framework */; };
@@ -74,6 +75,7 @@
 		259348341E7DFFA200C53B88 /* SpeakerCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerCVCell.swift; sourceTree = "<group>"; };
 		25C17E5B1E67480B00BDEB4D /* MapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTasks.swift; sourceTree = "<group>"; };
 		25C17E5D1E675DAA00BDEB4D /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		25D661001E7F1967003D57BA /* AttendeeCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendeeCVCell.swift; sourceTree = "<group>"; };
 		25DE07CC1E6A661B003DA82B /* AttendeeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendeeVC.swift; sourceTree = "<group>"; };
 		25DFE3551E5EBCEA00B5B333 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		49EDCA5F56EDE5E4EE0367C8 /* Pods-IVC2017.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IVC2017.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IVC2017/Pods-IVC2017.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				254F3CD01E63ED9100343DA8 /* SessionVC.swift */,
 				254F3CCA1E63798B00343DA8 /* SpeakerVC.swift */,
 				259348341E7DFFA200C53B88 /* SpeakerCVCell.swift */,
+				25D661001E7F1967003D57BA /* AttendeeCVCell.swift */,
 				2513BC421E5EB4FB009B9CDE /* Main.storyboard */,
 				2513BC481E5EB4FB009B9CDE /* Assets.xcassets */,
 				2513BC4A1E5EB4FB009B9CDE /* LaunchScreen.storyboard */,
@@ -399,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				259348351E7DFFA200C53B88 /* SpeakerCVCell.swift in Sources */,
+				25D661011E7F1967003D57BA /* AttendeeCVCell.swift in Sources */,
 				25C17E5E1E675DAA00BDEB4D /* LocationService.swift in Sources */,
 				25C17E5C1E67480B00BDEB4D /* MapTasks.swift in Sources */,
 				254F3CCF1E63D60900343DA8 /* SessionTVCell.swift in Sources */,

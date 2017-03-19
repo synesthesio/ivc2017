@@ -75,11 +75,16 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 		self.uID = FIRAuth.auth()?.currentUser?.uid
 		
 		if self.firstTime == true {
-			handle = ref?.child("users").observe(.value, with: { (snapshot) in
-				if snapshot.hasChild(self.uID!) {
-					self.firstTime = false
-				}
-			})
+			do {
+				handle = ref?.child("users").observe(.value, with: { (snapshot) in
+					if snapshot.hasChild(self.uID!) {
+						self.firstTime = false
+					}
+				})
+			} catch {
+				Utility.displayAlertWithHandler("Error", message: "An error occurred, please try again", from: self, cusHandler: nil)
+			}
+			
 		}
 	}
 	override func viewWillDisappear(_ animated: Bool) {

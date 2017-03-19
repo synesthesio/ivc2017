@@ -10,9 +10,15 @@ import UIKit
 
 class LoadingVC: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	
+	@IBOutlet var imgV:UIImageView!
+	@IBOutlet var imgVForLoading:UIImageView!
+	var rotate:Bool = true
 
+    override func viewDidLoad() {
+			super.viewDidLoad()
+			
+			self.rotateV()
         // Do any additional setup after loading the view.
     }
 
@@ -20,7 +26,16 @@ class LoadingVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+	
+	func rotateV(){
+		guard self.rotate else { self.dismiss(animated: false, completion: nil); return }
+		UIView.animate(withDuration: 1.2, delay: 0, options: .curveLinear, animations: { 
+		self.imgVForLoading.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
+		self.imgVForLoading.transform = CGAffineTransform(rotationAngle: CGFloat(2.0 * M_PI))
+		}) { (n) in
+			self.rotateV()
+		}
+	}
 
     /*
     // MARK: - Navigation
