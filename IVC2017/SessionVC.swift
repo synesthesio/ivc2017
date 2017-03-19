@@ -39,47 +39,52 @@ class SessionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 			self.colVw.dataSource = self
 			self.colVw.delegate = self
 			ref = FIRDatabase.database().reference()
-			spkrsLab.isHidden = true
+			
+			self.locationLabel.isHidden = true
+			self.spkrsLab.isHidden = true
+			self.colVw.clipsToBounds = true
 			self.colVw.isHidden = true
+			self.descV.isHidden = true
 			if let s = speakers {
-				if s.count > 0 {
-					spkrsLab.isHidden = false
-					self.colVw.isHidden = false
+					if s.count > 0 {
+						if s[0] != "" {
+						self.spkrsLab.isHidden = false
+						self.colVw.isHidden = false
+					}
 				}
 			}
-			self.view.backgroundColor = Utility.purpleClr
-			doneBut.target = self
-			doneBut.action = #selector(backTap)
-			doneBut.tintColor = Utility.yellowClr
-//			self.navB.tintColor = Utility.purpleClr
-			self.navigationController?.navigationBar.isTranslucent = false
-//			self.navB.backgroundColor = Utility.purpleClr
 			self.navB.isTranslucent = false
 			self.navB.barTintColor = Utility.redClr
-			self.navB.layer.borderWidth = 0.5
-			self.navB.layer.borderColor = Utility.yellowClr.cgColor
-			
-			sessionLabel.defaultFont = UIFont(name: "Helvetica Neue", size:26)
-			locationLabel.defaultFont = UIFont(name: "Helvetica Neue", size:22)
+			self.navB.backgroundColor = Utility.redClr
+			self.view.backgroundColor = Utility.redClr
+			self.doneBut.target = self
+			self.doneBut.action = #selector(backTap)
+			self.doneBut.tintColor = Utility.yellowClr
+
+//			self.sessionLabel.defaultFont = UIFont(name: "Helvetica Neue", size:26)
+			self.sessionLabel.text = titl
+//			self.locationLabel.defaultFont = UIFont(name: "Helvetica Neue", size:22)
+			if let loc = self.location {
+			self.locationLabel.isHidden = false
+			self.locationLabel.text = loc
+			}
 			
 			if let d = desc {
-				descV.text = d
+				self.descV.isHidden = false
+				self.descV.text = d
 			}
     }
 	
 	func backTap(){
 		self.dismiss(animated: false, completion: nil)
 	}
-	
 
-    override func didReceiveMemoryWarning() {
+	override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-	
+	}
 	
 	func launchVCForSpeaker(num:Int) {
-		
 		self.fetchSpeakerFor(name: (self.speakers?[num])!) { (spkr) in
 			self.dismiss(animated: false, completion: { 
 				self.delegate.transitionToSpeaker(speaker: spkr, sesh: self.sesh)
@@ -101,9 +106,6 @@ class SessionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 	}
 	
 	
-	
-	
-	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 	
 		if let spkr = speakers {
@@ -121,11 +123,14 @@ class SessionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 		
 			let nmSt = spkrs[indexPath.row].replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "")
 //			let nmSt = spkrs[indexPath.row].name.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "")
+			cell.contentMode = .center
 			
-			
-			if let img = UIImage(named: "\(nmSt.lowercased())") {
-				cell.imgSpkr = UIImageView(image: img)
+			if let img = UIImage(named: "\(nmSt.lowercased()).jpg") {
+				cell.imgSpkr.image = img
+//				img.resizeImage(size:cell.contentView.intrinsicContentSize)
+				
 			} else {
+//				cell.contentView.addSubview(UIImageView(image:UIImage(named: "addPhotoPlaceholder")))
 				cell.imgSpkr = UIImageView(image:UIImage(named: "addPhotoPlaceholder"))
 			}
 		}
@@ -133,13 +138,7 @@ class SessionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		if let spkr = speakers {
 		self.launchVCForSpeaker(num: indexPath.row)
-		}
-		print("perfunctory placeholder")
 	}
 	
-	
 }
-
-

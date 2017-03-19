@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IVC2017/SpeakerVC.swift"
-            timestampString = "511576319.949192"
+            timestampString = "511584854.535896"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "didReceiveMemoryWarning()"
             landmarkType = "7">
          </BreakpointContent>
@@ -460,7 +460,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/AttendeeVC.swift"
-                  timestampString = "511576398.673174"
+                  timestampString = "511585008.291954"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
@@ -475,7 +475,7 @@
                   moduleName = "IVC2017"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/AttendeeVC.swift"
-                  timestampString = "511576398.674517"
+                  timestampString = "511585008.293564"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
@@ -556,11 +556,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IVC2017/SessionVC.swift"
-            timestampString = "511576397.330386"
+            timestampString = "511579969.840209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145">
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -569,13 +571,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IVC2017/SessionVC.swift"
-            timestampString = "511576397.330386"
+            filePath = "IVC2017/EventTableVC.swift"
+            timestampString = "511578552.655513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "transitionToSessioNVC(sesh:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IVC2017/SpeakerVC.swift"
+            timestampString = "511584854.535896"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -586,12 +604,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IVC2017/SessionVC.swift"
-            timestampString = "511576397.330386"
+            timestampString = "511579969.840209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "didReceiveMemoryWarning()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -602,27 +620,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IVC2017/SessionVC.swift"
-            timestampString = "511576397.330386"
+            timestampString = "511584224.999189"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IVC2017/SessionVC.swift"
-            timestampString = "511576397.330386"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>

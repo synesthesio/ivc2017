@@ -24,19 +24,27 @@ class SpeakerVC: UIViewController,UIWebViewDelegate {
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var bioLabel: UITextView!
 	@IBOutlet weak var doneButton: UIBarButtonItem!
-	
+	@IBOutlet weak var navB: UINavigationBar!
 	
     override func viewDidLoad() {
 			super.viewDidLoad()
 			self.doneButton.target = self
 			self.doneButton.action = #selector(doneTapped(_:))
 			self.view.backgroundColor = Utility.redClr
-			self.titleLabel.defaultFont = UIFont(name: "Helvetica Neue", size:26)
+			self.titleLabel.textColor = UIColor.white
+			self.navB.backgroundColor = Utility.redClr
+//			self.navB.setBackgroundImage(UIImage(), for: .default)
+//			self.navB.shadowImage = UIImage()
+			self.navB.isTranslucent = false
+			self.titleLabel.layer.addBorder(edge: .bottom, color: .white, thickness: 0.5)
+			self.titleLabel.defaultFont = UIFont(name: "Helvetica Neue", size: 28)
+			self.titleLabel.textColor = UIColor.white
+//			self.titleLabel.defaultFont = UIFont(name: "Helvetica Neue", size:26)
 			self.bioLabel.textColor = UIColor.white
 			self.websiteButton.setTitleColor(Utility.yellowClr, for: .normal)
 			websiteButton.isHidden = true
 			if let u = link {
-			websiteButton.isHidden = false
+				websiteButton.isHidden = false
 			}
 			
 			if let bio = bioText {
@@ -68,7 +76,7 @@ class SpeakerVC: UIViewController,UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 	
-	@IBAction func doneTapped(_ sender: Any) {
+	func doneTapped(_ sender: Any) {
 	self.dismiss(animated: false) { 
 		self.delegate.transitionToSessioNVC(sesh: self.session)
 		}

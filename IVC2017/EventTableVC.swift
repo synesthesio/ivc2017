@@ -64,7 +64,6 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 				upperBorder.frame = CGRect(x: 0, y: i.frame.size.height-1, width: i.frame.size.width, height: 1.0)
 				i.layer.addSublayer(upperBorder)
 			}
-//			swtch.tintColor = UIColor.cyan
 			swtch.addTarget(self, action: #selector(switchDay(sender:)), for: .valueChanged)
 
 			
@@ -199,24 +198,43 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
     }
 	
 	 override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-		if self.sessionsForView!.count > 0 {
-			 let content = self.sessionsForView![indexPath.row]
+		
+		if let sesh = self.sessionsForView {
+			if sesh.count > 0 {
+				let content = sesh[indexPath.row]
 				self.transitionToSessioNVC(sesh: content)
 			}
+		}
 	}
 	
 	func transitionToSessioNVC(sesh:Session){
 		let vc = self.tabBarController?.storyboard?.instantiateViewController(withIdentifier: "sessionvc") as! SessionVC
+		
 		vc.sesh = sesh
+		vc.titl = sesh.title
 //		vc.address = sesh.addr
 //		vc.time = sesh.time
-		vc.day = sesh.day
-		vc.location = sesh.location
-		vc.titl = sesh.title
-		vc.desc = sesh.desc
+//		vc.day = sesh.day
+		if let loc = sesh.location {
+			if loc != "" {
+				vc.location = loc		
+			}
+			
+		}
+		
+		
+		if let d = sesh.desc {
+			if d != "" {
+				vc.desc = d
+			}
+		}
 		vc.delegate = self
-		vc.speakers = sesh.speaker?.components(separatedBy: ",")
+		if let spkr = sesh.speaker {
+			if spkr != "" {
+				vc.speakers = spkr.components(separatedBy: ",")
+			}
+		}
+		
 			self.tabBarController?.present(vc, animated: false, completion: nil)
 		}
 	

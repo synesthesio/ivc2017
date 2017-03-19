@@ -240,7 +240,51 @@ extension UIImage {
 		self.init(cgImage: image!.cgImage!)
 	}
 	
+	func resizeImage(size:CGSize) -> UIImage? {
+		let height = size.height
+		let width = size.width
+		UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+		if let context = UIGraphicsGetCurrentContext() {
+			context.interpolationQuality = CGInterpolationQuality.none
+			self.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+			let target = UIGraphicsGetImageFromCurrentImageContext()
+			UIGraphicsEndImageContext()
+			return target
+		} else {
+			return nil
+		}
+	}
 }
+
+
+extension CALayer {
+	
+	func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
+		
+		let border = CALayer()
+		
+		switch edge {
+		case UIRectEdge.top:
+			border.frame = CGRect.init(x: 0, y: 0, width: frame.width, height: thickness)
+			break
+		case UIRectEdge.bottom:
+			border.frame = CGRect.init(x: 0, y: frame.height - thickness, width: frame.width, height: thickness)
+			break
+		case UIRectEdge.left:
+			border.frame = CGRect.init(x: 0, y: 0, width: thickness, height: frame.height)
+			break
+		case UIRectEdge.right:
+			border.frame = CGRect.init(x: frame.width - thickness, y: 0, width: thickness, height: frame.height)
+			break
+		default:
+			break
+		}
+		border.backgroundColor = color.cgColor;
+		self.addSublayer(border)
+	}
+}
+
+
 
 let gMapsApiKey = "AIzaSyAcaDWJlg1nUohWxoXy3XInH37IeZEc42k"
 
