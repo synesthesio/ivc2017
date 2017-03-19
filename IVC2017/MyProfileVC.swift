@@ -16,7 +16,7 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 	var handle:FIRDatabaseHandle?
 	var ref:FIRDatabaseReference?
 	@IBOutlet weak var imgVw: UIImageView!
-	@IBOutlet weak var saveButton: UIButton!
+	
 	@IBOutlet weak var linktf: UITextField!
 	@IBOutlet weak var nametf: UITextField!
 	@IBOutlet weak var biotf: UITextField!
@@ -28,24 +28,25 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 	var profRef:FIRStorageReference!
 	var imageFromPicker:UIImage?
 	var downloadURL:URL?
+	var takingPhoto:Bool = false
 	override func viewDidLoad(){
 		super.viewDidLoad()
 //		FIRDatabase.database().persistenceEnabled = true
 		ref = FIRDatabase.database().reference()
-		
+		self.nametf.delegate = self
+		self.linktf.delegate = self
+		self.biotf.delegate = self
+		self.setupTF()
 		photoPicker = UIImagePickerController()
 		self.photoPicker.delegate = self
 		self.navigationController?.navigationBar.isHidden = true
-//		imgVw.contentMode = .scaleAspectFit
-//		tf.delegate = self
 		let tGR = UITapGestureRecognizer(target: self, action: #selector(screenTapped))
 		tGR.delegate = self
 		view.addGestureRecognizer(tGR)
 		let iGR = UITapGestureRecognizer(target: self, action: #selector(imgVwTapped))
 		iGR.delegate = self
 		imgVw.addGestureRecognizer(iGR)
-		saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchDown)
-//		saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(lazyButtonTapped))
+		
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +56,7 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+		self.takingPhoto = false
 		self.uID = FIRAuth.auth()?.currentUser?.uid
 		
 		if self.firstTime == true {
@@ -65,20 +67,50 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 			})
 		}
 	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		if self.takingPhoto != true {
+			self.saveButtonTapped()
+		}
+	}
 	override func viewDidDisappear(_ animated: Bool) {
 		ref?.removeAllObservers()
 		super.viewDidDisappear(animated)
 	}
 	
-//	override func updateViewConstraints() {
-//		NSLayoutConstraint(item: tf, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
-//		NSLayoutConstraint(item: tf, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
-//		NSLayoutConstraint(item: lazyButton, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
-//		NSLayoutConstraint(item: lazyButton, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 100).isActive = true
-//		//add & set all constraints to active above super.updateViewConstraints()
-//		super.updateViewConstraints()
-//	}
-	
+	func setupTF(){
+		self.nametf.font = UIFont(name: "Hevetica Neue", size: 16)
+		self.biotf.font = UIFont(name: "Hevetica Neue", size: 16)
+		self.linktf.font = UIFont(name: "Hevetica Neue", size: 16)
+		self.nametf.textColor = UIColor.white
+		self.biotf.textColor = UIColor.white
+		self.linktf.textColor = UIColor.white
+		self.nametf.attributedPlaceholder = NSAttributedString(string: "...", attributes: [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont(name: "Helvetica Neue", size:18)])
+		self.biotf.attributedPlaceholder = NSAttributedString(string: "e.g. researcher", attributes: [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont(name: "Helvetica Neue", size:18)])
+		self.linktf.attributedPlaceholder = NSAttributedString(string: "www.mysite.com", attributes: [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont(name: "Helvetica Neue", size:18)])
+		self.biotf.textAlignment = .center
+		self.nametf.textAlignment = .center
+		self.linktf.textAlignment = .center
+		self.biotf.layer.borderWidth = 0.5
+		self.linktf.layer.borderWidth = 0.5
+		self.nametf.layer.borderWidth = 0.5
+		self.biotf.layer.cornerRadius = 15.0
+		self.linktf.layer.cornerRadius = 15.0
+		self.nametf.layer.cornerRadius = 15.0
+		self.biotf.borderStyle = .roundedRect
+		self.linktf.borderStyle = .roundedRect
+		self.nametf.borderStyle = .roundedRect
+		self.nametf.layer.borderWidth = 0.5
+		self.biotf.layer.borderWidth = 0.5
+		self.linktf.layer.borderWidth = 0.5
+		self.biotf.layer.borderColor = Utility.yellowClr.cgColor
+		self.linktf.layer.borderColor = Utility.yellowClr.cgColor
+		self.nametf.layer.borderColor = Utility.yellowClr.cgColor
+		self.linktf.backgroundColor = Utility.redClr
+		self.nametf.backgroundColor = Utility.redClr
+		self.biotf.backgroundColor = Utility.redClr
+		
+	}
 	
 	func saveButtonTapped(){
 		nametf.resignFirstResponder()
@@ -151,15 +183,7 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 					print("perfunctory placeholder")
 				})
 				}
-			
-			
-			
-			
-			
-			
-//				self.ref?.child("users/" + (self.uID!) + "/image").setValue(img)
 		  }
-
 	}
 	
 	func keyboardWillShow(_ sender: Notification) {
@@ -200,7 +224,8 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 			//make next textField becomeFirstResponder
 			break
 		default:
-			//
+			
+			linktf.resignFirstResponder()
 			break
 		}
 		return false
@@ -209,6 +234,7 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 	
 	func imgVwTapped(){
 		self.view.endEditing(true)
+		self.takingPhoto = true
 		let ac = UIAlertController(title: "Take a Photo?", message: "Take a photo or select from Camera Roll", preferredStyle: .actionSheet)
 		let photoAct = UIAlertAction(title: "Use Camera", style: .default) { (photo) in
 		self.photoPicker.allowsEditing = true

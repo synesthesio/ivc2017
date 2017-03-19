@@ -264,7 +264,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		v.layer.borderColor = Utility.yellowClr.cgColor
 		v.backgroundColor = Utility.redClr
 		v.textAlignment = .center
-		v.attributedPlaceholder = NSAttributedString(string: "email-address", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+		v.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont(name: "Helvetica Neue", size:20)])
 //		v.layer.opacity = 0.25
 		return v
 	}()
@@ -281,7 +281,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		v.layer.borderColor = Utility.yellowClr.cgColor
 		v.backgroundColor = Utility.redClr
 		v.textAlignment = .center
-		v.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+		v.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont(name: "Helvetica Neue", size:20)])
 //		v.layer.opacity = 0.25
 		return v
 	}()

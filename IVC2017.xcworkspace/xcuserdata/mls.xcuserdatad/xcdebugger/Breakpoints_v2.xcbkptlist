@@ -380,11 +380,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IVC2017/MyProfileVC.swift"
-            timestampString = "511064215.233712"
+            timestampString = "511634141.698118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "saveButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
@@ -396,11 +396,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IVC2017/MyProfileVC.swift"
-            timestampString = "511064215.233712"
+            timestampString = "511634141.698118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "saveButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
@@ -412,11 +412,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IVC2017/MyProfileVC.swift"
-            timestampString = "511064215.233712"
+            timestampString = "511634141.698118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "saveButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
@@ -428,61 +428,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IVC2017/MyProfileVC.swift"
-            timestampString = "511064215.233712"
+            timestampString = "511634141.698118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "saveButtonTapped()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IVC2017/AttendeeVC.swift"
-            timestampString = "511269421.927828"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "getImageFromFIR(uID:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IVC2017.AttendeeVC.(getImageFromFIR (uID : Swift.Optional&lt;Swift.String&gt;, completion : (__ObjC.UIImage) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "IVC2017"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/AttendeeVC.swift"
-                  timestampString = "511589248.878508"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "48">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IVC2017.AttendeeVC.(getImageFromFIR (uID : Swift.Optional&lt;Swift.String&gt;, completion : (__ObjC.UIImage) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "IVC2017"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mls/Development/iv/IVC2017/IVC2017/AttendeeVC.swift"
-                  timestampString = "511589248.880107"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "108">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -530,22 +482,6 @@
             startingLineNumber = "369"
             endingLineNumber = "369"
             landmarkName = "mapView(_:didTap:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IVC2017/AttendeeVC.swift"
-            timestampString = "511270932.682223"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -626,6 +562,22 @@
             startingLineNumber = "140"
             endingLineNumber = "140"
             landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IVC2017/MyProfileVC.swift"
+            timestampString = "511634141.698118"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "viewWillDisappear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
