@@ -34,6 +34,8 @@ class SpeakerVC: UIViewController,UIWebViewDelegate {
 			self.titleLabel.textColor = UIColor.white
 			self.navB.barTintColor = Utility.redClr
 			self.navB.tintColor = Utility.redClr
+			self.navB.shadowImage = UIImage()
+			self.navB.setBackgroundImage(UIImage(), for: .default)
 //			self.navB.setBackgroundImage(UIImage(), for: .default)
 //			self.navB.shadowImage = UIImage()
 			self.navB.isTranslucent = false

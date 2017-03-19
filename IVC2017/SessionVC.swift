@@ -11,7 +11,7 @@ import Firebase
 import FirebaseDatabase
 
 
-class SessionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class SessionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	
 	var titl:String!
 	var location:String?
@@ -41,6 +41,8 @@ class SessionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 			ref = FIRDatabase.database().reference()
 			
 			self.locationLabel.isHidden = true
+			self.navB.shadowImage = UIImage()
+			self.navB.setBackgroundImage(UIImage(), for: .default)
 			self.spkrsLab.isHidden = true
 			self.colVw.clipsToBounds = true
 			self.colVw.isHidden = true
@@ -50,6 +52,7 @@ class SessionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 					if s.count > 0 {
 						if s[0] != "" {
 						self.spkrsLab.isHidden = false
+						self.spkrsLab.textColor = Utility.yellowClr
 						self.colVw.isHidden = false
 					}
 				}
@@ -73,7 +76,6 @@ class SessionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 			if let d = desc {
 				self.descV.isHidden = false
 				self.descV.text = d
-				
 			}
     }
 	
@@ -120,6 +122,16 @@ class SessionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 		} else {
 			return 0
 		}
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+		guard let spkrs = self.speakers else {return UIEdgeInsetsMake(0, 0, 0, 0)}
+		let totalCellWidth = 130 * spkrs.count
+		let totalSpacingWidth = 12 * (spkrs.count - 1)
+		let leftInset = (self.colVw.frame.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2;
+		let rightInset = leftInset
+		return UIEdgeInsetsMake(0, leftInset, 0, rightInset)
+
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

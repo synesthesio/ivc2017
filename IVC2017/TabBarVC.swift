@@ -19,7 +19,7 @@ class TabBarVC: UITabBarController {
 				let cal = #imageLiteral(resourceName: "cal")
 				let info = #imageLiteral(resourceName: "info")
 				let leaf = #imageLiteral(resourceName: "leaf")
-				let images = [cal,leaf,attendees,info,profileImg]
+				let images = [cal,leaf,info,profileImg,attendees]
 //				self.tabBar.backgroundColor = Utility.purpleClr
 			if let tI = self.tabBar.items {
 				for i in 0..<tI.count {

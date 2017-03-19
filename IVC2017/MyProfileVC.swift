@@ -20,7 +20,9 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 	@IBOutlet weak var linktf: UITextField!
 	@IBOutlet weak var nametf: UITextField!
 	@IBOutlet weak var biotf: UITextField!
-	
+	var name:String?
+	var titleM:String?
+	var link:String?
 	var firstTime:Bool = true
 	var uID:String?
 	var photoPicker:UIImagePickerController!
@@ -36,6 +38,8 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 		self.nametf.delegate = self
 		self.linktf.delegate = self
 		self.biotf.delegate = self
+		self.navigationController?.navigationBar.shadowImage = UIImage()
+    self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		self.setupTF()
 		photoPicker = UIImagePickerController()
 		self.photoPicker.delegate = self
@@ -50,6 +54,17 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
+	
+		if let n = name {
+			self.nametf.text = n
+		}
+		if let t = titleM {
+			self.biotf.text = t
+		}
+		if let l = link {
+			self.linktf.text = l
+		}
+		
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 	}
@@ -116,20 +131,18 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 		nametf.resignFirstResponder()
 		biotf.resignFirstResponder()
 		linktf.resignFirstResponder()
-
+		if self.nametf.text != "" && self.nametf.text != nil {
 			if let n = self.nametf.text {
 				self.ref?.child("users/" + (self.uID!) + "/name").setValue(n)
 			} else {
 				Utility.displayAlertWithHandler("Please Enter Info", message: "Please provide a name to proceed", from: self, cusHandler: nil)
-		}
+				}
 			if let l = self.linktf.text {
 				self.ref?.child("users/" + (self.uID!) + "/link").setValue(l)
 			}
-			
 			if let b = self.biotf.text {
 				self.ref?.child("users/" + (self.uID!) + "/bio").setValue(b)
 			}
-		
 		  if let img = self.imageFromPicker {
 			
 				self.storageRef =  FIRStorage.storage().reference()
@@ -144,7 +157,6 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 							print("Print error = : \(e)")
 							Utility.displayAlertWithHandler("Image Upload Error", message: "An Error Occurred During Image Upload, Please Try Again", from: self, cusHandler: nil)
 						}
-						
 						if let f = fSM {
 							self.ref?.child("users/" + (self.uID!) + "/image").setValue(self.uID)
 						}
@@ -166,9 +178,6 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 							case .cancelled:
 								// User canceled the upload
 								break
-								
-								/* ... */
-								
 							case .unknown:
 								// Unknown error occurred, inspect the server response
 								break
@@ -177,13 +186,13 @@ class MyProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 								break
 							}
 						}
-
 					})
 				upload.observe(.success, handler: { (snapshot) in
 					print("perfunctory placeholder")
 				})
 				}
 		  }
+		}
 	}
 	
 	func keyboardWillShow(_ sender: Notification) {

@@ -11,34 +11,50 @@ import FirebaseDatabase
 import Firebase
 import FirebaseStorage
 
-class AttendeeTableVC: UITableViewController {
+class AttendeeTableVC: UICollectionViewController {
 
 	
-	@IBOutlet var tblView: UITableView!
+	@IBOutlet var colV: UICollectionView!
+	var aImages:[UIImage]?
 	var handle:FIRDatabaseHandle?
 	var ref:FIRDatabaseReference?
 	var attendees:[Attendee]?
 	var storageRef:FIRStorageReference?
     override func viewDidLoad() {
         super.viewDidLoad()
-				self.view.backgroundColor = Utility.purpleClr
-				self.tblView.separatorStyle = .none
-				self.fetchAttendees(completion: { (att) in
-					self.attendees = att
-					self.tblView.reloadData()
-				})
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+				self.colV.dataSource = self
+				self.colV.delegate = self
+			
+				self.title = "Attendees"
+				self.view.backgroundColor = Utility.redClr
+			
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		self.fetchAttendees(completion: { (att) in
+			self.attendees = att
+			self.fetchUserImages()
+		})
+	}
+	
+	func fetchUserImages(){
+		if let at = self.attendees {
+			for i in at {
+				if let id = i.uID{
+					self.getImageFromFIR(uID: id, completion: { (img) in
+						self.aImages?.append(img)
+					})
+				}
+			}
+		}
+	}
+	
 	
 	func fetchAttendees(completion:@escaping([Attendee]) -> ()) {
 		var att = [Attendee]()
@@ -55,84 +71,108 @@ class AttendeeTableVC: UITableViewController {
 			}
 			completion(att)
 		})
+	}
+	
+	func getImageFromFIR(uID:String?, completion:@escaping(UIImage)->()) {
+		var image:UIImage?
+		self.storageRef = FIRStorage.storage().reference()
 		
-	}
-	
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-				var ct = 1
-			if let att = attendees {
-				ct = att.count
-			}
-			return ct
-    }
-
-	
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath)
-				cell.backgroundColor = Utility.redClr
+		let ref = storageRef?.child("images/" + "\(uID!)")
+		ref?.data(withMaxSize: 5 * 1024 * 1024, completion: { (data, err) in
 			
-				if let att = attendees {
-					let at = att[indexPath.row] as! Attendee
-					cell.textLabel?.textColor = UIColor.white
-					cell.textLabel?.text = at.name
-					cell.detailTextLabel?.text = at.bio
-//					cell.imageView?.image = at.image
-				}
-			return cell
-    }
+			if let e = err {
+				print("Print err: \(e)")
+				Utility.displayAlertWithHandler("Error", message: "Error Downloading Images, Please Try Again Later", from: self, cusHandler: nil)
+			}
+			
+			if let d = data {
+				image = UIImage(data: d)
+				completion(image!)
+			}
+		})
+	}
 	
-	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+	override func numberOfSections(in collectionView: UICollectionView) -> Int {
+		return 1
+	}
+	
+	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		var ct = 0
 		if let att = attendees {
-			let attendee = att[indexPath.row]
-			let vc = self.storyboard?.instantiateViewController(withIdentifier: "attendeevc") as! AttendeeVC
-			vc.interests = attendee.bio
-			vc.nameForTitle = attendee.name
-			vc.link = attendee.link
-			vc.uID = attendee.uID
-			self.tabBarController?.present(vc, animated: false, completion: nil)
+			ct = att.count
 		}
+		return ct
+	}
+	
+	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+	
+				if let att = attendees {
+					let attendee = att[indexPath.row]
+					let vc = self.storyboard?.instantiateViewController(withIdentifier: "attendeevc") as! AttendeeVC
+					vc.interests = attendee.bio
+					vc.nameForTitle = attendee.name
+					vc.link = attendee.link
+					vc.uID = attendee.uID
+					self.tabBarController?.present(vc, animated: false, completion: nil)
+				}
+	}
+	
+	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "atcell", for: indexPath)
+		if let at = self.attendees {
+		let content = at[indexPath.row]
+		
+			let imgV = UIImageView(frame: CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height))
+			imgV.clipsToBounds = true
+			imgV.contentMode = .scaleAspectFill
+		
+		if let img = self.aImages?[indexPath.row] {
+			imgV.image = img
+
+		} else {
+			imgV.image = UIImage(named: "user")
+		}
+			cell.contentView.addSubview(imgV)
+		}
+		return cell
 	}
 
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//				var ct = 1
+//			if let att = attendees {
+//				ct = att.count
+//			}
+//			return ct
+//    }
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
+	
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath)
+//				cell.backgroundColor = Utility.redClr
+//			
+//				if let att = attendees {
+//					let at = att[indexPath.row] as! Attendee
+//					cell.textLabel?.textColor = UIColor.white
+//					cell.textLabel?.text = at.name
+//					cell.detailTextLabel?.text = at.bio
+////					cell.imageView?.image = at.image
+//				}
+//			return cell
+//    }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+//	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//		if let att = attendees {
+//			let attendee = att[indexPath.row]
+//			let vc = self.storyboard?.instantiateViewController(withIdentifier: "attendeevc") as! AttendeeVC
+//			vc.interests = attendee.bio
+//			vc.nameForTitle = attendee.name
+//			vc.link = attendee.link
+//			vc.uID = attendee.uID
+//			self.tabBarController?.present(vc, animated: false, completion: nil)
+//		}
+//	}
 
-    }
-    */
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 }

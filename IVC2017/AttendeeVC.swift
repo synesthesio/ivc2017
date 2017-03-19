@@ -26,23 +26,34 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 
 		override func viewDidLoad() {
 			super.viewDidLoad()
-//			self.title = nameForTitle
+			self.navB.shadowImage = UIImage()
+			self.navB.setBackgroundImage(UIImage(), for: .default)
+			
+			self.nameLabel.defaultFont = UIFont(name: "Helvetica Neue", size:26)
+			self.interestsLabel.defaultFont = UIFont(name: "Helvetica Neue", size:22)
+			if let n = nameForTitle {
+				nameLabel.text = n
+			}
+			if let i = interests {
+				self.interestsLabel.text = i
+			}
 			
 //			self.imgView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/2)
 			self.doneBut.tintColor = Utility.yellowClr
 			self.interestsLabel.textColor = UIColor.white
 			self.nameLabel.textColor = UIColor.white
 			self.websiteButton.setTitleColor(Utility.yellowClr, for: .normal)
-			self.view.backgroundColor  = Utility.redClr
+			self.view.backgroundColor  = Utility.purpleClr
 			self.navB.barTintColor = Utility.purpleClr
 			self.interestsLabel.lineBreakMode = .byWordWrapping
 			self.interestsLabel.numberOfLines = 0
-			
+			self.doneBut.tintColor = Utility.yellowClr
 			websiteButton.isHidden = true
 			
-						websiteButton.isHidden = false
+			if let l = self.link {
+				websiteButton.isHidden = false
 				websiteButton.addTarget(self, action: #selector(websiteButtonTapped), for: .touchDown)
-			
+			}
 		}
 
 		override func didReceiveMemoryWarning() {
@@ -73,12 +84,14 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 		}
 
 		func websiteButtonTapped(){
-			if UIApplication.shared.canOpenURL(self.link!) {
-				UIApplication.shared.open(self.link!, options: [:], completionHandler: nil)
+			if let l = link {
+			if UIApplication.shared.canOpenURL(l) {
+				UIApplication.shared.open(l, options: [:], completionHandler: nil)
 			} else {
-				webView.loadRequest(URLRequest(url: self.link!))
+				webView.loadRequest(URLRequest(url: l))
 				webView.delegate = self
 				self.view.addSubview(webView)
+			}
 			}
 		}
 
@@ -98,7 +111,6 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 				image = UIImage(data: d)
 				completion(image!)
 			}
-			
 		})
 	}
 	
