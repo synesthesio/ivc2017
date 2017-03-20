@@ -413,6 +413,11 @@
                                                 <action selector="doneTapped:" destination="ZbE-wo-0BM" id="7Ts-cb-7ZV"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Privacy" id="jAy-RL-Ymt">
+                                            <connections>
+                                                <action selector="privacyTap:" destination="ZbE-wo-0BM" id="6fx-Dc-Sg5"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -462,6 +467,7 @@
                         <outlet property="interestsLabel" destination="PW2-RI-ds3" id="LOv-Cu-1ah"/>
                         <outlet property="nameLabel" destination="iqv-Pr-BJu" id="UuT-L4-Qg7"/>
                         <outlet property="navB" destination="3Om-wX-3WJ" id="jnb-u2-ekS"/>
+                        <outlet property="privacyButton" destination="jAy-RL-Ymt" id="cBI-kT-7dL"/>
                         <outlet property="websiteButton" destination="vw4-yd-Wqm" id="UnJ-M6-mTy"/>
                     </connections>
                 </viewController>

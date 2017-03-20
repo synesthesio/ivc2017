@@ -17,6 +17,7 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 	@IBOutlet weak var imgView: UIImageView!
 	@IBOutlet weak var interestsLabel: UILabel!
 	@IBOutlet weak var nameLabel: UILabel!
+	@IBOutlet weak var privacyButton: UIBarButtonItem!
 	@IBOutlet weak var websiteButton: UIButton!
 	var nameForTitle:String?
 	var interests:String?
@@ -29,7 +30,7 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 			super.viewDidLoad()
 			self.navB.shadowImage = UIImage()
 			self.navB.setBackgroundImage(UIImage(), for: .default)
-			
+			self.privacyButton.tintColor = Utility.yellowClr
 			self.nameLabel.defaultFont = UIFont(name: "Helvetica Neue", size:26)
 			self.interestsLabel.defaultFont = UIFont(name: "Helvetica Neue", size:22)
 			if let n = nameForTitle {
@@ -94,6 +95,17 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 			}
 			}
 		}
+	@IBAction func privacyTap(_ sender: Any) {
+		if let l = URL(string:"https://github.com/synesthesio/ivc2017/blob/master/EULA2017") {
+			if UIApplication.shared.canOpenURL(l) {
+				UIApplication.shared.open(l, options: [:], completionHandler: nil)
+			} else {
+				webView.loadRequest(URLRequest(url: l))
+				webView.delegate = self
+				self.view.addSubview(webView)
+			}
+		}
+	}
 
 //		func getImageFromFIR(uID:String?, completion:@escaping(UIImage)->()) {
 //			var image:UIImage?

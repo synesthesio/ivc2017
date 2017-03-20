@@ -755,6 +755,7 @@
 				25CCBA221E7F7AE500507820 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
