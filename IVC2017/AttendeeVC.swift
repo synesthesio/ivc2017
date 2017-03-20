@@ -36,7 +36,7 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 				nameLabel.text = n
 			}
 			if let i = interests {
-				self.interestsLabel.text = i
+				self.interestsLabel.text = i.uppercaseFirst
 			}
 			
 //			self.imgView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/2)

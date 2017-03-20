@@ -15,41 +15,145 @@ class AttendeeTableVC: UICollectionViewController {
 
 	
 	@IBOutlet var colV: UICollectionView!
-//	var aImages:[UIImage] = []
-//	var handle:FIRDatabaseHandle?
-//	var ref:FIRDatabaseReference?
+	var handle:FIRDatabaseHandle?
+	var ref:FIRDatabaseReference?
 	var attendees:[Attendee]?
-//	var storageRef:FIRStorageReference?
-//	var loadingVC:LoadingVC!
-//	var loaded:Bool = false
-//	var goingToLoading:Bool = false
-//	
+	var storageRef:FIRStorageReference?
+	var loadingVC:LoadingVC!
+	var loaded:Bool = false
+	var myGrp = DispatchGroup()
+	var goingToLoading:Bool = false
+//
     override func viewDidLoad() {
         super.viewDidLoad()
 				self.colV.dataSource = self
 				self.colV.delegate = self
-			if Utility.attendees.count > 0 {
-				self.attendees = Utility.attendees
-				}
+//			if Utility.attendees.count > 0 {
+//				self.attendees = Utility.attendees
+//				}
 				self.title = "Attendees"
 				self.view.backgroundColor = Utility.redClr
 			
     }
 
-    override func didReceiveMemoryWarning() {
+	
+	override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
+	}
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		if let h = self.handle {
+			self.ref?.removeObserver(withHandle: h)
+		} else {
+			self.ref?.removeAllObservers()
+		}
+	}
 	
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
+		if !goingToLoading {
+			self.loaded = false
+		}
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-
+		if !self.loaded {
+			self.goingToLoading = true
+			self.loadingVC = self.storyboard?.instantiateViewController(withIdentifier: "loading") as! LoadingVC
+			self.present(self.loadingVC, animated: false, completion: nil)
+			self.fetchAttendees { (atte) in
+				self.attendees = atte
+				if let a = self.attendees {
+					self.fetchImagesForAttendees(att: a, completion: { (attend) in
+//						Utility.attendees = attend
+						self.attendees = attend
+						self.loaded = true
+						self.loadingVC.rotate = false
+						self.goingToLoading = false
+						self.colV.reloadData()
+					})
+				}
+			}
 		}
+	}
 	
+	
+	func fetchImagesForAttendees(att:[Attendee], completion:@escaping([Attendee])->()){
+		var array:[Attendee] = []
+		self.storageRef = FIRStorage.storage().reference()
+		
+		for x in att {
+			self.myGrp.enter()
+			var a = x
+			guard let id = a.uID else { break }
+			
+			self.getImageFromFIR(uID: id, completion: { (img) in
+				
+				if let im = img {
+					a.image = im
+					array.append(a)
+				}
+				self.myGrp.leave()
+			})
+			//			array.append(a)
+		}
+		myGrp.notify(queue: DispatchQueue.main) {
+			completion(array)
+		}
+	}
+	
+	func getImageFromFIR(uID:String, completion:@escaping(UIImage?)->()) {
+		var image:UIImage?
+		self.storageRef = FIRStorage.storage().reference()
+		let ref1 = storageRef?.child("images/" + "\(uID)")
+		do {
+			ref1?.data(withMaxSize: 5 * 1024 * 1024, completion: { (data, err) in
+				if let e = err {
+					print("Print err: \(e)")
+					Utility.displayAlertWithHandler("Error", message: "Error Downloading Images, Please Try Again Later", from: self, cusHandler: nil)
+				}
+				
+				if let d = data {
+					if let image = UIImage(data: d) {
+						completion(image)
+					}
+				}
+			})
+		} catch {
+			Utility.displayAlertWithHandler("Error", message: "Error Downloading Images, Please Try Again Later", from: self, cusHandler: nil)
+		}
+		
+		
+	}
+	
+	func fetchAttendees(completion:@escaping([Attendee]) -> ()) {
+		var att = [Attendee]()
+		ref = FIRDatabase.database().reference()
+		do {
+			handle = ref?.child("users").observe(.value, with: { (snapshot) in
+				for i in snapshot.children {
+					let v = (i as! FIRDataSnapshot).value as! [String:AnyObject]
+					let nm = v["name"] as! String
+					let bio = v["bio"] as? String
+					let lin = v["link"] as? String
+					let imgRef = v["image"] as? String
+					var link:URL?
+					if let l = lin {
+						link = URL(string: l)
+					}
+					let a = Attendee(nm: nm, bi: bio, lnk: link, id: imgRef, img: nil)
+					//					let a = Attendee(nm: nm, bi: bio, lnk: link, id:imgRef,)
+					att.append(a)
+				}
+				completion(att)
+			})
+			
+		} catch {
+			Utility.displayAlertWithHandler("Error", message: "An error occurred, please try again", from: self, cusHandler: nil)
+		}
+	}
 	
 	
 	override func numberOfSections(in collectionView: UICollectionView) -> Int {
