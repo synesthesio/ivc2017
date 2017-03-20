@@ -44,63 +44,13 @@ class AttendeeTableVC: UICollectionViewController {
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-//		if !goingToLoading {
-//		self.loaded = false
-//		}
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-//		if !self.loaded {
-//		self.goingToLoading = true
-//		self.loadingVC = self.storyboard?.instantiateViewController(withIdentifier: "loading") as! LoadingVC
-//		self.present(self.loadingVC, animated: false, completion: nil)
-//		}
-//		self.fetchAttendees(completion: { (att) in
-//			self.attendees = att
-//			self.fetchUserImages()
-//		})
+
 		}
 	
 	
-//	func fetchUserImages(){
-//		
-//		if let at = self.attendees {
-//			for i in at {
-//				if let id = i.uID{
-//				
-//					self.getImageFromFIR(uID: id, completion: { (img) in
-//						self.aImages.append(img)
-//						self.loadingVC.rotate = false
-//						self.loaded = true
-//						self.goingToLoading = false
-//						self.colV.reloadData()
-//					})
-//				}
-//			}
-//		}
-//	}
-	
-	
-	
-	
-//	func getImageFromFIR(uID:String?, completion:@escaping(UIImage)->()) {
-//		var image:UIImage?
-//		self.storageRef = FIRStorage.storage().reference()
-//		
-//		let ref = storageRef?.child("images/" + "\(uID!)")
-//		ref?.data(withMaxSize: 5 * 1024 * 1024, completion: { (data, err) in
-//			
-//			if let e = err {
-//				print("Print err: \(e)")
-//				Utility.displayAlertWithHandler("Error", message: "Error Downloading Images, Please Try Again Later", from: self, cusHandler: nil)
-//			}
-//			
-//			if let d = data {
-//				image = UIImage(data: d)
-//				completion(image!)
-//			}
-//		})
-//	}
 	
 	override func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return 1
@@ -123,6 +73,7 @@ class AttendeeTableVC: UICollectionViewController {
 					vc.nameForTitle = attendee.name
 					vc.link = attendee.link
 					vc.uID = attendee.uID
+					vc.image = attendee.image
 					self.tabBarController?.present(vc, animated: false, completion: nil)
 				} else {
 					

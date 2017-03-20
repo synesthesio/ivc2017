@@ -21,6 +21,7 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 	var nameForTitle:String?
 	var interests:String?
 	var uID:String?
+	var image:UIImage?
 	var storageRef:FIRStorageReference?
 	var link:URL?
 
@@ -71,11 +72,10 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 	
 		override func viewWillAppear(_ animated: Bool) {
 			super.viewWillAppear(animated)
-
-			if let id = self.uID {
-			self.getImageFromFIR(uID: id, completion: { (img) in
-				self.imgView.image = img
-				})
+			if let i = self.image {
+				self.imgView.image = i
+			} else {
+				self.imgView.image = UIImage(named: "user")
 			}
 		}
 	
@@ -85,6 +85,10 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 
 		func websiteButtonTapped(){
 			if let l = link {
+//			if l.absoluteString.
+			// check url working
+			
+			
 			if UIApplication.shared.canOpenURL(l) {
 				UIApplication.shared.open(l, options: [:], completionHandler: nil)
 			} else {
@@ -95,24 +99,24 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 			}
 		}
 
-		func getImageFromFIR(uID:String?, completion:@escaping(UIImage)->()) {
-			var image:UIImage?
-			self.storageRef = FIRStorage.storage().reference()
-		
-			let ref = storageRef?.child("images/" + "\(uID!)")
-			ref?.data(withMaxSize: 5 * 1024 * 1024, completion: { (data, err) in
-			
-			if let e = err {
-				print("Print err: \(e)")
-				Utility.displayAlertWithHandler("Error", message: "Error Downloading Images, Please Try Again Later", from: self, cusHandler: nil)
-			}
-			
-			if let d = data {
-				image = UIImage(data: d)
-				completion(image!)
-			}
-		})
-	}
+//		func getImageFromFIR(uID:String?, completion:@escaping(UIImage)->()) {
+//			var image:UIImage?
+//			self.storageRef = FIRStorage.storage().reference()
+//		
+//			let ref = storageRef?.child("images/" + "\(uID!)")
+//			ref?.data(withMaxSize: 5 * 1024 * 1024, completion: { (data, err) in
+//			
+//			if let e = err {
+//				print("Print err: \(e)")
+//				Utility.displayAlertWithHandler("Error", message: "Error Downloading Images, Please Try Again Later", from: self, cusHandler: nil)
+//			}
+//			
+//			if let d = data {
+//				image = UIImage(data: d)
+//				completion(image!)
+//			}
+//		})
+//	}
 	
 	lazy var webView:UIWebView = {
 		let a = UIWebView(frame: self.view.bounds)

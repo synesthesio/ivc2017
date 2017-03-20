@@ -153,12 +153,12 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 				self.getImageFromFIR(uID: id, completion: { (img) in
 				
 					if let im = img {
-						
 						a.image = im
+						array.append(a)
 					}
 					self.myGrp.leave()
 				})
-			array.append(a)
+//			array.append(a)
 		}
 		myGrp.notify(queue: DispatchQueue.main) { 
 			completion(array)
