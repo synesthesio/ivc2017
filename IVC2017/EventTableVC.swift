@@ -23,32 +23,12 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 	var swtch:UISegmentedControl!
     override func viewDidLoad() {
 			super.viewDidLoad()
-//			FIRDatabase.database().persistenceEnabled = true
 			self.tabBarController?.navigationController?.navigationBar.layer.backgroundColor = Utility.purpleClr.cgColor
 			self.navigationController?.navigationBar.barTintColor = Utility.purpleClr
 			self.navigationController?.navigationBar.isTranslucent = false
 			
 			
 			self.swtch = UISegmentedControl(items: ["Fri", "Sat", "Sun"])
-//			if var d = Date().dayOfWeek() {
-//				if d != "friday" || d != "saturday" || d != "sunday" {
-//				d = "friday"
-//				}
-//				self.fetchCalendarEvents(forDay: d, completion: { (sesh) in
-//					self.sessionsForView = sesh
-//					self.tableView.reloadData()
-//				})
-//				switch d {
-//				case "friday":
-//					swtch.selectedSegmentIndex = 0
-//				case "saturday":
-//					swtch.selectedSegmentIndex = 1
-//				case "sunday":
-//					swtch.selectedSegmentIndex = 2
-//				default:
-//					swtch.selectedSegmentIndex = 0
-//				}
-//			}
 			
 			self.swtch.layer.borderWidth = 0.5
 			self.swtch.layer.borderColor = Utility.purpleClr.cgColor
@@ -240,9 +220,7 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 		
 		vc.sesh = sesh
 		vc.titl = sesh.title
-//		vc.address = sesh.addr
-//		vc.time = sesh.time
-//		vc.day = sesh.day
+
 		if let loc = sesh.location {
 			if loc != "" {
 				vc.location = loc		

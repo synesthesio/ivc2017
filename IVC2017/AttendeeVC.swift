@@ -44,7 +44,7 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 			self.interestsLabel.textColor = UIColor.white
 			self.nameLabel.textColor = UIColor.white
 			self.websiteButton.setTitleColor(Utility.yellowClr, for: .normal)
-			self.view.backgroundColor  = Utility.purpleClr
+			self.view.backgroundColor  = Utility.redClr
 			self.navB.barTintColor = Utility.purpleClr
 			self.interestsLabel.lineBreakMode = .byWordWrapping
 			self.interestsLabel.numberOfLines = 0
@@ -85,10 +85,6 @@ class AttendeeVC: UIViewController,UIWebViewDelegate {
 
 		func websiteButtonTapped(){
 			if let l = link {
-//			if l.absoluteString.
-			// check url working
-			
-			
 			if UIApplication.shared.canOpenURL(l) {
 				UIApplication.shared.open(l, options: [:], completionHandler: nil)
 			} else {
