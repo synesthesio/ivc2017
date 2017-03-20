@@ -26,7 +26,7 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 			self.tabBarController?.navigationController?.navigationBar.layer.backgroundColor = Utility.purpleClr.cgColor
 			self.navigationController?.navigationBar.barTintColor = Utility.purpleClr
 			self.navigationController?.navigationBar.isTranslucent = false
-			
+			self.view.backgroundColor = Utility.redClr
 			
 			self.swtch = UISegmentedControl(items: ["Fri", "Sat", "Sun"])
 			

@@ -19,20 +19,27 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 	var gidSignIn:Bool = false
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		plyr = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: "video", ofType: "mp4")!))
-		self.navigationController?.navigationBar.isHidden = true
 		uetf.delegate = self
 		uptf.delegate = self
-
-		setUpPlayer()
+		
+//		plyr = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: "video", ofType: "mp4")!))
+//		
+		
+			plyr = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: "video", ofType: "mp4")!))
+			self.navigationController?.navigationBar.isHidden = true
+			setUpPlayer()
+			plyr?.play()
+			plyr?.isMuted = true
+		
+//		self.navigationController?.navigationBar.isHidden = true
+//		setUpPlayer()
 		
 		let veV = UIVisualEffectView(frame: view.bounds)
 		veV.translatesAutoresizingMaskIntoConstraints = false
 		veV.effect = UIBlurEffect(style: .light)
 		
-		plyr?.play()
-		plyr?.isMuted = true
+//		plyr?.play()
+//		plyr?.isMuted = true
 		NotificationCenter.default.addObserver(self, selector: #selector(playDidEnd(notif:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: plyr?.currentItem)
 		view.setNeedsUpdateConstraints()
 		let tGR = UITapGestureRecognizer(target: self, action: #selector(screenTapped))
@@ -45,10 +52,10 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		stack.addArrangedSubview(skipButton)
 		stack.addArrangedSubview(registerButton)
 		stack1.addArrangedSubview(stack)
-		stack1.addArrangedSubview(gidSI)
+//		stack1.addArrangedSubview(gidSI)
 		view.addSubview(stack1)
 		
-		
+//		GIDSignIn.sharedInstance().delegate = self
 		GIDSignIn.sharedInstance().uiDelegate = self
 		if GIDSignIn.sharedInstance().hasAuthInKeychain() {
 		
@@ -107,7 +114,8 @@ class RegistrationVC: UIViewController,UITextFieldDelegate, UIGestureRecognizerD
 		//		NSLayoutConstraint(item: gidSI, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
 		//		NSLayoutConstraint(item: gidSI, attribute: .top, relatedBy: .equal, toItem: stack, attribute: .bottom, multiplier: 1.0, constant: -10).isActive = true
 		stack1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-		stack1.topAnchor.constraint(equalTo: uptf.bottomAnchor).isActive = true
+//		stack1.topAnchor.constraint(equalTo: uptf.bottomAnchor).isActive = true
+		stack1.topAnchor.constraint(equalTo: uptf.bottomAnchor, constant: 8.0).isActive = true
 	}
 	
 	

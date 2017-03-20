@@ -280,3 +280,13 @@ extension String {
 		return first.uppercased() + String(characters.dropFirst())
 	}
 }
+
+public extension UIDevice{
+	var isSim:Bool{
+		#if IOS_SIMULATOR
+			return true
+		#else
+			return false
+		#endif
+	}
+}
