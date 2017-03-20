@@ -14,7 +14,6 @@ class AboutVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 				self.navigationController?.navigationBar.isHidden = false
-//			self.navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
 			
 //				let url = URL(string: "http://www.iv-conference.com/faqs/")
 				let url1 = URL(string:"fb://profile/215178098578794")
@@ -27,9 +26,6 @@ class AboutVC: UIViewController {
 				self.webView.frame = self.view.bounds
 				self.view.addSubview(webView)
 			}
-			
-			
-			
         // Do any additional setup after loading the view.
     }
 
@@ -37,20 +33,7 @@ class AboutVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-	
-//	func close(){
-//		self.view.viewWithTag(44)?.removeFromSuperview()
-//	}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 	
 //	lazy var webView:UIWebView = {
 //		let a = UIWebView(frame: self.view.bounds)
