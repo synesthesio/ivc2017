@@ -12,6 +12,8 @@ import GoogleMaps
 
 struct Utility {
 
+	static var attendees:[Attendee] = []
+
 	var locationData:[EventLocation]!
 
 	static func displayAlertWithHandler(_ title: String, message: String, from: UIViewController, cusHandler: ((UIAlertAction) -> Void)?){
@@ -189,11 +191,13 @@ struct Attendee {
 	var bio:String?
 	var link:URL?
 	var uID:String?
-	init(nm:String, bi:String?, lnk:URL?, id:String?) {
+	var image:UIImage?
+	init(nm:String, bi:String?, lnk:URL?, id:String?, img:UIImage?) {
 		self.name = nm
 		self.bio = bi
 		self.link = lnk
 		self.uID = id
+		self.image = img
 	}
 }
 

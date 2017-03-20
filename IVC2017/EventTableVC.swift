@@ -13,9 +13,13 @@ import Firebase
 class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSpeakerDelegate {
 	var handle:FIRDatabaseHandle?
 	var ref:FIRDatabaseReference?
+	var storageRef:FIRStorageReference?
 	var sessionsForView:[Session]?
-	var satSessions:[Session]?
-	var sunSessions:[Session]?
+	var myGrp = DispatchGroup()
+	var attendees:[Attendee]?
+	var loadingVC:LoadingVC!
+	var goingToLoading:Bool = false
+	var loaded:Bool = false
 	var swtch:UISegmentedControl!
     override func viewDidLoad() {
 			super.viewDidLoad()
@@ -64,8 +68,6 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 				i.layer.addSublayer(upperBorder)
 			}
 			self.swtch.addTarget(self, action: #selector(switchDay(sender:)), for: .valueChanged)
-
-			
 			self.navigationItem.titleView = self.swtch
 			
         // Uncomment the following line to preserve selection between presentations
@@ -79,9 +81,28 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 		super.viewDidAppear(animated)
 		
 	}
+
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		
+		if !self.loaded {
+			self.goingToLoading = true
+			self.loadingVC = self.storyboard?.instantiateViewController(withIdentifier: "loading") as! LoadingVC
+			self.present(self.loadingVC, animated: false, completion: nil)
+			self.fetchAttendees { (atte) in
+				self.attendees = atte
+				if let a = self.attendees {
+					self.fetchImagesForAttendees(att: a, completion: { (attend) in
+						Utility.attendees = attend
+						self.loaded = true
+						self.loadingVC.rotate = false
+						self.goingToLoading = false
+					})
+				}
+			}
+		}
+		
 		if var d = Date().dayOfWeek() {
 			if d != "friday" || d != "saturday" || d != "sunday" {
 				d = "friday"
@@ -103,14 +124,103 @@ class EventTableVC: UITableViewController,TransitionToSpeakerDelegate, DismissSp
 		}
 	}
 	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		if !goingToLoading {
+			self.loaded = false
+		}
+	}
+	
 	override func viewDidDisappear(_ animated: Bool) {
-	super.viewDidDisappear(animated)
+		super.viewDidDisappear(animated)
 		if let h = self.handle {
 			self.ref?.removeObserver(withHandle: h)
 		} else {
 			self.ref?.removeAllObservers()
 		}
 	}
+	
+	
+	func fetchImagesForAttendees(att:[Attendee], completion:@escaping([Attendee])->()){
+		var array:[Attendee] = []
+		self.storageRef = FIRStorage.storage().reference()
+		
+		for x in att {
+			self.myGrp.enter()
+			var a = x
+			guard let id = a.uID else { break }
+			
+				self.getImageFromFIR(uID: id, completion: { (img) in
+				
+					if let im = img {
+						
+						a.image = im
+					}
+					self.myGrp.leave()
+				})
+			array.append(a)
+		}
+		myGrp.notify(queue: DispatchQueue.main) { 
+			completion(array)
+		}
+	}
+	
+	func getImageFromFIR(uID:String, completion:@escaping(UIImage?)->()) {
+		var image:UIImage?
+		self.storageRef = FIRStorage.storage().reference()
+		let ref1 = storageRef?.child("images/" + "\(uID)")
+			do {
+				ref1?.data(withMaxSize: 5 * 1024 * 1024, completion: { (data, err) in
+					if let e = err {
+						print("Print err: \(e)")
+						Utility.displayAlertWithHandler("Error", message: "Error Downloading Images, Please Try Again Later", from: self, cusHandler: nil)
+					}
+					
+					if let d = data {
+						if let image = UIImage(data: d) {
+						completion(image)
+						}
+					}
+				})
+			} catch {
+				Utility.displayAlertWithHandler("Error", message: "Error Downloading Images, Please Try Again Later", from: self, cusHandler: nil)
+			}
+		
+		
+	}
+
+	func fetchAttendees(completion:@escaping([Attendee]) -> ()) {
+		var att = [Attendee]()
+		ref = FIRDatabase.database().reference()
+		do {
+			handle = ref?.child("users").observe(.value, with: { (snapshot) in
+				for i in snapshot.children {
+					let v = (i as! FIRDataSnapshot).value as! [String:AnyObject]
+					let nm = v["name"] as! String
+					let bio = v["bio"] as? String
+					let link = v["link"] as? URL
+					let imgRef = v["image"] as? String
+					let a = Attendee(nm: nm, bi: bio, lnk: link, id: imgRef, img: nil)
+					//					let a = Attendee(nm: nm, bi: bio, lnk: link, id:imgRef,)
+					att.append(a)
+				}
+				completion(att)
+			})
+			
+		} catch {
+			Utility.displayAlertWithHandler("Error", message: "An error occurred, please try again", from: self, cusHandler: nil)
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	func switchDay(sender:UISegmentedControl){

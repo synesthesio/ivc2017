@@ -15,19 +15,22 @@ class AttendeeTableVC: UICollectionViewController {
 
 	
 	@IBOutlet var colV: UICollectionView!
-	var aImages:[UIImage] = []
-	var handle:FIRDatabaseHandle?
-	var ref:FIRDatabaseReference?
+//	var aImages:[UIImage] = []
+//	var handle:FIRDatabaseHandle?
+//	var ref:FIRDatabaseReference?
 	var attendees:[Attendee]?
-	var storageRef:FIRStorageReference?
-	var loadingVC:LoadingVC!
-	var loaded:Bool = false
-	var goingToLoading:Bool = false
+//	var storageRef:FIRStorageReference?
+//	var loadingVC:LoadingVC!
+//	var loaded:Bool = false
+//	var goingToLoading:Bool = false
+//	
     override func viewDidLoad() {
         super.viewDidLoad()
 				self.colV.dataSource = self
 				self.colV.delegate = self
-			
+			if Utility.attendees.count > 0 {
+				self.attendees = Utility.attendees
+				}
 				self.title = "Attendees"
 				self.view.backgroundColor = Utility.redClr
 			
@@ -41,82 +44,63 @@ class AttendeeTableVC: UICollectionViewController {
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		if !goingToLoading {
-		self.loaded = false
-		}
+//		if !goingToLoading {
+//		self.loaded = false
+//		}
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		if !self.loaded {
-		self.goingToLoading = true
-		self.loadingVC = self.storyboard?.instantiateViewController(withIdentifier: "loading") as! LoadingVC
-		self.present(self.loadingVC, animated: false, completion: nil)
-		self.fetchAttendees(completion: { (att) in
-			self.attendees = att
-			self.fetchUserImages()
-		})
+//		if !self.loaded {
+//		self.goingToLoading = true
+//		self.loadingVC = self.storyboard?.instantiateViewController(withIdentifier: "loading") as! LoadingVC
+//		self.present(self.loadingVC, animated: false, completion: nil)
+//		}
+//		self.fetchAttendees(completion: { (att) in
+//			self.attendees = att
+//			self.fetchUserImages()
+//		})
 		}
-	}
-	
-	func fetchUserImages(){
-		
-		if let at = self.attendees {
-			for i in at {
-				if let id = i.uID{
-				
-					self.getImageFromFIR(uID: id, completion: { (img) in
-						self.aImages.append(img)
-						self.loadingVC.rotate = false
-						self.loaded = true
-						self.goingToLoading = false
-						self.colV.reloadData()
-					})
-				}
-			}
-		}
-	}
 	
 	
-	func fetchAttendees(completion:@escaping([Attendee]) -> ()) {
-		var att = [Attendee]()
-		ref = FIRDatabase.database().reference()
-		do {
-			handle = ref?.child("users").observe(.value, with: { (snapshot) in
-				for i in snapshot.children {
-					let v = (i as! FIRDataSnapshot).value as! [String:AnyObject]
-					let nm = v["name"] as! String
-					let bio = v["bio"] as? String
-					let link = v["link"] as? URL
-					let imgRef = v["image"] as? String
-					let a = Attendee(nm: nm, bi: bio, lnk: link, id:imgRef)
-					att.append(a)
-				}
-				completion(att)
-			})
-			
-		 } catch {
-			Utility.displayAlertWithHandler("Error", message: "An error occurred, please try again", from: self, cusHandler: nil)
-		}
-	}
+//	func fetchUserImages(){
+//		
+//		if let at = self.attendees {
+//			for i in at {
+//				if let id = i.uID{
+//				
+//					self.getImageFromFIR(uID: id, completion: { (img) in
+//						self.aImages.append(img)
+//						self.loadingVC.rotate = false
+//						self.loaded = true
+//						self.goingToLoading = false
+//						self.colV.reloadData()
+//					})
+//				}
+//			}
+//		}
+//	}
 	
-	func getImageFromFIR(uID:String?, completion:@escaping(UIImage)->()) {
-		var image:UIImage?
-		self.storageRef = FIRStorage.storage().reference()
-		
-		let ref = storageRef?.child("images/" + "\(uID!)")
-		ref?.data(withMaxSize: 5 * 1024 * 1024, completion: { (data, err) in
-			
-			if let e = err {
-				print("Print err: \(e)")
-				Utility.displayAlertWithHandler("Error", message: "Error Downloading Images, Please Try Again Later", from: self, cusHandler: nil)
-			}
-			
-			if let d = data {
-				image = UIImage(data: d)
-				completion(image!)
-			}
-		})
-	}
+	
+	
+	
+//	func getImageFromFIR(uID:String?, completion:@escaping(UIImage)->()) {
+//		var image:UIImage?
+//		self.storageRef = FIRStorage.storage().reference()
+//		
+//		let ref = storageRef?.child("images/" + "\(uID!)")
+//		ref?.data(withMaxSize: 5 * 1024 * 1024, completion: { (data, err) in
+//			
+//			if let e = err {
+//				print("Print err: \(e)")
+//				Utility.displayAlertWithHandler("Error", message: "Error Downloading Images, Please Try Again Later", from: self, cusHandler: nil)
+//			}
+//			
+//			if let d = data {
+//				image = UIImage(data: d)
+//				completion(image!)
+//			}
+//		})
+//	}
 	
 	override func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return 1
@@ -132,7 +116,7 @@ class AttendeeTableVC: UICollectionViewController {
 	
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 	
-				if let att = attendees {
+				if let att = self.attendees {
 					let attendee = att[indexPath.row]
 					let vc = self.storyboard?.instantiateViewController(withIdentifier: "attendeevc") as! AttendeeVC
 					vc.interests = attendee.bio
@@ -148,16 +132,16 @@ class AttendeeTableVC: UICollectionViewController {
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "atcell", for: indexPath) as! AttendeeCVCell
 		  if let at = self.attendees {
-				let content = at[indexPath.row]
-				if self.aImages.count > 0 {
-					if let img = self.aImages[indexPath.row].resizeImage(size: CGSize(width: 80, height: 80)) {
-						cell.img.image = img
+				
+				if let img = at[indexPath.row].image {
+					if let i = img.resizeImage(size: CGSize(width: 80, height: 80)) {
+						cell.img.image = i
 					} else {
-						cell.img.image = UIImage(named: "user")		
+						cell.img.image = UIImage(named: "user")
 					}
-			} else {
-				cell.img.image = UIImage(named: "user")
-			}
+				} else {
+					cell.img.image = UIImage(named: "user")
+				}
 		}
 		return cell
 	}
