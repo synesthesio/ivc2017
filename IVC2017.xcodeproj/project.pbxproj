@@ -18,7 +18,6 @@
 		252B55FB1E626A9A00F12C11 /* EventTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252B55FA1E626A9A00F12C11 /* EventTableVC.swift */; };
 		252B55FD1E62911B00F12C11 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252B55FC1E62911B00F12C11 /* RegistrationVC.swift */; };
 		254F3CC31E636D9000343DA8 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F3CC21E636D9000343DA8 /* MapVC.swift */; };
-		254F3CC51E636EF600343DA8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 254F3CC41E636EF600343DA8 /* GoogleService-Info.plist */; };
 		254F3CC71E63789100343DA8 /* AttendeeTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F3CC61E63789100343DA8 /* AttendeeTableVC.swift */; };
 		254F3CC91E6378EC00343DA8 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F3CC81E6378EC00343DA8 /* AboutVC.swift */; };
 		254F3CCB1E63798B00343DA8 /* SpeakerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F3CCA1E63798B00343DA8 /* SpeakerVC.swift */; };
@@ -30,6 +29,8 @@
 		259348351E7DFFA200C53B88 /* SpeakerCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259348341E7DFFA200C53B88 /* SpeakerCVCell.swift */; };
 		25C17E5C1E67480B00BDEB4D /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C17E5B1E67480B00BDEB4D /* MapTasks.swift */; };
 		25C17E5E1E675DAA00BDEB4D /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C17E5D1E675DAA00BDEB4D /* LocationService.swift */; };
+		25CCBA141E7F729C00507820 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25CCBA131E7F729C00507820 /* GoogleService-Info.plist */; };
+		25CCBA1C1E7F7AE500507820 /* IVC2017UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CCBA1B1E7F7AE500507820 /* IVC2017UITests.swift */; };
 		25D661011E7F1967003D57BA /* AttendeeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D661001E7F1967003D57BA /* AttendeeCVCell.swift */; };
 		25DE07CD1E6A661B003DA82B /* AttendeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DE07CC1E6A661B003DA82B /* AttendeeVC.swift */; };
 		25DFE3561E5EBCEA00B5B333 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DFE3551E5EBCEA00B5B333 /* Utility.swift */; };
@@ -38,6 +39,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		2513BC531E5EB4FB009B9CDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2513BC331E5EB4FB009B9CDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2513BC3A1E5EB4FB009B9CDE;
+			remoteInfo = IVC2017;
+		};
+		25CCBA1E1E7F7AE500507820 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2513BC331E5EB4FB009B9CDE /* Project object */;
 			proxyType = 1;
@@ -62,7 +70,6 @@
 		252B55FA1E626A9A00F12C11 /* EventTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableVC.swift; sourceTree = "<group>"; };
 		252B55FC1E62911B00F12C11 /* RegistrationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
 		254F3CC21E636D9000343DA8 /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
-		254F3CC41E636EF600343DA8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		254F3CC61E63789100343DA8 /* AttendeeTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendeeTableVC.swift; sourceTree = "<group>"; };
 		254F3CC81E6378EC00343DA8 /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		254F3CCA1E63798B00343DA8 /* SpeakerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerVC.swift; sourceTree = "<group>"; };
@@ -75,6 +82,10 @@
 		259348341E7DFFA200C53B88 /* SpeakerCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerCVCell.swift; sourceTree = "<group>"; };
 		25C17E5B1E67480B00BDEB4D /* MapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTasks.swift; sourceTree = "<group>"; };
 		25C17E5D1E675DAA00BDEB4D /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		25CCBA131E7F729C00507820 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		25CCBA191E7F7AE500507820 /* IVC2017UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IVC2017UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		25CCBA1B1E7F7AE500507820 /* IVC2017UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVC2017UITests.swift; sourceTree = "<group>"; };
+		25CCBA1D1E7F7AE500507820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25D661001E7F1967003D57BA /* AttendeeCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendeeCVCell.swift; sourceTree = "<group>"; };
 		25DE07CC1E6A661B003DA82B /* AttendeeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendeeVC.swift; sourceTree = "<group>"; };
 		25DFE3551E5EBCEA00B5B333 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
@@ -102,6 +113,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		25CCBA161E7F7AE500507820 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -122,6 +140,7 @@
 				257180661E6638020037DD4C /* video.mp4 */,
 				2513BC3D1E5EB4FB009B9CDE /* IVC2017 */,
 				2513BC551E5EB4FB009B9CDE /* IVC2017Tests */,
+				25CCBA1A1E7F7AE500507820 /* IVC2017UITests */,
 				2513BC3C1E5EB4FB009B9CDE /* Products */,
 				18755C5256E2DBDFDC01BCA3 /* Pods */,
 				6F8E12E497F233A8E7B36431 /* Frameworks */,
@@ -133,6 +152,7 @@
 			children = (
 				2513BC3B1E5EB4FB009B9CDE /* IVC2017.app */,
 				2513BC521E5EB4FB009B9CDE /* IVC2017Tests.xctest */,
+				25CCBA191E7F7AE500507820 /* IVC2017UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,8 +181,8 @@
 				25D661001E7F1967003D57BA /* AttendeeCVCell.swift */,
 				2513BC421E5EB4FB009B9CDE /* Main.storyboard */,
 				2513BC481E5EB4FB009B9CDE /* Assets.xcassets */,
+				25CCBA131E7F729C00507820 /* GoogleService-Info.plist */,
 				2513BC4A1E5EB4FB009B9CDE /* LaunchScreen.storyboard */,
-				254F3CC41E636EF600343DA8 /* GoogleService-Info.plist */,
 				2513BC4D1E5EB4FB009B9CDE /* Info.plist */,
 				2513BC451E5EB4FB009B9CDE /* IVC2017.xcdatamodeld */,
 			);
@@ -176,6 +196,15 @@
 				2513BC581E5EB4FB009B9CDE /* Info.plist */,
 			);
 			path = IVC2017Tests;
+			sourceTree = "<group>";
+		};
+		25CCBA1A1E7F7AE500507820 /* IVC2017UITests */ = {
+			isa = PBXGroup;
+			children = (
+				25CCBA1B1E7F7AE500507820 /* IVC2017UITests.swift */,
+				25CCBA1D1E7F7AE500507820 /* Info.plist */,
+			);
+			path = IVC2017UITests;
 			sourceTree = "<group>";
 		};
 		6F8E12E497F233A8E7B36431 /* Frameworks */ = {
@@ -231,6 +260,24 @@
 			productReference = 2513BC521E5EB4FB009B9CDE /* IVC2017Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		25CCBA181E7F7AE500507820 /* IVC2017UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25CCBA201E7F7AE500507820 /* Build configuration list for PBXNativeTarget "IVC2017UITests" */;
+			buildPhases = (
+				25CCBA151E7F7AE500507820 /* Sources */,
+				25CCBA161E7F7AE500507820 /* Frameworks */,
+				25CCBA171E7F7AE500507820 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				25CCBA1F1E7F7AE500507820 /* PBXTargetDependency */,
+			);
+			name = IVC2017UITests;
+			productName = IVC2017UITests;
+			productReference = 25CCBA191E7F7AE500507820 /* IVC2017UITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -260,6 +307,12 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2513BC3A1E5EB4FB009B9CDE;
 					};
+					25CCBA181E7F7AE500507820 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = DU34AAR2FY;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2513BC3A1E5EB4FB009B9CDE;
+					};
 				};
 			};
 			buildConfigurationList = 2513BC361E5EB4FB009B9CDE /* Build configuration list for PBXProject "IVC2017" */;
@@ -277,6 +330,7 @@
 			targets = (
 				2513BC3A1E5EB4FB009B9CDE /* IVC2017 */,
 				2513BC511E5EB4FB009B9CDE /* IVC2017Tests */,
+				25CCBA181E7F7AE500507820 /* IVC2017UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -288,13 +342,20 @@
 			files = (
 				2513BC4C1E5EB4FB009B9CDE /* LaunchScreen.storyboard in Resources */,
 				257180671E6638020037DD4C /* video.mp4 in Resources */,
-				254F3CC51E636EF600343DA8 /* GoogleService-Info.plist in Resources */,
+				25CCBA141E7F729C00507820 /* GoogleService-Info.plist in Resources */,
 				2513BC491E5EB4FB009B9CDE /* Assets.xcassets in Resources */,
 				2513BC441E5EB4FB009B9CDE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2513BC501E5EB4FB009B9CDE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		25CCBA171E7F7AE500507820 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -431,6 +492,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		25CCBA151E7F7AE500507820 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25CCBA1C1E7F7AE500507820 /* IVC2017UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -438,6 +507,11 @@
 			isa = PBXTargetDependency;
 			target = 2513BC3A1E5EB4FB009B9CDE /* IVC2017 */;
 			targetProxy = 2513BC531E5EB4FB009B9CDE /* PBXContainerItemProxy */;
+		};
+		25CCBA1F1E7F7AE500507820 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2513BC3A1E5EB4FB009B9CDE /* IVC2017 */;
+			targetProxy = 25CCBA1E1E7F7AE500507820 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -562,7 +636,7 @@
 				DEVELOPMENT_TEAM = DU34AAR2FY;
 				INFOPLIST_FILE = IVC2017/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ivc.HarvardVeganConference;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivc.HarvardVeganConference2017;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -578,7 +652,7 @@
 				DEVELOPMENT_TEAM = DU34AAR2FY;
 				INFOPLIST_FILE = IVC2017/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ivc.HarvardVeganConference;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivc.HarvardVeganConference2017;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -616,6 +690,34 @@
 			};
 			name = Release;
 		};
+		25CCBA211E7F7AE500507820 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DU34AAR2FY;
+				INFOPLIST_FILE = IVC2017UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivc.copyev.IVC2017UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IVC2017.app/IVC2017";
+			};
+			name = Debug;
+		};
+		25CCBA221E7F7AE500507820 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DU34AAR2FY;
+				INFOPLIST_FILE = IVC2017UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivc.copyev.IVC2017UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IVC2017.app/IVC2017";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -645,6 +747,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		25CCBA201E7F7AE500507820 /* Build configuration list for PBXNativeTarget "IVC2017UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25CCBA211E7F7AE500507820 /* Debug */,
+				25CCBA221E7F7AE500507820 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 
